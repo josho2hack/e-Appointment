@@ -1,0 +1,27 @@
+body {
+    background: transparent;
+    font-family: "Sarabun", sans-serif !important;
+    color: #404243;
+}
+
+h1,h2,h3,h4,h5 {
+    background: transparent;
+    font-family: "Kanit", sans-serif !important;
+    color: #404243;	
+}
+
+.rd-logo { max-width: 360px; }
+
+
+
+@media (max-width: 991px) {
+	.rd-logo { max-width: 300px; }	
+}
+
+@media (max-width: 767px) {
+	
+}
+
+@media (max-width: 575px) {
+	.rd-logo { max-width: 250px; }	
+}

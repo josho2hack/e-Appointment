@@ -1,0 +1,20 @@
+{
+    "Document": "เอกสารคู่มือ",
+    "Chat": "ถาม-ตอบ",
+    "Appointment": "การนัดหมาย",
+
+    "FirstName": "ชื่อ",
+    "LastName": "นามสกุล",
+    "Email": "อีเมล์",
+    "Password": "รหัสผ่าน",
+    "Confirm Password": "รหัสผ่านอีกครั้ง",
+    "Remember me": "จำการเข้าสู่ระบบ",
+    "Forgot your password?": "ลืมรหัสผ่าน ?",
+    "Already registered?": "มีรหัสผู้ใช้แล้ว ?",
+
+    "Login": "เข้าสู่ระบบ",
+    "Logout": "ออกจากระบบ",
+    "LoginEmployee": "สำหรับเจ้าหน้าที่",
+    "Register": "ลงทะเบียน",
+    "Dashboard": "หน้าหลัก"
+}
