@@ -465,7 +465,7 @@
                     @endif
 
                     <a href="{{ route('login') }}"
-                        class="ml-2 text-sm text-gray-700 underline">{{ __('LoginEmployee') }} </a>
+                        class="ml-2 text-sm text-gray-700 underline">{{ __('Employee') }} </a>
                 @endauth
 
                 <a href="#" class="dropdown-toggle ml-2 text-sm text-gray-700" data-toggle="dropdown">

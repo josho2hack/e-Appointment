@@ -3,18 +3,33 @@
     "Chat": "ถาม-ตอบ",
     "Appointment": "การนัดหมาย",
 
-    "FirstName": "ชื่อ",
-    "LastName": "นามสกุล",
+    "First Name": "ชื่อ",
+    "Last Name": "นามสกุล",
+    "Phone": "โทรศัพท์",
     "Email": "อีเมล์",
     "Password": "รหัสผ่าน",
     "Confirm Password": "รหัสผ่านอีกครั้ง",
     "Remember me": "จำการเข้าสู่ระบบ",
     "Forgot your password?": "ลืมรหัสผ่าน ?",
-    "Already registered?": "มีรหัสผู้ใช้แล้ว ?",
+    "Already registered or Google, Facebook?": "มีรหัสผู้ใช้แล้ว หรือ Google,Facebook?",
+    "Reset Password": "ตั้งรหัสผ่านใหม่",
 
     "Login": "เข้าสู่ระบบ",
     "Logout": "ออกจากระบบ",
-    "LoginEmployee": "สำหรับเจ้าหน้าที่",
+    "Employee": "เจ้าหน้าที่",
     "Register": "ลงทะเบียน",
-    "Dashboard": "หน้าหลัก"
+    "Dashboard": "หน้าหลัก",
+    "Login with Google":"เข้าสู่ระบบด้วย Google",
+    "Login with Facebook":"เข้าสู่ระบบด้วย Facebook",
+    "OR":"หรือ",
+
+    "This is a secure area of the application. Please confirm your password before continuing.": "โปรดยืนยันรหัสผ่านเพื่อดำเนินการต่อ",
+    "Confirm": "ยืนยัน",
+
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "ลืมรหัสผ่าน ? โปรดกรอกอีเมล์ที่ลงทะเบียนไว้ ระบบจะส่งลิงค์สำหรับตั้งรหัสผ่านใหม่ไปยังอีเมล์ของท่าน",
+    "Email Password Reset Link":"ส่งลิงค์ตั้งรหัสผ่านใหม่ไปยังอีเมล์",
+    "Whoops! Something went wrong.":"เกิดข้อผิดพลาด",
+    "Booking":"บันทึกนัดหมาย",
+    "Assignment":"มอบหมายงาน",
+    "Report": "รายงาน"
 }

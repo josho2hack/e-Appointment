@@ -12,22 +12,36 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+            <!-- First Name -->
+            <div class="mt-2">
+                <x-label for="first_name" :value="__('First Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+            </div>
+
+            <!-- Last Name -->
+            <div class="mt-2">
+                <x-label for="last_name" :value="__('Last Name')" />
+
+                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
+            </div>
+
+            <!-- Phone -->
+            <div class="mt-2">
+                <x-label for="phone" :value="__('Phone')" />
+
+                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus />
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full"
@@ -37,7 +51,7 @@
             </div>
 
             <!-- Confirm Password -->
-            <div class="mt-4">
+            <div class="mt-2">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
@@ -47,7 +61,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Already registered or Google, Facebook?') }}
                 </a>
 
                 <x-button class="ml-4">

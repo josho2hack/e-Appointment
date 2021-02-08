@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have emailed your password reset link!',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
+    'reset' => 'รหัสผ่านของท่านถุกตั้งค่าใหม่แล้ว',
+    'sent' => 'ส่งลิงค์ตั้งรหัสผ่านใหม่ไปยังอีเมล์เรียบร้อยแล้ว โปรดตรวจสอบอีเมล์',
+    'throttled' => 'โปรดรอและดำเดินการใหม่อีกครั้ง',
+    'token' => 'โทเคนสำหรับตั้งรหัสผ่านใหม่ไม่ถูกต้อง',
+    'user' => "ไม่พบผู้ใช้งานที่ใช้ที่อยู่อีเมล์นี้",
 
 ];
