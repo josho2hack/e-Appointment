@@ -40,3 +40,7 @@ Route::get('/booking', function () {
 })->middleware(['auth'])->name('booking');
 
 require __DIR__ . '/auth.php';
+
+Route::get('/guest', function () {
+    return view('booking');
+})->name('guest');

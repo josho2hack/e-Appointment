@@ -28,10 +28,20 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ];
+        $url = $this->redirector->getUrlGenerator();
+
+        if (str_contains($url->previous(), 'login-employee')) {
+            return [
+                'username' => 'required|string',
+                'password' => 'required|string',
+            ];
+        }
+        else {
+            return [
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ];
+        }
     }
 
     /**

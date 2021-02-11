@@ -464,7 +464,7 @@
                             class="ml-2 text-sm text-gray-700 underline">{{ __('Register') }}</a>
                     @endif
 
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('login.employee') }}"
                         class="ml-2 text-sm text-gray-700 underline">{{ __('Employee') }} </a>
                 @endauth
 
