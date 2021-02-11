@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AuthenticatedSessionController extends Controller
 {
