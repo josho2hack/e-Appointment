@@ -133,7 +133,7 @@ class AuthenticatedSessionController extends Controller
 
     protected function _registerOrLoginUserEOffice($data)
     {
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('lsk', $data['ID'])->first();
 
         $office = Office::where('code', $data['OFFICEID'])->first();
 
