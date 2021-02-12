@@ -89,9 +89,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = $response->json();
 
-        dd($user);
-
-        if (!$user->Authen) {
+        if (!$user['Authen']) {
             return Redirect::back()->with('errors', ['Authentication failed.']);
         }
 
@@ -135,9 +133,9 @@ class AuthenticatedSessionController extends Controller
 
     protected function _registerOrLoginUserEOffice($data)
     {
-        $user = User::where('email', $data->email)->first();
+        $user = User::where('email', $data['email'])->first();
 
-        $office = Office::where('code', $data->OFFICEID)->first();
+        $office = Office::where('code', $data['OFFICEID'])->first();
 
         if (!$user) {
             $role = Role::where('name', 'employee')->first();
@@ -145,19 +143,19 @@ class AuthenticatedSessionController extends Controller
             $user->role_id = $role->id;
         }
 
-        $user->title = $data->TITLE;
-        $user->first_name = $data->FNAME;
-        $user->last_name = $data->LNAME;
-        $user->pin = $data->PIN;
-        $user->email = $data->EMAIL;
-        $user->lsk = $data->ID;
-        $user->uid = $data->UID;
-        $user->position = $data->POSITION_M;
-        $user->class = $data->CLASS_NEW;
-        $user->position_action = $data->POSACT;
-        $user->groupname = $data->GROUPNAME;
-        $user->level = $data->LEVEL;
-        $user->employee_type = $data->EMPTYPE;
+        $user->title = $data['TITLE'];
+        $user->first_name = $data['FNAME'];
+        $user->last_name = $data['LNAME'];
+        $user->pin = $data['PIN'];
+        $user->email = $data['EMAIL'];
+        $user->lsk = $data['ID'];
+        $user->uid = $data['UID'];
+        $user->position = $data['POSITION_M'];
+        $user->class = $data['CLASS_NEW'];
+        $user->position_action = $data['POSACT'];
+        $user->groupname = $data['GROUPNAME'];
+        $user->level = $data['LEVEL'];
+        $user->employee_type = $data['EMPTYPE'];
         $user->office_id = $office->id;
         $user->save();
 
