@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Office;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -84,8 +86,14 @@ class AuthenticatedSessionController extends Controller
             'password' => $request->password
         ]);
 
-        $user = $response->body();
+        $user = $response->json();
+
         dd($user);
+
+        if (!$user->Authen) {
+            # code...
+        }
+
         $this->_registerOrLoginUserEOffice($user);
 
         //Return Home Affter Login
@@ -127,15 +135,30 @@ class AuthenticatedSessionController extends Controller
     protected function _registerOrLoginUserEOffice($data)
     {
         $user = User::where('email', $data->email)->first();
+
+        $office = Office::where('code', $data->OFFICEID)->first();
+
         if (!$user) {
+            $role = Role::where('name', 'employee')->first();
             $user = new User();
-            $user->first_name = $data->user['given_name'];
-            $user->last_name = $data->user['family_name'];
-            $user->email = $data->email;
-            $user->provider_id = $data->id;
-            $user->avatar = $data->avatar;
-            $user->save();
+            $user->role_id = $role->id;
         }
+
+        $user->title = $data->TITLE;
+        $user->first_name = $data->FNAME;
+        $user->last_name = $data->LNAME;
+        $user->pin = $data->PIN;
+        $user->email = $data->EMAIL;
+        $user->lsk = $data->ID;
+        $user->uid = $data->UID;
+        $user->position = $data->POSITION_M;
+        $user->class = $data->CLASS_NEW;
+        $user->position_action = $data->POSACT;
+        $user->groupname = $data->GROUPNAME;
+        $user->level = $data->LEVEL;
+        $user->employee_type = $data->EMPTYPE;
+        $user->office_id = $office->id;
+        $user->save();
 
         Auth::login($user);
     }
@@ -143,13 +166,16 @@ class AuthenticatedSessionController extends Controller
     protected function _registerOrLoginUserGoogle($data)
     {
         $user = User::where('email', $data->email)->first();
+
         if (!$user) {
+            $role = Role::where('name', 'user')->first();
             $user = new User();
             $user->first_name = $data->user['given_name'];
             $user->last_name = $data->user['family_name'];
             $user->email = $data->email;
             $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
+            $user->role_id = $role->id;
             $user->save();
         }
 
@@ -159,7 +185,9 @@ class AuthenticatedSessionController extends Controller
     protected function _registerOrLoginUserFacebook($data)
     {
         $user = User::where('email', $data->email)->first();
+
         if (!$user) {
+            $role = Role::where('name', 'user')->first();
             $user = new User();
 
             $name = explode(" ", $data->name);
@@ -169,6 +197,7 @@ class AuthenticatedSessionController extends Controller
             $user->email = $data->email;
             $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
+            $user->role_id = $role->id;
             $user->save();
 
             // $fileContents = file_get_contents($user->avatar);

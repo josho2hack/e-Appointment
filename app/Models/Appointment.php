@@ -36,6 +36,11 @@ class Appointment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function publicUser()
+    {
+        return $this->belongsTo(User::class,'public_user_id');
+    }
+
     public function office()
     {
         return $this->belongsTo(Office::class);

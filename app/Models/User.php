@@ -59,14 +59,24 @@ class User extends Authenticatable
         return $this->hasMany(Appointment::class);
     }
 
+    public function publicAppointments()
+    {
+        return $this->hasMany(Appointment::class,'public_user_id');
+    }
+
     public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
 
-    public function employee_bookings()
+    public function employeeBookings()
     {
         return $this->hasMany(Booking::class,'employee_id');
+    }
+
+    public function assignBookings()
+    {
+        return $this->hasMany(Booking::class,'assign_user_id');
     }
 
     public function office()

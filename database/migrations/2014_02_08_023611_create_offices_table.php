@@ -15,7 +15,7 @@ class CreateOfficesTable extends Migration
     {
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->comment('รหัสหน่วยงาน');
+            $table->string('code')->unique()->comment('รหัสหน่วยงาน');
             $table->string('name')->comment('ชื่อหน่วยงาน');
             $table->timestamps();
         });

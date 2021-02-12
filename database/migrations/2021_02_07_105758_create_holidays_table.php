@@ -15,7 +15,7 @@ class CreateHolidaysTable extends Migration
     {
         Schema::create('holidays', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->comment('วันที่หยุดราชการ');
+            $table->date('date')->unique()->comment('วันที่หยุดราชการ');
             $table->string('detail')->comment('รายละเอียด');
             $table->timestamps();
         });

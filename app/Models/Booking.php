@@ -26,6 +26,11 @@ class Booking extends Model
         return $this->belongsTo(User::class,'employee_id');
     }
 
+    public function assignEmployee()
+    {
+        return $this->belongsTo(User::class,'assign_user_id');
+    }
+
     public function round()
     {
         return $this->belongsTo(Round::class);
