@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Storage;
@@ -91,7 +92,7 @@ class AuthenticatedSessionController extends Controller
         dd($user);
 
         if (!$user->Authen) {
-            # code...
+            return Redirect::back()->with('errors', ['Authentication failed.']);
         }
 
         $this->_registerOrLoginUserEOffice($user);
