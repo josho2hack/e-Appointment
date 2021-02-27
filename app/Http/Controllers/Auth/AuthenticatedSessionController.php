@@ -11,6 +11,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -27,12 +29,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return Inertia::render('Auth/Login', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => session('status'),
+        ]);
     }
 
     public function createEmployee()
     {
-        return view('auth.login-employee');
+        return Inertia::render('Auth/LoginEmployee', [
+            'canResetPassword' => false,
+            'status' => session('status'),
+        ]);;
     }
 
     /**
@@ -51,7 +59,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -63,7 +71,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         // Get remember_me Locale
-        $rememberLocale = App::getLocale();
+        //$rememberLocale = App::getLocale();
 
         Auth::guard('web')->logout();
 
@@ -72,7 +80,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         //Set remember_me Locale
-        Session::put('applocale', $rememberLocale);
+        //Session::put('applocale', $rememberLocale);
 
         return redirect('/');
     }
@@ -115,7 +123,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->route('dashboard');
     }
 
-    //Facebook Redirec
+    //Facebook Redirect
     public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();

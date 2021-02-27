@@ -22,14 +22,14 @@ class RoleSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('roles')->insert([
-            'name' => 'user',
-            'description' => 'ผู้ใช้งาน',
+            'name' => 'employee',
+            'description' => 'เจ้าหน้าที่',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('roles')->insert([
-            'name' => 'employee',
-            'description' => 'เจ้าหน้าที่',
+            'name' => 'user',
+            'description' => 'ผู้ใช้งาน',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

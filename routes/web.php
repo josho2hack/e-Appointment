@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BookingController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use Laravel\Socialite\Facades\Socialite;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,32 +17,58 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
+//------------------Blade Components--------------------------
+/*
 Route::view('/', 'welcome');
-
 Route::get('/lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/assignment', function () {
-    return view('assignment');
-})->middleware(['auth'])->name('assignment');
+*/
+//------------------End Blade Components--------------------------
 
-Route::get('/report', function () {
-    return view('report');
-})->middleware(['auth'])->name('report');
+//------------------Inertia Vue-------------------------------
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canLoginEmployee' => Route::has('login.employee'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-Route::get('/appointment', function () {
-    return view('appointment');
-})->middleware(['auth'])->name('appointment');
-
-Route::get('/booking', function () {
-    return view('booking');
-})->middleware(['auth'])->name('booking');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+//------------------End Inertia Vue---------------------------
 
 require __DIR__ . '/auth.php';
 
-Route::get('/guest', function () {
-    return view('booking');
+Route::get('/language/{language}', function ($language) {
+    Session()->put('locale', $language);
+
+    return redirect()->back();
+})->name('language');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('appointments', AppointmentController::class);
+    Route::post('/public', [AppointmentController::class, 'public'])->name('public');
+
+    Route::resource('bookings', BookingController::class);
+
+    Route::get('/assignment', function () {
+        return view('assignment');
+    })->name('assignment');
+
+    Route::get('/report', function () {
+        return view('report');
+    })->name('report');
+
+});
+
+Route::get('/guest/{uuid}', function () {
+    return view('appointment/index');
 })->name('guest');

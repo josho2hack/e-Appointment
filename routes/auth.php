@@ -21,10 +21,6 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')
     ->name('login');
 
-Route::get('/login-employee', [AuthenticatedSessionController::class, 'createEmployee'])
-    ->middleware('guest')
-    ->name('login.employee');
-
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest');
 
@@ -66,6 +62,11 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+
+//e-Office Login
+Route::get('/login-employee', [AuthenticatedSessionController::class, 'createEmployee'])
+    ->middleware('guest')
+    ->name('login.employee');
 
 //Google Login
 Route::get('login/google', [AuthenticatedSessionController::class, 'redirectToGoogle'])->name('login.google');

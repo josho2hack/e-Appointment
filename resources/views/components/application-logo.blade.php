@@ -1,1 +1,1 @@
-<img class="rd-logo" src="assets/images/revenuedepartment_branding_logo.png">
+<img class="rd-logo" src="/assets/images/e-appointment.png">

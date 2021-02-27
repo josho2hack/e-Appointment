@@ -32,9 +32,11 @@ class UserSeeder extends Seeder
         $user->first_name = 'e-Appointment';
         $user->last_name = 'Admin';
         $user->phone = '02-272-8901';
-        $user->email = 'appoinment@rd.go.th';
-        $user->password = Hash::make('p@ssw0rd');
+        $user->email = 'appointment@rd.go.th';
+        $user->password = Hash::make('password');
         $user->role_id = $role->id;
+        $user->office_id = 1;
+        $user->level = "0";
         $user->save();
     }
 }

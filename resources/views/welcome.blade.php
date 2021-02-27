@@ -490,7 +490,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container">
                         <a class="navbar-brand" href="./">
-                            <img class="rd-logo" src="assets/images/revenuedepartment_branding_logo.png">
+                            <img class="rd-logo" src="/assets/images/e-appointment.png">
                         </a>
                     </div>
                 </nav>

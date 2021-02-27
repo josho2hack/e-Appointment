@@ -17,20 +17,22 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('appointment')" :active="request()->routeIs('appointment')">
+                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments.index')">
                         {{ __('Appointment') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('assignment')" :active="request()->routeIs('assignment')">
-                        {{ __('Assignment') }}
+                    <x-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.index')">
+                        {{ __('Booking List') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
-                        {{ __('Report') }}
-                    </x-nav-link>
-                </div>
+                @if (Auth::user()->role_id < 3)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
+                            {{ __('Report') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -39,7 +41,7 @@
                     <img class="w-8 h-8 mr-2 rounded-full border border-gray-400" src="{{ Auth::user()->avatar }}"
                         alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
                 @else
-                    <svg class="h-8 w-8 fill-current text-gray-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    <svg class="h-8 w-8 rounded-full border fill-current text-gray-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -98,6 +100,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments.index')">
+                {{ __('Appointment') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('bookings.index')" :active="request()->routeIs('bookings.index')">
+                {{ __('Booking List') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('report')" :active="request()->routeIs('report')">
+                {{ __('Report') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -108,7 +119,7 @@
                         <img class="w-10 h-10 rounded-full border border-gray-400" src="{{ Auth::user()->avatar }}"
                             alt="{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}">
                     @else
-                        <svg class="h-8 w-8 fill-current text-gray-400 mr-2" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="h-8 w-8 rounded-full border fill-current text-gray-400 mr-2" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -117,7 +128,8 @@
                 </div>
 
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->first_name }}
+                        {{ Auth::user()->last_name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>

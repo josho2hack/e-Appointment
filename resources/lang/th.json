@@ -4,6 +4,7 @@
     "Appointment": "การนัดหมาย",
 
     "First Name": "ชื่อ",
+    "Name": "ชื่อ",
     "Last Name": "นามสกุล",
     "Phone": "โทรศัพท์",
     "Email": "อีเมล์",
@@ -32,5 +33,7 @@
     "Whoops! Something went wrong.":"เกิดข้อผิดพลาด",
     "Booking":"บันทึกนัดหมาย",
     "Assignment":"มอบหมายงาน",
-    "Report": "รายงาน"
+    "Report": "รายงาน",
+    "Booking List":"รายการจอง",
+    "Locales": "ภาษา"
 }
