@@ -14,12 +14,12 @@
 
 <script>
     import BreezeApplicationLogo from '@/Components/ApplicationLogo'
-    import LanguageSelector from '@/Language/LanguageSelector'
+    //import LanguageSelector from '@/Language/LanguageSelector'
 
     export default {
         components: {
             BreezeApplicationLogo,
-            LanguageSelector,
+            //LanguageSelector,
         }
     }
 </script>

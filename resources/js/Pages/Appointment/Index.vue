@@ -6,7 +6,7 @@
             </h2>
         </template>
 
-        <!-- <flash-messages /> -->
+        <flash-messages />
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -94,21 +94,18 @@
                                             </span>
                                         </td>
                                         <td class="border-t w-px">
-                                            <inertia-link
+                                            <button
                                                 v-if="
                                                     $page.props.auth.user
                                                         .role_id < 3 &&
                                                     $page.props.auth.user
                                                         .level < 4 &&
-                                                    !appointment.public
+                                                    !appointment.public &&
+                                                    appointment.rounds.length !=
+                                                        0
                                                 "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
-                                                :href="
-                                                    route(
-                                                        'public',
-                                                        appointment.id
-                                                    )
-                                                "
+                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
+                                                @click="publicAppointment(appointment.id,appointment.public)"
                                             >
                                                 <svg
                                                     fill="none"
@@ -126,8 +123,8 @@
                                                         d="M4.16 4.16l1.42 1.42A6.99 6.99 0 0 0 10 18a7 7 0 0 0 4.42-12.42l1.42-1.42a9 9 0 1 1-11.69 0zM9 0h2v8H9V0z"
                                                     />
                                                 </svg>
-                                            </inertia-link>
-                                            <inertia-link
+                                            </button>
+                                            <button
                                                 v-if="
                                                     $page.props.auth.user
                                                         .role_id < 3 &&
@@ -135,13 +132,8 @@
                                                         .level < 4 &&
                                                     appointment.public
                                                 "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
-                                                :href="
-                                                    route(
-                                                        'public',
-                                                        appointment.id
-                                                    )
-                                                "
+                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
+                                                @click="publicAppointment(appointment.id,appointment.public)"
                                             >
                                                 <svg
                                                     fill="none"
@@ -159,7 +151,7 @@
                                                         d="M2.92893219,17.0710678 C6.83417511,20.9763107 13.1658249,20.9763107 17.0710678,17.0710678 C20.9763107,13.1658249 20.9763107,6.83417511 17.0710678,2.92893219 C13.1658249,-0.976310729 6.83417511,-0.976310729 2.92893219,2.92893219 C-0.976310729,6.83417511 -0.976310729,13.1658249 2.92893219,17.0710678 L2.92893219,17.0710678 Z M15.6568542,15.6568542 C18.7810486,12.5326599 18.7810486,7.46734008 15.6568542,4.34314575 C12.5326599,1.21895142 7.46734008,1.21895142 4.34314575,4.34314575 C1.21895142,7.46734008 1.21895142,12.5326599 4.34314575,15.6568542 C7.46734008,18.7810486 12.5326599,18.7810486 15.6568542,15.6568542 Z M7,6 L9,6 L9,14 L7,14 L7,6 Z M11,6 L13,6 L13,14 L11,14 L11,6 Z"
                                                     />
                                                 </svg>
-                                            </inertia-link>
+                                            </button>
                                         </td>
                                         <td class="border-t w-px">
                                             <inertia-link
@@ -167,7 +159,7 @@
                                                     $page.props.auth.user
                                                         .role_id < 3
                                                 "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
                                                 :href="
                                                     route(
                                                         'appointments.show',
@@ -175,22 +167,22 @@
                                                     )
                                                 "
                                             >
-                                            <svg
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                viewBox="0 0 24 24"
-                                                class="-mt-px w-6 h-6 text-green-300"
-                                            >
-                                                <path
+                                                <svg
+                                                    fill="none"
+                                                    stroke="currentColor"
                                                     stroke-linecap="round"
                                                     stroke-linejoin="round"
-                                                    stroke-width="1"
-                                                    d="M19.8005808,10 C17.9798698,6.43832409 14.2746855,4 10,4 C5.72531453,4 2.02013017,6.43832409 0.199419187,10 C2.02013017,13.5616759 5.72531453,16 10,16 C14.2746855,16 17.9798698,13.5616759 19.8005808,10 Z M10,14 C12.209139,14 14,12.209139 14,10 C14,7.790861 12.209139,6 10,6 C7.790861,6 6,7.790861 6,10 C6,12.209139 7.790861,14 10,14 Z M10,12 C11.1045695,12 12,11.1045695 12,10 C12,8.8954305 11.1045695,8 10,8 C8.8954305,8 8,8.8954305 8,10 C8,11.1045695 8.8954305,12 10,12 Z"
-                                                />
-                                            </svg>
+                                                    stroke-width="2"
+                                                    viewBox="0 0 24 24"
+                                                    class="-mt-px w-6 h-6 text-green-300"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="1"
+                                                        d="M19.8005808,10 C17.9798698,6.43832409 14.2746855,4 10,4 C5.72531453,4 2.02013017,6.43832409 0.199419187,10 C2.02013017,13.5616759 5.72531453,16 10,16 C14.2746855,16 17.9798698,13.5616759 19.8005808,10 Z M10,14 C12.209139,14 14,12.209139 14,10 C14,7.790861 12.209139,6 10,6 C7.790861,6 6,7.790861 6,10 C6,12.209139 7.790861,14 10,14 Z M10,12 C11.1045695,12 12,11.1045695 12,10 C12,8.8954305 11.1045695,8 10,8 C8.8954305,8 8,8.8954305 8,10 C8,11.1045695 8.8954305,12 10,12 Z"
+                                                    />
+                                                </svg>
                                             </inertia-link>
                                         </td>
                                         <td class="border-t w-px">
@@ -199,7 +191,7 @@
                                                     $page.props.auth.user
                                                         .role_id < 3
                                                 "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
                                                 :href="
                                                     route(
                                                         'appointments.edit',
@@ -207,55 +199,50 @@
                                                     )
                                                 "
                                             >
-                                            <svg
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                viewBox="0 0 24 24"
-                                                class="-mt-px w-5 h-5 text-yellow-400"
-                                            >
-                                                <path
+                                                <svg
+                                                    fill="none"
+                                                    stroke="currentColor"
                                                     stroke-linecap="round"
                                                     stroke-linejoin="round"
-                                                    stroke-width="1"
-                                                    d="M2,4 L2,18 L16,18 L16,12 L18,10 L18,20 L17,20 L0,20 L0,19 L0,3 L0,2 L10,2 L8,4 L2,4 Z M12.2928932,3.70710678 L4,12 L4,16 L8,16 L16.2928932,7.70710678 L12.2928932,3.70710678 Z M13.7071068,2.29289322 L16,0 L20,4 L17.7071068,6.29289322 L13.7071068,2.29289322 Z"
-                                                />
-                                            </svg>
+                                                    stroke-width="2"
+                                                    viewBox="0 0 24 24"
+                                                    class="-mt-px w-5 h-5 text-yellow-400"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="1"
+                                                        d="M2,4 L2,18 L16,18 L16,12 L18,10 L18,20 L17,20 L0,20 L0,19 L0,3 L0,2 L10,2 L8,4 L2,4 Z M12.2928932,3.70710678 L4,12 L4,16 L8,16 L16.2928932,7.70710678 L12.2928932,3.70710678 Z M13.7071068,2.29289322 L16,0 L20,4 L17.7071068,6.29289322 L13.7071068,2.29289322 Z"
+                                                    />
+                                                </svg>
                                             </inertia-link>
                                         </td>
                                         <td class="border-t w-px">
-                                            <inertia-link
+                                            <button
                                                 v-if="
                                                     $page.props.auth.user
                                                         .role_id < 3
                                                 "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
-                                                :href="
-                                                    route(
-                                                        'appointments.destroy',
-                                                        appointment.id
-                                                    )
-                                                "
+                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
+                                                @click="destroy(appointment.id)"
                                             >
-                                            <svg
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                viewBox="0 0 24 24"
-                                                class="-mt-px w-5 h-5 text-red-400"
-                                            >
-                                                <path
+                                                <svg
+                                                    fill="none"
+                                                    stroke="currentColor"
                                                     stroke-linecap="round"
                                                     stroke-linejoin="round"
-                                                    stroke-width="1"
-                                                    d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z"
-                                                />
-                                            </svg>
-                                            </inertia-link>
+                                                    stroke-width="2"
+                                                    viewBox="0 0 24 24"
+                                                    class="-mt-px w-5 h-5 text-red-400"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="1"
+                                                        d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z"
+                                                    />
+                                                </svg>
+                                            </button>
                                         </td>
                                     </tr>
                                     <tr v-if="appointments.data.length === 0">
@@ -283,7 +270,7 @@ import Icon from "@/Components/Icon";
 import mapValues from "lodash/mapValues";
 import pickBy from "lodash/pickBy";
 import throttle from "lodash/throttle";
-//import FlashMessages from "@/Components/FlashMessages";
+import FlashMessages from "@/Components/FlashMessages";
 import Pagination from "@/Components/Pagination";
 import SearchFilter from "@/Components/SearchFilter";
 
@@ -294,7 +281,7 @@ export default {
         Icon,
         Pagination,
         SearchFilter,
-        //FlashMessages,
+        FlashMessages,
     },
     props: {
         appointments: Object,
@@ -305,6 +292,9 @@ export default {
             form: {
                 search: this.filters.search,
             },
+            formPublic: this.$inertia.form({
+                public: false,
+            }),
         };
     },
     watch: {
@@ -327,10 +317,32 @@ export default {
         reset() {
             this.form = mapValues(this.form, () => null);
         },
+        destroy(id) {
+            if (confirm("ต้องการลบการนัดหมายนี้?")) {
+                this.$inertia.delete(
+                    this.route("appointments.destroy", id),
+                    this.form,
+                    {
+                        onFinish: () => (this.form.reset),
+                    }
+                );
+            }
+        },
+        publicAppointment(id) {
+            if (confirm("เปิดใช้งานการนัดหมายนี้?")) {
+                this.formPublic.put(
+                    this.route("public", id),
+                    this.form,
+                    {
+                        onFinish: () => (this.formPublic.reset),
+                    }
+                );
+            }
+        },
     },
     mounted() {
-        //console.log(this.$page.props);
-        //console.log(this.$inertia);
+        console.log(this.$page.props);
+        //console.log(this.appointments);
     },
 };
 </script>

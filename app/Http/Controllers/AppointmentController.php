@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Models\Customer;
 use App\Models\CustomerOption;
 use App\Models\Round;
 use App\Models\Subject;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -23,9 +22,9 @@ class AppointmentController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 1) {
-            $appointments = Appointment::with('office')->filter(Request::only('search'))->paginate();
+            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
         } else if (Auth::user()->role_id == 2) {
-            $appointments = Appointment::with('office')->where('office_id', Auth::user()->office_id)->paginate();
+            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('office_id', Auth::user()->office_id)->paginate();
         } else {
             $appointments = Appointment::with('office')->where('public', true)->paginate();
         }
@@ -33,7 +32,7 @@ class AppointmentController extends Controller
         //dd($appointments);
 
         return Inertia::render('Appointment/Index', [
-            'filters' => Request::all('search'),
+            'filters' => \Illuminate\Support\Facades\Request::all('search'),
             'appointments' => $appointments
         ]);
     }
@@ -76,6 +75,7 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($request->all());
 
+        //return back();
         return redirect()->route('appointments.edit', $appointment);
     }
 
@@ -87,8 +87,11 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
+        $data = Appointment::with('customerOptions', 'subjects', 'rounds')
+            ->where('id', $appointment->id)->first();
+
         return Inertia::render('Appointment/Show', [
-            'appointments' => $appointment
+            'appointments' => $data
         ]);
     }
 
@@ -100,11 +103,14 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        $data = Appointment::with('customerOptions', 'subjects', 'rounds')
-            ->where('id', $appointment->id)
-            ->get();
+        $rounds = Round::where('appointment_id', $appointment->id)->get();
+        $subjects = Subject::where('appointment_id', $appointment->id)->get();
+        $customerOptions = CustomerOption::where('appointment_id', $appointment->id)->get();
         return Inertia::render('Appointment/Edit', [
-            'appointment' => $data
+            'appointment' => $appointment,
+            'rounds' => $rounds,
+            'subjects' => $subjects,
+            'customerOptions' => $customerOptions
         ]);
     }
 
@@ -118,7 +124,7 @@ class AppointmentController extends Controller
     public function update(Request $request, Appointment $appointment)
     {
         $request->validate([
-            'name' => 'required|unique:appointments|max:255',
+            'name' => 'required|max:255',
             'pit' => 'required',
             'cit' => 'required',
             'worker' => 'required|min:1',
@@ -136,19 +142,21 @@ class AppointmentController extends Controller
             $request['public_user_id'] = Auth::user()->id;
         }
 
+        //dd($request->all());
+
         $appointment->update($request->all());
 
-        return Inertia::render('Appointment/Index');
+        return redirect()->route('appointments.index');
     }
 
-    public function public(Request $request, Appointment $appointment)
+    public function public(Appointment $appointment)
     {
-        $request['public'] = !$appointment->public;
-        $request['public_user_id'] = Auth::user()->id;
+        $appointment->public = !$appointment->public;
 
-        $appointment->update($request->all());
+        //dd($appointment);
+        $appointment->save();
 
-        return Inertia::render('Appointment/Index');
+        return redirect()->route('appointments.index');
     }
 
     /**
@@ -160,6 +168,6 @@ class AppointmentController extends Controller
     public function destroy(Appointment $appointment)
     {
         $appointment->delete();
-        return Inertia::render('Appointment/Index');
+        return redirect()->route('appointments.index');
     }
 }

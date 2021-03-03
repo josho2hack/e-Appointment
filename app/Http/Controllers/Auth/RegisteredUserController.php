@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -41,12 +42,15 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
+        $role = Role::where('name', 'user')->first();
+
         Auth::login($user = User::create([
-            'first_name' => $request->firstName,
-            'last_name' => $request->lastName,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => $role->id,
         ]));
 
         event(new Registered($user));

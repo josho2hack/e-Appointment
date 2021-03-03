@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerOptionController;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -55,8 +58,10 @@ Route::get('/language/{language}', function ($language) {
 
 Route::middleware('auth')->group(function () {
     Route::resource('appointments', AppointmentController::class);
-    Route::post('/public', [AppointmentController::class, 'public'])->name('public');
-
+    Route::put('/public/{appointment}', [AppointmentController::class, 'public'])->name('public');
+    Route::resource('rounds', RoundController::class);
+    Route::resource('subjects', SubjectController::class);
+    Route::resource('customerOptions', CustomerOptionController::class);
     Route::resource('bookings', BookingController::class);
 
     Route::get('/assignment', function () {

@@ -19,7 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('name')->comment('การนัดหมาย');
             $table->boolean('pit')->default(1)->comment('บุคคลธรรมดา');
             $table->boolean('cit')->default(1)->comment('นิติบุลคล');
-            $table->integer('worker')->comment('จำนวนเจ้าหน้าที่');
+            $table->unsignedInteger('worker')->default(1)->comment('จำนวนเจ้าหน้าที่');
             $table->boolean('official')->default(1)->comment('ข้าราชการ');
             $table->boolean('employee')->default(0)->comment('ลูกจ้าง,พนักงานราชการ');
             $table->boolean('mon')->default(1)->comment('จันทร์');
