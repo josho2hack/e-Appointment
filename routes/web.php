@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('subjects', SubjectController::class);
     Route::resource('customerOptions', CustomerOptionController::class);
     Route::resource('bookings', BookingController::class);
+    Route::get('/create-booking/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
 
     Route::get('/assignment', function () {
         return view('assignment');
@@ -74,6 +75,5 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/guest/{uuid}', function () {
-    return view('appointment/index');
-})->name('guest');
+Route::get('/guest/{uuid}', [BookingController::class, 'guest'])->name('guest');
+Route::post('/guest', [BookingController::class, 'guestStore'])->name('guestStore');

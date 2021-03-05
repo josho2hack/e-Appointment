@@ -16,8 +16,8 @@ class Subject extends Model
         return $this->belongsTo(Appointment::class);
     }
 
-    public function booking()
+    public function bookings()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsToMany(Booking::class);
     }
 }

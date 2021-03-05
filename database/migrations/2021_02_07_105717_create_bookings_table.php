@@ -25,15 +25,14 @@ class CreateBookingsTable extends Migration
             $table->string('meeting_online')->nullable()->comment('URL ประชุม Online');
             $table->string('detail')->comment('รายละเอียดคำถาม');
             $table->date('date')->comment('วันที่นัดหมาย');
-            $table->boolean('status')->default(0)->comment('0 = กำลังดำเนินการ 1 = เสร็จสิ้น');
+            $table->boolean('status')->nullable()->comment('0 = กำลังดำเนินการ 1 = เสร็จสิ้น');
             $table->unsignedBigInteger('employee_id')->nullable()->comment('เจ้าหน้าที่');
             $table->unsignedBigInteger('assign_user_id')->nullable()->comment('ผู้มอบหมาย');
             $table->timestamps();
 
             $table->foreignId('appointment_id')->comment('การนัดหมาย')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('customer_option_id')->nullable()->comment('ประเภทผู้นัดหมายเพิ่มเติม')->constrained()->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('subject_id')->nullable()->comment('หัวข้อนัดหมาย')->constrained()->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('round_id')->nullable()->comment('รอบการนัดหมาย')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('round_id')->comment('รอบการนัดหมาย')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->comment('ผู้ใช้งาน')->constrained()->onUpdate('cascade')->onDelete('set null');
             $table->foreign('employee_id')->references('id')->on('users')->constrained()->onUpdate('cascade')->onDelete('set null');
             $table->foreign('assign_user_id')->references('id')->on('users')->constrained()->onUpdate('cascade')->onDelete('set null');

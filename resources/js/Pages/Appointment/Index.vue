@@ -35,7 +35,7 @@
                                 <thead>
                                     <tr class="text-left font-bold">
                                         <th class="px-6 pt-6 pb-4">หัวข้อ</th>
-                                        <th class="px-6 pt-6 pb-4" colspan="5">
+                                        <th class="px-6 pt-6 pb-4" colspan="4">
                                             หน่วยงาน
                                         </th>
                                     </tr>
@@ -55,7 +55,7 @@
                                                 class="px-6 py-4 flex items-center focus:text-indigo-500"
                                                 :href="
                                                     route(
-                                                        'guest',
+                                                        'booking.create',
                                                         appointment.id
                                                     )
                                                 "
@@ -70,24 +70,7 @@
                                             </span>
                                         </td>
                                         <td class="border-t">
-                                            <inertia-link
-                                                v-if="
-                                                    $page.props.auth.user
-                                                        .role_id >= 3
-                                                "
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
-                                                :href="
-                                                    route(
-                                                        'guest',
-                                                        appointment.id
-                                                    )
-                                                "
-                                                tabindex="-1"
-                                            >
-                                                {{ appointment.office.name }}
-                                            </inertia-link>
                                             <span
-                                                v-else
                                                 class="px-6 py-4 flex items-center focus:text-indigo-500"
                                             >
                                                 {{ appointment.office.name }}
@@ -153,7 +136,7 @@
                                                 </svg>
                                             </button>
                                         </td>
-                                        <td class="border-t w-px">
+                                        <!-- <td class="border-t w-px">
                                             <inertia-link
                                                 v-if="
                                                     $page.props.auth.user
@@ -184,7 +167,7 @@
                                                     />
                                                 </svg>
                                             </inertia-link>
-                                        </td>
+                                        </td> -->
                                         <td class="border-t w-px">
                                             <inertia-link
                                                 v-if="
@@ -341,7 +324,7 @@ export default {
         },
     },
     mounted() {
-        console.log(this.$page.props);
+        //console.log(this.$page.props);
         //console.log(this.appointments);
     },
 };

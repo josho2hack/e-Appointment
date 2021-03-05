@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Booking;
+use App\Models\CustomerOption;
+use App\Models\Round;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BookingController extends Controller
 {
@@ -14,7 +19,10 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::with('round')->get();
+        return Inertia::render('Booking/Index', [
+            'bookings' => $bookings
+        ]);
     }
 
     /**
@@ -22,10 +30,27 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createBooking(Appointment $appointment)
     {
-        //
+        $rounds = Round::where('appointment_id', $appointment->id)->get();
+        $subjects = Subject::where('appointment_id', $appointment->id)->get();
+        $customerOptions = CustomerOption::where('appointment_id', $appointment->id)->get();
+        return Inertia::render('Booking/Create', [
+            'appointment' => $appointment,
+            'rounds' => $rounds,
+            'subjects' => $subjects,
+            'customerOptions' => $customerOptions
+        ]);
     }
+
+    public function guest($uuid)
+    {
+        $appointment = Appointment::with('customerOptions', 'subjects', 'rounds')->where('uuid', $uuid)->get();
+        return Inertia::render('Booking/Guest', [
+            'appointment' => $appointment
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +60,26 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            //'name' => 'required|max:255',
+            //'phone' => 'required',
+            //'email' => 'required',
+            //'detail' => 'required',
+            //'date' => 'required',
+            //'appointment_id' => 'required',
+        ]);
+
+        if ($request->nid) {
+            $request->validate([
+                'nid' => 'required|min:13',
+            ]);
+        }
+
+        dd($request->all());
+
+        Booking::create($request->all());
+
+        return redirect()->route('bookings.index');
     }
 
     /**

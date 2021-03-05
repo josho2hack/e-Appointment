@@ -87,12 +87,12 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        $data = Appointment::with('customerOptions', 'subjects', 'rounds')
-            ->where('id', $appointment->id)->first();
+        // $data = Appointment::with('customerOptions', 'subjects', 'rounds')
+        //     ->where('id', $appointment->id)->first();
 
-        return Inertia::render('Appointment/Show', [
-            'appointments' => $data
-        ]);
+        // return Inertia::render('Appointment/Show', [
+        //     'appointments' => $data
+        // ]);
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateCustomerOptionsTable extends Migration
         Schema::create('customer_options', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('ประเภทผู้นัดหมายเพิ่มเติม');
-            $table->boolean('require_pin')->default(0)->comment('ต้องการหมายเลขบัตรประชาชนหรือหนังสือเดินทาง');
+            $table->boolean('require_pin')->default(0)->comment('ต้องการหมายเลขบัตรประชาชน');
             $table->timestamps();
 
             $table->foreignId('appointment_id')->comment('การนัดหมาย')->constrained()->onUpdate('cascade')->onDelete('cascade');

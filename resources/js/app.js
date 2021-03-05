@@ -4,8 +4,6 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-//import VueMeta from 'vue-meta'
-//import PortalVue from 'portal-vue'
 
 const el = document.getElementById('app');
 
@@ -21,8 +19,6 @@ createApp({
 })
     .mixin(require('./base'))
     .use(InertiaPlugin)
-    //.use(VueMeta)
-    //.use(PortalVue)
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });

@@ -45,30 +45,30 @@
                             required
                         />
                     </div>
-                    <div class="col-span-3 sm:col-span-2 flex items-start">
-                        <div class="flex items-center h-5">
-                            <input
-                                id="require_pin"
-                                name="require_pin"
-                                type="checkbox"
-                                :checked="require_pin"
-                                @change="
-                                    $emit(
-                                        'update:require_pin',
-                                        $event.target.checked
-                                    )
-                                "
-                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            />
-                        </div>
-                        <div class="ml-3 text-sm">
-                            <label
-                                for="require_pin"
-                                class="font-medium text-gray-700"
-                                >{{
-                                    __("ระบุเลขบัตรประชาชนหรือหนังสือเดินทาง")
-                                }}</label
-                            >
+                    <div class="relative col-span-3 sm:col-span-2 flex items-start">
+                        <div class="absolute bottom-0 left-0">
+                            <div class="absolute bottom-2 left-0 flex items-center h-5">
+                                <input
+                                    id="require_pin"
+                                    name="require_pin"
+                                    type="checkbox"
+                                    :checked="require_pin"
+                                    @change="
+                                        $emit(
+                                            'update:require_pin',
+                                            $event.target.checked
+                                        )
+                                    "
+                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                />
+                            </div>
+                            <div class="ml-4 text-sm">
+                                <label
+                                    for="require_pin"
+                                    class="font-medium text-gray-700"
+                                    >{{ __("ระบุเลขบัตรประชาชน") }}</label
+                                >
+                            </div>
                         </div>
                     </div>
                     <div class="relative col-span-6 sm:col-span-2 text-right">
@@ -100,11 +100,7 @@
                                     {{ __("ประเภทผู้นัด") }}
                                 </th>
                                 <th class="px-6 pt-2 pb-2" colspan="2">
-                                    {{
-                                        __(
-                                            "ระบุเลขบัตรประชาชนหรือหนังสือเดินทาง"
-                                        )
-                                    }}
+                                    {{ __("ระบุเลขบัตรประชาชน") }}
                                 </th>
                             </tr>
                         </thead>
