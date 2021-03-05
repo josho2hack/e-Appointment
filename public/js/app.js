@@ -36149,7 +36149,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   "class": "flex justify-center pt-8 sm:justify-start sm:pt-0"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
   "class": "rd-logo",
-  src: "/assets/images/e-appointment.png"
+  src: "assets/images/e-appointment.png"
 })], -1
 /* HOISTED */
 );
