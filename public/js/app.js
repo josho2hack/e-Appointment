@@ -31153,7 +31153,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   "class": "rd-logo",
-  src: "/e-appointment/public/assets/images/e-appointment.png"
+  src: "assets/images/e-appointment.png"
 };
 function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", _hoisted_1);
