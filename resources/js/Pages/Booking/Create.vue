@@ -77,7 +77,7 @@
                                                                 "
                                                                 required
                                                                 autofocus
-                                                                @blur="getInfoNID"
+                                                                @focusout="getInfoNID"
                                                                 autocomplete="appointment-name"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
@@ -542,8 +542,9 @@ export default {
         },
         getInfoNID(){
             let data
-            data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid)
-            console.log(data)
+            data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid, {
+                onSuccess: page => {console.log(page)},
+            })
         }
     },
 

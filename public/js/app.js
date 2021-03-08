@@ -31080,8 +31080,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     getInfoNID: function getInfoNID() {
       var data;
-      data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid);
-      console.log(data);
+      data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid, {
+        onSuccess: function onSuccess(page) {
+          console.log(page);
+        }
+      });
     }
   },
   computed: {},
@@ -35897,7 +35900,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         required: "",
         autofocus: "",
-        onBlur: _cache[2] || (_cache[2] = function () {
+        onFocusout: _cache[2] || (_cache[2] = function () {
           return $options.getInfoNID && $options.getInfoNID.apply($options, arguments);
         }),
         autocomplete: "appointment-name",
