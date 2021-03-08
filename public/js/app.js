@@ -31077,6 +31077,11 @@ __webpack_require__.r(__webpack_exports__);
     minuteFormat: function minuteFormat(value) {
       var time = value.split(":");
       return time[0] + ':' + time[1];
+    },
+    getInfoNID: function getInfoNID() {
+      var data;
+      data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid);
+      console.log(data);
     }
   },
   computed: {},
@@ -35878,7 +35883,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("บันทึกเพื่อจองกำหนดการนัดหมาย")), 1
       /* TEXT */
       )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-        onSubmit: _cache[11] || (_cache[11] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" หมายเลขผู้เสียภาษี "), $props.appointment.pit || $props.appointment.cit || $data.hasRequirePIN ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("หมายเลขผู้เสียภาษี")), 1
@@ -35892,16 +35897,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         required: "",
         autofocus: "",
+        onBlur: _cache[2] || (_cache[2] = function () {
+          return $options.getInfoNID && $options.getInfoNID.apply($options, arguments);
+        }),
         autocomplete: "appointment-name",
         "class": "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-      }, null, 512
-      /* NEED_PATCH */
+      }, null, 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
       ), [[_directive_mask, '#-##-#-###-#####-#'], [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.nid]])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ประเภทผู้นัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("ประเภทผู้นัดหมาย")), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_checkbox, {
         name: "pit",
         checked: $data.form.pit,
-        "onUpdate:checked": _cache[2] || (_cache[2] = function ($event) {
+        "onUpdate:checked": _cache[3] || (_cache[3] = function ($event) {
           return $data.form.pit = $event;
         })
       }, null, 8
@@ -35911,7 +35919,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), _hoisted_26])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_checkbox, {
         name: "cit",
         checked: $data.form.cit,
-        "onUpdate:checked": _cache[3] || (_cache[3] = function ($event) {
+        "onUpdate:checked": _cache[4] || (_cache[4] = function ($event) {
           return $data.form.cit = $event;
         })
       }, null, 8
@@ -35924,7 +35932,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         name: "name",
         id: "name",
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $data.form.name = $event;
         }),
         required: "",
@@ -35942,7 +35950,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_checkbox, {
           name: "{{ subject.id }}",
           checked: $data.form.mon,
-          "onUpdate:checked": _cache[5] || (_cache[5] = function ($event) {
+          "onUpdate:checked": _cache[6] || (_cache[6] = function ($event) {
             return $data.form.mon = $event;
           })
         }, null, 8
@@ -35958,7 +35966,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "text",
         name: "detail",
         id: "detail",
-        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return $data.form.detail = $event;
         }),
         required: "",
@@ -35973,7 +35981,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "phone",
         name: "phone",
         id: "phone",
-        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
           return $data.form.phone = $event;
         }),
         required: "",
@@ -35988,7 +35996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "email",
         name: "email",
         id: "email",
-        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
           return $data.form.email = $event;
         }),
         required: "",
@@ -36005,7 +36013,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "date",
         name: "date",
         id: "date",
-        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+        "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $data.form.date = $event;
         }),
         required: "",
@@ -36022,7 +36030,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_checkbox, {
           name: "{{ round.id }}",
           checked: $data.form.mon,
-          "onUpdate:checked": _cache[10] || (_cache[10] = function ($event) {
+          "onUpdate:checked": _cache[11] || (_cache[11] = function ($event) {
             return $data.form.mon = $event;
           })
         }, null, 8
