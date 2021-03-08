@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/nid/{nid}', function ($nid) {
-    $response = Http::get(env('NID_SERVICE') . $nid);
+    $response = Http::get("http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/" . $nid);
     $data = $response->json();
     return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
 });
