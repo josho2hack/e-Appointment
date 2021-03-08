@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/nid/{nid}', function ($nid) {
+    $response = Http::post(env('EOFFICE_AUTH'));
+    $data = $response->json();
+    return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
+});
