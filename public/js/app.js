@@ -31079,12 +31079,7 @@ __webpack_require__.r(__webpack_exports__);
       return time[0] + ':' + time[1];
     },
     getInfoNID: function getInfoNID() {
-      var data;
-      data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid, {
-        onSuccess: function onSuccess(page) {
-          console.log(page);
-        }
-      });
+      console.log(this.form.nid);
     }
   },
   computed: {},

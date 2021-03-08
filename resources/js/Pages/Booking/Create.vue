@@ -541,10 +541,7 @@ export default {
             return time[0] + ':' + time[1];
         },
         getInfoNID(){
-            let data
-            data = this.$inertia.get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' + this.form.nid, {
-                onSuccess: page => {console.log(page)},
-            })
+            console.log(this.form.nid)
         }
     },
 
