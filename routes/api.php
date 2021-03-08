@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/nid/{nid}', function ($nid) {
-    $response = Http::get(env('NID_SERVICE'));
+    $response = Http::get(env('NID_SERVICE') . $nid);
     $data = $response->json();
     return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
 });
