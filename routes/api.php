@@ -20,10 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/nid/{nid}', function ($nid) {
-    $response = Http::withOptions([
-	'proxy' => 'http://192.168.61.26:3128'
-])->get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' .$nid);
+    $response = Http::timeout(3)->withOptions([
+        'proxy' => 'http://192.168.61.26:3128',
+        //'timeout' => 3 //second
+    ])->get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' . $nid);
     //dd($response);
+
+    if ($response->serverError()) {
+        return back()->withErrors("ไม่สามารถเชื่อมต่อระบบ NID");
+    }
+
     $data = $response->json();
     return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
 });

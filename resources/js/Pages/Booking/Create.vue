@@ -71,13 +71,15 @@
                                                                 type="text"
                                                                 name="nid"
                                                                 id="nid"
-                                                                v-mask="'#-##-#-###-#####-#'"
                                                                 v-model="
                                                                     form.nid
                                                                 "
                                                                 required
+                                                                maxlength="13"
                                                                 autofocus
-                                                                @focusout="getInfoNID"
+                                                                @focusout="
+                                                                    getInfoNID
+                                                                "
                                                                 autocomplete="appointment-name"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
@@ -100,17 +102,27 @@
                                                         }}
                                                     </legend>
                                                     <div class="mt-4 space-y-4">
+                                                        <!-- cit -->
                                                         <div
+                                                            v-if="
+                                                                appointment.pit
+                                                            "
                                                             class="flex items-start"
                                                         >
                                                             <div
                                                                 class="flex items-center h-5"
                                                             >
-                                                                <checkbox
+                                                                <input
+                                                                    type="checkbox"
                                                                     name="pit"
-                                                                    v-model:checked="
-                                                                        form.pit
+                                                                    value="0"
+                                                                    v-model="
+                                                                        form.type
                                                                     "
+                                                                    :checked="
+                                                                        (form.type = 0)
+                                                                    "
+                                                                    disabled
                                                                 />
                                                             </div>
                                                             <div
@@ -133,17 +145,27 @@
                                                                 </p>
                                                             </div>
                                                         </div>
+                                                        <!-- pit -->
                                                         <div
+                                                            v-if="
+                                                                appointment.cit
+                                                            "
                                                             class="flex items-start"
                                                         >
                                                             <div
                                                                 class="flex items-center h-5"
                                                             >
-                                                                <checkbox
+                                                                <input
+                                                                    type="checkbox"
                                                                     name="cit"
-                                                                    v-model:checked="
-                                                                        form.cit
+                                                                    value="1"
+                                                                    v-model="
+                                                                        form.type
                                                                     "
+                                                                    :checked="
+                                                                        (form.type = 1)
+                                                                    "
+                                                                    disabled
                                                                 />
                                                             </div>
                                                             <div
@@ -165,6 +187,42 @@
                                                                     ประเภทนิติบุลคล
                                                                 </p>
                                                             </div>
+                                                        </div>
+                                                        <!-- Customer Option -->
+                                                        <div
+                                                            v-for="customer in customerOptions"
+                                                            :key="customer.id"
+                                                            class="flex items-center"
+                                                        >
+                                                            <input
+                                                                :id="
+                                                                    'c' +
+                                                                    customer.id
+                                                                "
+                                                                :name="
+                                                                    'c' +
+                                                                    customer.id
+                                                                "
+                                                                :value="
+                                                                    customer.id
+                                                                "
+                                                                v-model="
+                                                                    form.customer_option_id
+                                                                "
+                                                                type="radio"
+                                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                            />
+                                                            <label
+                                                                :for="
+                                                                    'c' +
+                                                                    customer.id
+                                                                "
+                                                                class="ml-3 block text-sm font-medium text-gray-700"
+                                                            >
+                                                                {{
+                                                                    customer.name
+                                                                }}
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -221,17 +279,26 @@
                                                     </legend>
                                                     <div class="mt-4 space-y-4">
                                                         <div
-                                                            v-for="subject in subjects"
-                                                            :key="subject.id"
+                                                            v-for="(
+                                                                item, index
+                                                            ) in subjects"
+                                                            :key="index"
                                                             class="flex items-start"
                                                         >
                                                             <div
                                                                 class="flex items-center h-5"
                                                             >
-                                                                <checkbox
-                                                                    name="{{ subject.id }}"
-                                                                    v-model:checked="
-                                                                        form.mon
+                                                                <input
+                                                                    type="checkbox"
+                                                                    :name="
+                                                                        's' +
+                                                                        item.id
+                                                                    "
+                                                                    :value="
+                                                                        item.id
+                                                                    "
+                                                                    v-model="
+                                                                        form.subjects
                                                                     "
                                                                 />
                                                             </div>
@@ -239,14 +306,23 @@
                                                                 class="ml-3 text-sm"
                                                             >
                                                                 <label
-                                                                    for="{{ subject.id }}"
+                                                                    :for="
+                                                                        item.id
+                                                                    "
                                                                     class="font-medium text-gray-700"
                                                                     >{{
-                                                                        subject.name
+                                                                        item.name
                                                                     }}</label
                                                                 >
                                                             </div>
                                                         </div>
+                                                        <br />
+                                                        <span
+                                                            >Checked names:
+                                                            {{
+                                                                form.subjects
+                                                            }}</span
+                                                        >
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -270,8 +346,7 @@
                                                                     )
                                                                 }}</label
                                                             >
-                                                            <input
-                                                                type="text"
+                                                            <textarea
                                                                 name="detail"
                                                                 id="detail"
                                                                 v-model="
@@ -279,8 +354,8 @@
                                                                 "
                                                                 required
                                                                 autofocus
-                                                                autocomplete="appointment-name"
-                                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                                autocomplete="appointment-detail"
+                                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md resize"
                                                             />
                                                         </div>
                                                     </div>
@@ -307,7 +382,7 @@
                                                                 }}</label
                                                             >
                                                             <input
-                                                                type="phone"
+                                                                type="text"
                                                                 name="phone"
                                                                 id="phone"
                                                                 v-model="
@@ -351,6 +426,86 @@
                                                                 autofocus
                                                                 autocomplete="appointment-name"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- facebook -->
+                                            <div
+                                                class="px-4 pb-4 bg-white space-y-6 sm:p-6"
+                                            >
+                                                <div
+                                                    class="grid grid-cols-3 gap-6"
+                                                >
+                                                    <div
+                                                        class="col-span-3 sm:col-span-2"
+                                                    >
+                                                        <label
+                                                            for="company_website"
+                                                            class="block text-sm font-medium text-gray-700"
+                                                        >
+                                                            Facebook
+                                                        </label>
+                                                        <div
+                                                            class="mt-1 flex rounded-md shadow-sm"
+                                                        >
+                                                            <span
+                                                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+                                                            >
+                                                                https://www.facebook.com/
+                                                            </span>
+                                                            <input
+                                                                type="text"
+                                                                name="facebook"
+                                                                id="facebook"
+                                                                v-model="
+                                                                    form.facebook
+                                                                "
+                                                                autofocus
+                                                                autocomplete="booking-facebook"
+                                                                class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                                                placeholder=""
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- line_id -->
+                                            <div
+                                                class="px-4 pb-4 bg-white space-y-6 sm:p-6"
+                                            >
+                                                <div
+                                                    class="grid grid-cols-3 gap-6"
+                                                >
+                                                    <div
+                                                        class="col-span-3 sm:col-span-2"
+                                                    >
+                                                        <label
+                                                            for="company_website"
+                                                            class="block text-sm font-medium text-gray-700"
+                                                        >
+                                                            Line
+                                                        </label>
+                                                        <div
+                                                            class="mt-1 flex rounded-md shadow-sm"
+                                                        >
+                                                            <span
+                                                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+                                                            >
+                                                                LINE ID
+                                                            </span>
+                                                            <input
+                                                                type="text"
+                                                                name="line_id"
+                                                                id="line_id"
+                                                                v-model="
+                                                                    form.line_id
+                                                                "
+                                                                autofocus
+                                                                autocomplete="booking-line_id"
+                                                                class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                                                placeholder=""
                                                             />
                                                         </div>
                                                     </div>
@@ -416,29 +571,45 @@
                                                         <div
                                                             v-for="round in rounds"
                                                             :key="round.id"
-                                                            class="flex items-start"
+                                                            class="flex items-center"
                                                         >
-                                                            <div
-                                                                class="flex items-center h-5"
+                                                            <input
+                                                                :id="
+                                                                    'r' +
+                                                                    round.id
+                                                                "
+                                                                :name="
+                                                                    'r' +
+                                                                    round.id
+                                                                "
+                                                                :value="
+                                                                    round.id
+                                                                "
+                                                                v-model="
+                                                                    form.round_id
+                                                                "
+                                                                type="radio"
+                                                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                            />
+                                                            <label
+                                                                :for="
+                                                                    'r' +
+                                                                    round.id
+                                                                "
+                                                                class="ml-3 block text-sm font-medium text-gray-700"
                                                             >
-                                                                <checkbox
-                                                                    name="{{ round.id }}"
-                                                                    v-model:checked="
-                                                                        form.mon
-                                                                    "
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="ml-3 text-sm"
-                                                            >
-                                                                <label
-                                                                    for="{{ round.id }}"
-                                                                    class="font-medium text-gray-700"
-                                                                    >
-                                                                    {{ minuteFormat(round.start) }} - {{ minuteFormat(round.end) }}
-                                                                    </label
-                                                                >
-                                                            </div>
+                                                                {{
+                                                                    minuteFormat(
+                                                                        round.start
+                                                                    )
+                                                                }}
+                                                                -
+                                                                {{
+                                                                    minuteFormat(
+                                                                        round.end
+                                                                    )
+                                                                }}
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -485,17 +656,17 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
 import BreezeValidationErrors from "@/Components/ValidationErrors";
 import FlashMessages from "@/Components/FlashMessages";
-import Checkbox from "@/Components/Checkbox";
-import {mask} from 'vue-the-mask';
+//import Checkbox from "@/Components/CheckboxV3";
+import { mask } from "vue-the-mask";
 
 export default {
-    directives: {mask},
+    directives: { mask },
 
     components: {
         BreezeAuthenticatedLayout,
         BreezeValidationErrors,
         FlashMessages,
-        Checkbox,
+        //Checkbox,
     },
 
     props: {
@@ -515,13 +686,14 @@ export default {
                 email: "",
                 facebook: "",
                 line_id: "",
-                meeting_online: "",
+                // meeting_online: "",
                 detail: "",
-                date: new Date().toLocaleDateString("en-US"),
+                date: this.formatDate(new Date()),
                 appointment_id: this.appointment.id,
                 customer_option_id: null,
                 round_id: null,
-                user_id: null,
+                user_id: this.$page.props.auth.user.id,
+                subjects: [],
             }),
 
             hasRequirePIN:
@@ -538,19 +710,33 @@ export default {
         },
         minuteFormat(value) {
             let time = value.split(":");
-            return time[0] + ':' + time[1];
+            return time[0] + ":" + time[1];
         },
-        getInfoNID(){
-            console.log(this.form.nid)
-        }
+        getInfoNID() {
+            if (this.form.nid == null || this.form.nid.length != 13) {
+                $("#nid").focus();
+            } else {
+                this.$inertia.get("/api/nid/" + this.form.nid, {
+                    onSuccess: (page) => {
+                        console.log(page);
+                    },
+                });
+            }
+        },
+        formatDate(date) {
+            var month = date.getMonth() + 1;
+            var m = month < 10 ? "0" + month : month;
+            var day = date.getDate();
+            var d = day < 10 ? "0" + day : day;
+
+            return date.getFullYear() + "-" + m + "-" + d;
+        },
     },
 
-    computed: {
-
-    },
+    computed: {},
 
     mounted() {
-        //console.log(this.rounds);
+        //console.log(this.subjects);
     },
 };
 </script>
