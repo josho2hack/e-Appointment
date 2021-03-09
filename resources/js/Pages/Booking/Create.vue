@@ -718,7 +718,13 @@ export default {
             } else {
                 this.$inertia.get(this.route("nid",this.form.nid), {
                     onSuccess: (page) => {
-                        console.log(page);
+                        //console.log(page);
+                        this.form.name = page.lastName === "" ? page.firstName : page.firstName + ' ' + page.lastName
+                        if (page.sexType === null && page.firstName != "") {
+                            this.form.type = 1
+                        }else if (page.firstName != "" && page.lastName != "") {
+                            this.form.type = 0
+                        }
                     },
                 });
             }

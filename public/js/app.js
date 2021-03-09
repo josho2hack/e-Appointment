@@ -31079,12 +31079,21 @@ __webpack_require__.r(__webpack_exports__);
       return time[0] + ":" + time[1];
     },
     getInfoNID: function getInfoNID() {
+      var _this = this;
+
       if (this.form.nid == null || this.form.nid.length != 13) {
         $("#nid").focus();
       } else {
         this.$inertia.get(this.route("nid", this.form.nid), {
           onSuccess: function onSuccess(page) {
-            console.log(page);
+            //console.log(page);
+            _this.form.name = page.lastName === "" ? page.firstName : page.firstName + ' ' + page.lastName;
+
+            if (page.sexType === null && page.firstName != "") {
+              _this.form.type = 1;
+            } else if (page.firstName != "" && page.lastName != "") {
+              _this.form.type = 0;
+            }
           }
         });
       }
