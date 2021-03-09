@@ -31082,7 +31082,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.form.nid == null || this.form.nid.length != 13) {
         $("#nid").focus();
       } else {
-        this.$inertia.get(this.route("nid"), this.form.nid, {
+        this.$inertia.get(this.route("nid") + this.form.nid, {
           onSuccess: function onSuccess(page) {
             console.log(page);
           }
