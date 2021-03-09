@@ -732,7 +732,7 @@ export default {
                 */
                 axios
                     .get(
-                        "../../nid/" + this.form.nid
+                        "../nid/" + this.form.nid
                     )
                     .then((response) => {
                         console.log(response.data);
