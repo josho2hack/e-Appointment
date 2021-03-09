@@ -716,6 +716,7 @@ export default {
             if (this.form.nid == null || this.form.nid.length != 13) {
                 $("#nid").focus();
             } else {
+                /*
                 this.$inertia.get(this.route("nid",this.form.nid), {
                     onSuccess: (page) => {
                         //console.log(page);
@@ -726,7 +727,20 @@ export default {
                             this.form.type = 0
                         }
                     },
+                    onFinish: () => {},
                 });
+                */
+                axios
+                    .get(
+                        "/nid/" + this.form.nid
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         formatDate(date) {
