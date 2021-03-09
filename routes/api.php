@@ -23,7 +23,7 @@ Route::get('/nid/{nid}', function ($nid) {
     $response = Http::timeout(3)->withOptions([
         'proxy' => 'http://192.168.61.26:3128',
         //'timeout' => 3 //second
-    ])->get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' . $nid);
+    ])->get('http://192.168.41.110:8080/tinws/getTaxpayerInfo/nid/' . $nid)->name('api.nid');
     //dd($response);
 
     if ($response->serverError()) {
