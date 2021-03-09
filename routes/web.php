@@ -90,6 +90,6 @@ Route::get('/nid/{nid}', function ($nid) {
         return back()->withErrors("ไม่สามารถเชื่อมต่อระบบ NID");
     }
 
-    $data = $response->responseData->taxpayerNameInformation->json();
+    $data = $response->json(['responseData','taxpayerNameInformation']);
     return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
 })->name('nid');
