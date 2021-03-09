@@ -8,6 +8,7 @@ use App\Http\Controllers\SubjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
