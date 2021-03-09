@@ -31096,7 +31096,7 @@ __webpack_require__.r(__webpack_exports__);
             onFinish: () => {},
         });
         */
-        axios.get("/nid/" + this.form.nid).then(function (response) {
+        axios.get("../../nid/" + this.form.nid).then(function (response) {
           console.log(response.data);
         })["catch"](function (error) {
           console.log(error);
