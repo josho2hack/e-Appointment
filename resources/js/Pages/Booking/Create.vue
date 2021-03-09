@@ -316,13 +316,6 @@
                                                                 >
                                                             </div>
                                                         </div>
-                                                        <br />
-                                                        <span
-                                                            >Checked names:
-                                                            {{
-                                                                form.subjects
-                                                            }}</span
-                                                        >
                                                     </div>
                                                 </fieldset>
                                             </div>
@@ -743,12 +736,12 @@ export default {
                                       response.data.lastName;
                             if (
                                 response.data.sexType === null &&
-                                response.data.firstName != ""
+                                response.data.firstName !== ""
                             ) {
                                 this.form.type = 1;
                             } else if (
-                                response.data.firstName != "" &&
-                                response.data.lastName != ""
+                                response.data.firstName !== "" &&
+                                response.data.lastName !== ""
                             ) {
                                 this.form.type = 0;
                             }
