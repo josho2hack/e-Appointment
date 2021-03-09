@@ -35990,7 +35990,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.form.type = $event;
         }),
-        checked: $data.form.type = 0,
+        checked: $data.form.type == 0,
         disabled: ""
       }, null, 8
       /* PROPS */
@@ -36003,7 +36003,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
           return $data.form.type = $event;
         }),
-        checked: $data.form.type = 1,
+        checked: $data.form.type == 1,
         disabled: ""
       }, null, 8
       /* PROPS */

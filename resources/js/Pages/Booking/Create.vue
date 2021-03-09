@@ -120,7 +120,7 @@
                                                                         form.type
                                                                     "
                                                                     :checked="
-                                                                        (form.type = 0)
+                                                                        (form.type == 0)
                                                                     "
                                                                     disabled
                                                                 />
@@ -163,7 +163,7 @@
                                                                         form.type
                                                                     "
                                                                     :checked="
-                                                                        (form.type = 1)
+                                                                        (form.type == 1)
                                                                     "
                                                                     disabled
                                                                 />
