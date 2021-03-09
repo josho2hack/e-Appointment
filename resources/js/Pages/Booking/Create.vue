@@ -730,17 +730,34 @@ export default {
                     onFinish: () => {},
                 });
                 */
-                axios
-                    .get(
-                        "../nid/" + this.form.nid
-                    )
-                    .then((response) => {
-                        console.log(response.data);
-                    })
+                if (this.appointment.pit || this.appointment.cit) {
+                    axios
+                        .get("../nid/" + this.form.nid)
+                        .then((response) => {
+                            //console.log(response.data);
+                            this.form.name =
+                                response.data.lastName === ""
+                                    ? response.data.firstName
+                                    : response.data.firstName +
+                                      " " +
+                                      response.data.lastName;
+                            if (
+                                response.data.sexType === null &&
+                                response.data.firstName != ""
+                            ) {
+                                this.form.type = 1;
+                            } else if (
+                                response.data.firstName != "" &&
+                                response.data.lastName != ""
+                            ) {
+                                this.form.type = 0;
+                            }
+                        })
 
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
             }
         },
         formatDate(date) {

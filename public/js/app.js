@@ -31079,6 +31079,8 @@ __webpack_require__.r(__webpack_exports__);
       return time[0] + ":" + time[1];
     },
     getInfoNID: function getInfoNID() {
+      var _this = this;
+
       if (this.form.nid == null || this.form.nid.length != 13) {
         $("#nid").focus();
       } else {
@@ -31096,11 +31098,20 @@ __webpack_require__.r(__webpack_exports__);
             onFinish: () => {},
         });
         */
-        axios.get("../nid/" + this.form.nid).then(function (response) {
-          console.log(response.data);
-        })["catch"](function (error) {
-          console.log(error);
-        });
+        if (this.appointment.pit || this.appointment.cit) {
+          axios.get("../nid/" + this.form.nid).then(function (response) {
+            //console.log(response.data);
+            _this.form.name = response.data.lastName === "" ? response.data.firstName : response.data.firstName + " " + response.data.lastName;
+
+            if (response.data.sexType === null && response.data.firstName != "") {
+              _this.form.type = 1;
+            } else if (response.data.firstName != "" && response.data.lastName != "") {
+              _this.form.type = 0;
+            }
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
       }
     },
     formatDate: function formatDate(date) {
