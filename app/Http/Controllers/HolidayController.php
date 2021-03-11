@@ -17,6 +17,12 @@ class HolidayController extends Controller
         //
     }
 
+    public function getInfo($date)
+    {
+        $data = Holiday::where('date',$date)->get();
+        return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -120,7 +120,8 @@
                                                                         form.type
                                                                     "
                                                                     :checked="
-                                                                        (form.type == 0)
+                                                                        form.type ==
+                                                                        0
                                                                     "
                                                                     disabled
                                                                 />
@@ -163,7 +164,8 @@
                                                                         form.type
                                                                     "
                                                                     :checked="
-                                                                        (form.type == 1)
+                                                                        form.type ==
+                                                                        1
                                                                     "
                                                                     disabled
                                                                 />
@@ -538,13 +540,28 @@
                                                                         form.date
                                                                     "
                                                                     required
-                                                                    autocomplete="current-worker"
+                                                                    @change="
+                                                                        getDateInfo
+                                                                    "
+                                                                    autocomplete="current-date"
                                                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                 />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
+                                            </div>
+                                            <div>
+                                                <span
+                                                    class="px-4 text-red-400"
+                                                    >{{ dateInfo.info }}</span
+                                                >
+                                            </div>
+                                            <div>
+                                                <span class="px-4 text-gray-400"
+                                                    >หากไม่สามารถเลือกรอบนัดหมายได้
+                                                    โปรดเลือกวันนัดใหม่</span
+                                                >
                                             </div>
                                             <!-- เลือกรอบนัดหมาย -->
                                             <div
@@ -582,6 +599,10 @@
                                                                     form.round_id
                                                                 "
                                                                 type="radio"
+                                                                :disabled="
+                                                                    dateInfo.isHoliday ||
+                                                                    round.isFull
+                                                                "
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                             />
                                                             <label
@@ -694,6 +715,12 @@ export default {
                     .length === 0
                     ? false
                     : true,
+
+            bookingAllDay: [],
+            dateInfo: {
+                isHoliday: false,
+                info: "",
+            },
         };
     },
 
@@ -709,20 +736,6 @@ export default {
             if (this.form.nid == null || this.form.nid.length != 13) {
                 $("#nid").focus();
             } else {
-                /*
-                this.$inertia.get(this.route("nid",this.form.nid), {
-                    onSuccess: (page) => {
-                        //console.log(page);
-                        this.form.name = page.lastName === "" ? page.firstName : page.firstName + ' ' + page.lastName
-                        if (page.sexType === null && page.firstName != "") {
-                            this.form.type = 1
-                        }else if (page.firstName != "" && page.lastName != "") {
-                            this.form.type = 0
-                        }
-                    },
-                    onFinish: () => {},
-                });
-                */
                 if (this.appointment.pit || this.appointment.cit) {
                     axios
                         .get("../nid/" + this.form.nid)
@@ -761,12 +774,61 @@ export default {
 
             return date.getFullYear() + "-" + m + "-" + d;
         },
+        getDateInfo() {
+            this.form.round_id = null;
+            this.dateInfo.isHoliday = false;
+            this.dateInfo.info = "";
+            var date = new Date(this.form.date);
+            if (date.getDay() === 0 || date.getDay() === 6) {
+                this.dateInfo.isHoliday = true;
+                this.dateInfo.info = "วันหยุดราชการ";
+            } else {
+                axios
+                    .get("../holiday/" + this.form.date)
+                    .then((response) => {
+                        //console.log(response.data);
+                        if (response.data.length != 0) {
+                            this.dateInfo.isHoliday = true;
+                            this.dateInfo.info = response.data[0].detail;
+                        }
+                    })
+
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+            if (!this.dateInfo.isHoliday) {
+                axios
+                    .get("../booking/" + this.form.date)
+                    .then((response) => {
+                        this.bookingAllDay = response.data;
+                        this.rounds.forEach((r) => {
+                            var bookingInRound = this.bookingAllDay.filter(
+                                (b) => b.round_id === r.id
+                            );
+                            if (
+                                this.appointment.worker <= bookingInRound.length
+                            ) {
+                                r.isFull = true;
+                            } else {
+                                r.isFull = false;
+                            }
+                        });
+                    })
+
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
     },
 
     computed: {},
 
     mounted() {
         //console.log(this.subjects);
+        this.getDateInfo();
     },
 };
 </script>

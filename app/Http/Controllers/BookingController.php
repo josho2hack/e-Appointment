@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment;
 use App\Models\Booking;
 use App\Models\CustomerOption;
@@ -19,10 +20,28 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with('round')->get();
+        if (Auth::user()->role_id == 1) {
+            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
+        } else if (Auth::user()->role_id == 2) {
+            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('employee.id', Auth::user()->id)->paginate();
+        } else {
+            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->whereHas('user', function ($query) {
+                return $query->where('id', '=', Auth::user()->id);
+            })->paginate();
+        }
+
+        //dd($appointments);
+
         return Inertia::render('Booking/Index', [
+            'filters' => \Illuminate\Support\Facades\Request::all('search'),
             'bookings' => $bookings
         ]);
+    }
+
+    public function getAllDay($date)
+    {
+        $data = Booking::where('date', $date)->get();
+        return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -61,12 +80,13 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            //'name' => 'required|max:255',
-            //'phone' => 'required',
-            //'email' => 'required',
-            //'detail' => 'required',
-            //'date' => 'required',
-            //'appointment_id' => 'required',
+            'name' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required',
+            'detail' => 'required',
+            'date' => 'required',
+            'appointment_id' => 'required',
+            'round_id' => 'required',
         ]);
 
         if ($request->nid) {
@@ -75,9 +95,35 @@ class BookingController extends Controller
             ]);
         }
 
-        dd($request->all());
+        /*
+        $booking = new Booking();
+        $booking->nid = $request->nid;
+        $booking->type = $request->type;
+        $booking->name = $request->name;
+        $booking->phone = $request->phone;
+        $booking->email = $request->email;
+        $booking->facebook = $request->facebook;
+        $booking->line_id = $request->line_id;
+        $booking->detail = $request->detail;
+        $booking->date = $request->date;
+        $booking->appointment_id = $request->appointment_id;
+        $booking->round_id = $request->round_id;
+        $booking->user_id = $request->user_id;
+        $booking->customer_option_id = $request->customer_option_id;
+        $booking->save();
+        */
+        if ($request->type == null) {
+            $app = Appointment::find($request->appointment_id);
+            if ($app->pit || $app->cit) {
+                return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
+            }
+        }
 
-        Booking::create($request->all());
+        $booking = $request->all();
+        unset($booking["subjects"]);
+        $result = Booking::create($booking);
+        $result->subjects()->attach($request->subjects);
+        dd($result->id);
 
         return redirect()->route('bookings.index');
     }
