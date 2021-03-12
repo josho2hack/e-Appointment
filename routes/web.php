@@ -6,7 +6,7 @@ use App\Http\Controllers\CustomerOptionController;
 use App\Http\Controllers\RoundController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\HolidayController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,20 +34,18 @@ Route::get('/dashboard', function () {
 //------------------End Blade Components--------------------------
 
 //------------------Inertia Vue-------------------------------
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canLoginEmployee' => Route::has('login.employee'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-//------------------End Inertia Vue---------------------------
+
+Route::get('/booking/{date}', [BookingController::class, 'getAllDay'])->name('bookingAllDay');
+Route::get('/guest/{uuid}', [BookingController::class, 'guest'])->name('guest');
+Route::post('/guest', [BookingController::class, 'guestStore'])->name('guest.store');
+
+Route::get('/nid/{nid}', [NidController::class, 'getInfo'])->name('nid');
+Route::get('/holiday/{date}', [HolidayController::class, 'getInfo'])->name('holiday.getInfo');
 
 require __DIR__ . '/auth.php';
 
@@ -59,12 +57,12 @@ Route::get('/language/{language}', function ($language) {
 
 Route::middleware('auth')->group(function () {
     Route::resource('appointments', AppointmentController::class);
-    Route::put('/public/{appointment}', [AppointmentController::class, 'public'])->name('public');
+    Route::put('public/{appointment}', [AppointmentController::class, 'public'])->name('public');
     Route::resource('rounds', RoundController::class);
     Route::resource('subjects', SubjectController::class);
     Route::resource('customerOptions', CustomerOptionController::class);
     Route::resource('bookings', BookingController::class);
-    Route::get('/create-booking/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
+    Route::get('booking/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
 
     Route::get('/assignment', function () {
         return view('assignment');
@@ -75,10 +73,3 @@ Route::middleware('auth')->group(function () {
     })->name('report');
 
 });
-
-Route::get('/guest/{uuid}', [BookingController::class, 'guest'])->name('guest');
-Route::post('/guest', [BookingController::class, 'guestStore'])->name('guestStore');
-
-Route::get('/nid/{nid}', [NidController::class, 'getInfo'])->name('nid');
-Route::get('/booking/{date}', [BookingController::class, 'getAllDay'])->name('bookingAllDay');
-Route::get('/holiday/{date}', [HolidayController::class, 'getInfo'])->name('holiday.getInfo');

@@ -16,6 +16,7 @@
                             <search-filter
                                 v-model="form.search"
                                 class="w-full max-w-md mr-4"
+                                from="หัวข้อ"
                                 @reset="reset"
                             >
                             </search-filter>
@@ -312,7 +313,7 @@ export default {
             }
         },
         publicAppointment(id) {
-            if (confirm("เปิดใช้งานการนัดหมายนี้?")) {
+            if (confirm("เปิด-ปิด ใช้งานการนัดหมายนี้?")) {
                 this.formPublic.put(
                     this.route("public", id),
                     this.form,

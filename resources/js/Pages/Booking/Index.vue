@@ -16,6 +16,7 @@
                             <search-filter
                                 v-model="form.search"
                                 class="w-full max-w-md mr-4"
+                                from="วันที่นัด"
                                 @reset="reset"
                             >
                             </search-filter>
@@ -33,7 +34,7 @@
                                         <th class="px-6 pt-6 pb-4">
                                             รอบนัดหมาย
                                         </th>
-                                        <th class="px-6 pt-6 pb-4" colspan="3">
+                                        <th class="px-6 pt-6 pb-4" colspan="2">
                                             สถานะ
                                         </th>
                                     </tr>
@@ -82,10 +83,20 @@
                                             </span>
                                         </td>
                                         <td class="border-t">
-                                            <span
-                                                class="px-6 py-4 flex items-center focus:text-indigo-500"
+                                            <span v-if="booking.status == null"
+                                                class="text-gray-600 px-6 py-4 flex items-center focus:text-indigo-500"
                                             >
-                                                {{ booking.status }}
+                                                เพิ่มการจองใหม่
+                                            </span>
+                                            <span v-if="booking.status == 0"
+                                                class="text-yellow-400 px-6 py-4 flex items-center focus:text-indigo-500"
+                                            >
+                                                กำลังดำเนินการ
+                                            </span>
+                                            <span v-if="booking.status == 1"
+                                                class="text-green-400 px-6 py-4 flex items-center focus:text-indigo-500"
+                                            >
+                                                แล้วเสร็จ
                                             </span>
                                         </td>
                                         <td class="border-t w-px">
@@ -119,33 +130,6 @@
                                                     />
                                                 </svg>
                                             </inertia-link>
-                                        </td>
-                                        <td class="border-t w-px">
-                                            <button
-                                                v-if="
-                                                    $page.props.auth.user
-                                                        .role_id < 3
-                                                "
-                                                class="px-2 py-2 flex items-center focus:text-indigo-500"
-                                                @click="destroy(booking.id)"
-                                            >
-                                                <svg
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    viewBox="0 0 24 24"
-                                                    class="-mt-px w-5 h-5 text-red-400"
-                                                >
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="1"
-                                                        d="M2,2 L18,2 L18,4 L2,4 L2,2 Z M8,0 L12,0 L14,2 L6,2 L8,0 Z M3,6 L17,6 L16,20 L4,20 L3,6 Z M8,8 L9,8 L9,18 L8,18 L8,8 Z M11,8 L12,8 L12,18 L11,18 L11,8 Z"
-                                                    />
-                                                </svg>
-                                            </button>
                                         </td>
                                     </tr>
                                     <tr v-if="bookings.data.length === 0">

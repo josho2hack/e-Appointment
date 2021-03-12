@@ -26,7 +26,7 @@ class AppointmentSeeder extends Seeder
         $app->user_id = 1;
         $app->public = true;
         $app->public_user_id = 1;
-        $app->office_id = 1;
+        $app->office_id = 14;
         $app->save();
 
         $rounds = [

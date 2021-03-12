@@ -26,7 +26,7 @@ class AppointmentController extends Controller
         } else if (Auth::user()->role_id == 2) {
             $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('office_id', Auth::user()->office_id)->paginate();
         } else {
-            $appointments = Appointment::with('office')->where('public', true)->paginate();
+            $appointments = Appointment::with('office')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('public', true)->paginate();
         }
 
         //dd($appointments);

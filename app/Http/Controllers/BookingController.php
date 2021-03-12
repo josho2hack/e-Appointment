@@ -10,6 +10,8 @@ use App\Models\Round;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 class BookingController extends Controller
 {
@@ -21,11 +23,45 @@ class BookingController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 1) {
-            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
-        } else if (Auth::user()->role_id == 2) {
-            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('employee.id', Auth::user()->id)->paginate();
+            $bookings = Booking::with(
+                'appointment',
+                'user',
+                'employee',
+                'round',
+                'customerOption',
+                'subjects'
+            )->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
+        } else if (Auth::user()->role_id == 2 && Auth::user()->level < 4) {
+            $bookings = Booking::with(
+                'appointment',
+                'user',
+                'employee',
+                'round',
+                'customerOption',
+                'subjects'
+            )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('appointment', function ($query) {
+                return $query->where('office_id', '=', Auth::user()->office_id);
+            })->paginate();
+        } else if (Auth::user()->role_id == 2 && Auth::user()->level >= 4) {
+            $bookings = Booking::with(
+                'appointment',
+                'user',
+                'employee',
+                'round',
+                'customerOption',
+                'subjects'
+            )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('employee', function ($query) {
+                return $query->where('id', '=', Auth::user()->id);
+            })->paginate();
         } else {
-            $bookings = Booking::with('appointment', 'user', 'employee', 'round', 'customerOption', 'subjects')->whereHas('user', function ($query) {
+            $bookings = Booking::with(
+                'appointment',
+                'user',
+                'employee',
+                'round',
+                'customerOption',
+                'subjects'
+            )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('user', function ($query) {
                 return $query->where('id', '=', Auth::user()->id);
             })->paginate();
         }
@@ -49,7 +85,7 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createBooking(Appointment $appointment)
+    public function createBooking(Appointment $appointment) //default create not send parameter GET	/bookings/create bookings.create
     {
         $rounds = Round::where('appointment_id', $appointment->id)->get();
         $subjects = Subject::where('appointment_id', $appointment->id)->get();
@@ -64,9 +100,17 @@ class BookingController extends Controller
 
     public function guest($uuid)
     {
-        $appointment = Appointment::with('customerOptions', 'subjects', 'rounds')->where('uuid', $uuid)->get();
+        $appointment = Appointment::with('customerOptions', 'subjects', 'rounds')->where('uuid', $uuid)->first();
         return Inertia::render('Booking/Guest', [
-            'appointment' => $appointment
+            'appointment' => $appointment,
+            'rounds' => $appointment->rounds,
+            'subjects' => $appointment->subjects,
+            'customerOptions' => $appointment->customerOptions,
+            'canLogin' => Route::has('login'),
+            'canLoginEmployee' => Route::has('login.employee'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
         ]);
     }
 
@@ -77,6 +121,42 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function guestStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required',
+            'email' => 'required',
+            'detail' => 'required',
+            'date' => 'required',
+            'appointment_id' => 'required',
+            'round_id' => 'required',
+        ]);
+
+        if ($request->nid) {
+            $request->validate([
+                'nid' => 'required|min:13',
+            ]);
+        }
+
+        /*
+        if ($request->type == null) {
+            $app = Appointment::find($request->appointment_id);
+            if ($app->pit || $app->cit) {
+                return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
+            }
+        }
+        */
+
+        $booking = $request->all();
+        unset($booking["subjects"]);
+        $result = Booking::create($booking);
+        $result->subjects()->attach($request->subjects);
+        //dd($result->id);
+
+        return redirect()->route('index')->with('success', 'ระบบบันทึกข้อมูลการจองนัดหมายของท่านแล้ว โปรดตรวจสอบอีเมล์');;
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -123,7 +203,7 @@ class BookingController extends Controller
         unset($booking["subjects"]);
         $result = Booking::create($booking);
         $result->subjects()->attach($request->subjects);
-        dd($result->id);
+        //dd($result->id);
 
         return redirect()->route('bookings.index');
     }

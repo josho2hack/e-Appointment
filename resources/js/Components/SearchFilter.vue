@@ -6,7 +6,7 @@
                 autocomplete="off"
                 type="text"
                 name="search"
-                :placeholder="__('ค้นหา...')"
+                :placeholder="'ค้นหา...จาก' + from"
                 :value="modelValue"
                 @input="$emit('update:modelValue', $event.target.value)"
             />
@@ -31,6 +31,7 @@ export default {
     emits: ["update:modelValue",'reset'],
     props: {
         modelValue: String,
+        from: String,
         maxWidth: {
             type: Number,
             default: 300,

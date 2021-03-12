@@ -90,7 +90,8 @@
             <div
                 class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg"
             >
-                <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="grid grid-cols-1">
+                    <flash-messages />
                     <div class="p-6">
                         <div class="flex items-center">
                             <svg
@@ -114,17 +115,89 @@
                             </div>
                         </div>
 
-                        <div class="ml-12">
+                        <div class="ml-0">
                             <div
                                 class="mt-2 text-gray-600 dark:text-gray-400 text-sm"
                             >
-                                <ul>
-                                    <li>
-                                        <a href="#" class="underline"
-                                            >ตอบคำถามภาษีระหว่างประเทศ</a
-                                        >
-                                    </li>
-                                </ul>
+                                <div
+                                    class="mb-6 flex justify-between items-center"
+                                >
+                                    <search-filter
+                                        v-model="form.search"
+                                        class="w-full max-w-md mr-4"
+                                        from="หัวข้อ"
+                                        @reset="reset"
+                                    >
+                                    </search-filter>
+                                </div>
+                                <div
+                                    class="bg-white rounded shadow overflow-x-auto"
+                                >
+                                    <table class="table-auto w-full">
+                                        <thead>
+                                            <tr class="text-left font-bold">
+                                                <th class="px-6 pt-6 pb-4">
+                                                    หัวข้อ
+                                                </th>
+                                                <th
+                                                    class="px-6 pt-6 pb-4"
+                                                    colspan="4"
+                                                >
+                                                    หน่วยงาน
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                v-for="appointment in appointments.data"
+                                                :key="appointment.id"
+                                                class="hover:bg-gray-100 focus-within:bg-gray-100"
+                                            >
+                                                <td class="border-t">
+                                                    <inertia-link
+                                                        class="px-6 py-4 flex items-center focus:text-indigo-500"
+                                                        :href="
+                                                            route(
+                                                                'guest',
+                                                                appointment.uuid
+                                                            )
+                                                        "
+                                                    >
+                                                        {{ appointment.name }}
+                                                    </inertia-link>
+                                                </td>
+                                                <td class="border-t">
+                                                    <span
+                                                        class="px-6 py-4 flex items-center focus:text-indigo-500"
+                                                    >
+                                                        {{
+                                                            appointment.office
+                                                                .name
+                                                        }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr
+                                                v-if="
+                                                    appointments.data.length ===
+                                                    0
+                                                "
+                                            >
+                                                <td
+                                                    class="border-t px-6 py-4"
+                                                    colspan="6"
+                                                >
+                                                    {{
+                                                        __(
+                                                            "ไม่พบข้อมูลการนัดหมาย"
+                                                        )
+                                                    }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <pagination :links="appointments.links" />
                             </div>
                         </div>
                     </div>
@@ -292,10 +365,21 @@
 
 <script>
 import LanguageSelector from "@/Language/LanguageSelector";
+import Icon from "@/Components/Icon";
+import mapValues from "lodash/mapValues";
+import pickBy from "lodash/pickBy";
+import throttle from "lodash/throttle";
+import Pagination from "@/Components/Pagination";
+import SearchFilter from "@/Components/SearchFilter";
+import FlashMessages from "@/Components/FlashMessages";
 
 export default {
     components: {
         LanguageSelector,
+        Icon,
+        Pagination,
+        SearchFilter,
+        FlashMessages,
     },
     props: {
         canLogin: Boolean,
@@ -303,6 +387,39 @@ export default {
         canRegister: Boolean,
         laravelVersion: String,
         phpVersion: String,
+        appointments: Object,
+        filters: Object,
+    },
+    data() {
+        return {
+            form: {
+                search: this.filters.search,
+            },
+            formPublic: this.$inertia.form({
+                public: false,
+            }),
+        };
+    },
+    watch: {
+        form: {
+            handler: throttle(function () {
+                let query = pickBy(this.form);
+                this.$inertia.get(
+                    this.route(
+                        "index",
+                        Object.keys(query).length
+                            ? query
+                            : { remember: "forget" }
+                    )
+                );
+            }, 150),
+            deep: true,
+        },
+    },
+    methods: {
+        reset() {
+            this.form = mapValues(this.form, () => null);
+        },
     },
 };
 </script>

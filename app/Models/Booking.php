@@ -45,4 +45,11 @@ class Booking extends Model
     {
         return $this->belongsToMany(Subject::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where('date', 'like', '%'.$search.'%');
+        });
+    }
 }
