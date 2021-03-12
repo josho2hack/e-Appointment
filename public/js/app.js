@@ -29722,7 +29722,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     nid: String,
     name: String,
-    type: String,
+    type: Number,
     phone: String,
     email: String,
     facebook: String,
@@ -31640,7 +31640,7 @@ var _hoisted_9 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_10 = {
-  "class": "text-bule-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_11 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31655,7 +31655,7 @@ var _hoisted_14 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_15 = {
-  "class": "text-bule-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_16 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31671,15 +31671,15 @@ var _hoisted_19 = {
 };
 var _hoisted_20 = {
   key: 0,
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_21 = {
   key: 1,
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_22 = {
   key: 2,
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_23 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31694,7 +31694,7 @@ var _hoisted_26 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_27 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_28 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31709,7 +31709,7 @@ var _hoisted_31 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_32 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_33 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31724,7 +31724,7 @@ var _hoisted_36 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_37 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_38 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31739,7 +31739,7 @@ var _hoisted_41 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_42 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_43 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31754,7 +31754,7 @@ var _hoisted_46 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_47 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_48 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31769,7 +31769,7 @@ var _hoisted_51 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_52 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_53 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31784,7 +31784,7 @@ var _hoisted_56 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_57 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_58 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31799,7 +31799,7 @@ var _hoisted_61 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_62 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_63 = {
   "class": "grid grid-cols-6 gap-6 mb-2"
@@ -31814,7 +31814,7 @@ var _hoisted_66 = {
   "class": "col-span-3 sm:col-span-2"
 };
 var _hoisted_67 = {
-  "class": "text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+  "class": "text-blue-700 block mb-1 font-bold text-sm tracking-wide"
 };
 var _hoisted_68 = {
   "class": "relative bg-gray-50 col-span-6 sm:col-span-2 text-right"

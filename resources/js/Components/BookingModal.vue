@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-bule-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ appointment }}</span
                         >
                     </div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-bule-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ nid }}</span
                         >
                     </div>
@@ -68,15 +68,15 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span v-if="type == 0"
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >บุคคลธรรมดา</span
                         >
                         <span v-if="type == 1"
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >นิติบุลคล</span
                         >
                         <span v-else
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >อื่นๆ</span
                         >
                     </div>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ name }}</span
                         >
                     </div>
@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ subject.substring(0, 20) }}...</span
                         >
                     </div>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ detail.substring(0, 10) }}...</span
                         >
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ phone }}</span
                         >
                     </div>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ email }}</span
                         >
                     </div>
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ facebook }}</span
                         >
                     </div>
@@ -174,7 +174,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ line_id }}</span
                         >
                     </div>
@@ -188,7 +188,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ date }}</span
                         >
                     </div>
@@ -202,7 +202,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2">
                         <span
-                            class="text-gray-700 block mb-1 font-bold text-sm tracking-wide"
+                            class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >{{ round }}</span
                         >
                     </div>
@@ -243,7 +243,7 @@ export default {
     props: {
         nid: String,
         name: String,
-        type: String,
+        type: Number,
         phone: String,
         email: String,
         facebook: String,
