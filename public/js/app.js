@@ -33039,7 +33039,7 @@ var _hoisted_2 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-    "class": "relative w-full px-6 py-3 rounded-r focus:shadow-outline",
+    "class": "relative border-0 w-full px-6 py-3 rounded-r focus:shadow-outline",
     autocomplete: "off",
     type: "text",
     name: "search",
