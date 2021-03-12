@@ -13,7 +13,8 @@ class NidController extends Controller
             'proxy' => env('PROXY'),
             //'timeout' => 3 //second
         ])->get(env('NID_SERVICE') . $nid);
-        dd($response);
+
+        dd(env('PROXY'),env('NID_SERVICE'));
 
         if ($response->serverError()) {
             return back()->withErrors("ไม่สามารถเชื่อมต่อระบบ NID");
