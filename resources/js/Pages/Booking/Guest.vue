@@ -1028,6 +1028,7 @@ export default {
                 round_id: null,
                 user_id: null,
                 subjects: [],
+                worker: this.appointment.worker,
             }),
 
             hasRequirePIN:

@@ -22,9 +22,9 @@ class AppointmentController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 1) {
-            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
+            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->latest()->paginate();
         } else if (Auth::user()->role_id == 2) {
-            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('office_id', Auth::user()->office_id)->paginate();
+            $appointments = Appointment::with('office', 'rounds')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('office_id', Auth::user()->office_id)->latest()->paginate();
         } else {
             $appointments = Appointment::with('office')->filter(\Illuminate\Support\Facades\Request::only('search'))->where('public', true)->paginate();
         }

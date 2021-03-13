@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Booking as MailBooking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment;
 use App\Models\Booking;
 use App\Models\CustomerOption;
 use App\Models\Round;
 use App\Models\Subject;
+use App\Notifications\Booking as NotificationsBooking;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -30,7 +33,7 @@ class BookingController extends Controller
                 'round',
                 'customerOption',
                 'subjects'
-            )->filter(\Illuminate\Support\Facades\Request::only('search'))->paginate();
+            )->filter(\Illuminate\Support\Facades\Request::only('search'))->latest()->paginate();
         } else if (Auth::user()->role_id == 2 && Auth::user()->level < 4) {
             $bookings = Booking::with(
                 'appointment',
@@ -41,7 +44,7 @@ class BookingController extends Controller
                 'subjects'
             )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('appointment', function ($query) {
                 return $query->where('office_id', '=', Auth::user()->office_id);
-            })->paginate();
+            })->latest()->paginate();
         } else if (Auth::user()->role_id == 2 && Auth::user()->level >= 4) {
             $bookings = Booking::with(
                 'appointment',
@@ -52,7 +55,7 @@ class BookingController extends Controller
                 'subjects'
             )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('employee', function ($query) {
                 return $query->where('id', '=', Auth::user()->id);
-            })->paginate();
+            })->latest()->paginate();
         } else {
             $bookings = Booking::with(
                 'appointment',
@@ -63,7 +66,7 @@ class BookingController extends Controller
                 'subjects'
             )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('user', function ($query) {
                 return $query->where('id', '=', Auth::user()->id);
-            })->paginate();
+            })->latest()->paginate();
         }
 
         //dd($appointments);
@@ -150,10 +153,20 @@ class BookingController extends Controller
 
         $booking = $request->all();
         unset($booking["subjects"]);
+        unset($booking["worker"]);
+
+        $bookings = Booking::where('date', '=', $request->date)->whereHas('round', function ($query) use ($request) {
+            return $query->where('id', '=', $request->round_id);
+        })->get();
+        //dd(count($bookings));
+        if ($request->worker <= count($bookings)) {
+             return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
+        }
+
         $result = Booking::create($booking);
         $result->subjects()->attach($request->subjects);
         //dd($result->id);
-
+        Mail::to($result->email)->send(new MailBooking($result));
         return redirect()->route('index')->with('success', 'ระบบบันทึกข้อมูลการจองนัดหมายของท่านแล้ว โปรดตรวจสอบอีเมล์');;
     }
 
@@ -192,19 +205,30 @@ class BookingController extends Controller
         $booking->customer_option_id = $request->customer_option_id;
         $booking->save();
         */
+        /*
         if ($request->type == null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
                 return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
             }
         }
+        */
 
         $booking = $request->all();
         unset($booking["subjects"]);
+        unset($booking["worker"]);
+
+        $bookings = Booking::where('date', '=', $request->date)->whereHas('round', function ($query) use ($request) {
+            return $query->where('id', '=', $request->round_id);
+        })->get();
+        //dd($request->worker,$request->round_id,count($bookings));
+        if ($request->worker <= count($bookings)) {
+             return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
+        }
+
         $result = Booking::create($booking);
         $result->subjects()->attach($request->subjects);
-        //dd($result->id);
-
+        Auth::user()->notify(new NotificationsBooking($result));
         return redirect()->route('bookings.index');
     }
 
@@ -216,7 +240,14 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return Inertia::render('Booking/Show', [
+            'appointment' => $booking->appointment,
+            'round' => $booking->round,
+            'subjects' => $booking->subjects,
+            'customerOption' => $booking->customerOption,
+            'employee' => $booking->employee,
+            'booking' => $booking,
+        ]);
     }
 
     /**

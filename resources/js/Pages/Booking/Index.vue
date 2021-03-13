@@ -84,9 +84,9 @@
                                         </td>
                                         <td class="border-t">
                                             <span v-if="booking.status == null"
-                                                class="text-gray-600 px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="text-red-400 px-6 py-4 flex items-center focus:text-indigo-500"
                                             >
-                                                เพิ่มการจองใหม่
+                                                ใหม่
                                             </span>
                                             <span v-if="booking.status == 0"
                                                 class="text-yellow-400 px-6 py-4 flex items-center focus:text-indigo-500"

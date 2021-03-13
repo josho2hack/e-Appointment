@@ -708,6 +708,7 @@ export default {
                 round_id: null,
                 user_id: this.$page.props.auth.user.id,
                 subjects: [],
+                worker: this.appointment.worker,
             }),
 
             hasRequirePIN:
