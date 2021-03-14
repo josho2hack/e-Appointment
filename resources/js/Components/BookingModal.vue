@@ -67,11 +67,11 @@
                         >
                     </div>
                     <div class="col-span-3 sm:col-span-2">
-                        <span v-if="type == 0"
+                        <span v-if="type === 0"
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >บุคคลธรรมดา</span
                         >
-                        <span v-if="type == 1"
+                        <span v-if="type === 1"
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >นิติบุลคล</span
                         >

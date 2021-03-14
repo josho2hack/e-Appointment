@@ -1067,19 +1067,19 @@ export default {
                         .then((response) => {
                             //console.log(response.data);
                             this.form.name =
-                                response.data.lastName === ""
+                                response.data.lastName === null
                                     ? response.data.firstName
                                     : response.data.firstName +
                                       " " +
                                       response.data.lastName;
                             if (
                                 response.data.sexType === null &&
-                                response.data.firstName !== ""
+                                response.data.firstName !== null
                             ) {
                                 this.form.type = 1;
                             } else if (
-                                response.data.firstName !== "" &&
-                                response.data.lastName !== ""
+                                response.data.firstName !== null &&
+                                response.data.lastName !== null
                             ) {
                                 this.form.type = 0;
                             }

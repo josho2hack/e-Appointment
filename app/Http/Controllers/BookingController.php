@@ -142,6 +142,8 @@ class BookingController extends Controller
             ]);
         }
 
+        dd($request->all());
+
         if ($request->type == null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
@@ -255,7 +257,14 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+        return Inertia::render('Booking/Edit', [
+            'appointment' => $booking->appointment,
+            'round' => $booking->round,
+            'subjects' => $booking->subjects,
+            'customerOption' => $booking->customerOption,
+            'employee' => $booking->employee,
+            'booking' => $booking,
+        ]);
     }
 
     /**
@@ -267,7 +276,15 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        $request->validate([
+            'meeting_online' => 'required',
+            'status' => 'required',
+            'employee_id' => 'required',
+            //'assign_user_id' => 'required',
+        ]);
+
+        $booking->update($request->all());
+        return redirect()->route('bookings.index');
     }
 
     /**
