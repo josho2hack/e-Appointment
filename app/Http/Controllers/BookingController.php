@@ -142,14 +142,12 @@ class BookingController extends Controller
             ]);
         }
 
-        /*
         if ($request->type == null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
                 return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
             }
         }
-        */
 
         $booking = $request->all();
         unset($booking["subjects"]);
@@ -205,14 +203,13 @@ class BookingController extends Controller
         $booking->customer_option_id = $request->customer_option_id;
         $booking->save();
         */
-        /*
+
         if ($request->type == null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
                 return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
             }
         }
-        */
 
         $booking = $request->all();
         unset($booking["subjects"]);
