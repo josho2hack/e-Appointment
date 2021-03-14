@@ -45,7 +45,7 @@ class AppointmentSeeder extends Seeder
             ['name' => 'อนุสัญญาเพื่อการเว้นการเก็บภาษีซ้อน (Tax Treaties)','appointment_id' => $app->id],
             ['name' => 'การรายงานข้อมูลรายประเทศ (Country-By-Country Report)','appointment_id' => $app->id],
             ['name' => 'หนังสือรับรองเพื่อการรัษฎากรเป็นภาษาอังกฤษ (Tax Certificates)','appointment_id' => $app->id],
-            ['name' => 'การดำเนิการเพื่อความตกลงร่วมกัน (Mutual Agreement Procedures)','appointment_id' => $app->id],
+            ['name' => 'การดำเนินการเพื่อความตกลงร่วมกัน (Mutual Agreement Procedures)','appointment_id' => $app->id],
 
         ];
 

@@ -697,7 +697,7 @@ export default {
                 name: "",
                 type: null,
                 phone: "",
-                email: "",
+                email: this.$page.props.auth.user.email,
                 facebook: "",
                 line_id: "",
                 // meeting_online: "",

@@ -190,7 +190,7 @@
                   :href="route('bookings.index')"
                   class="underline text-sm text-gray-600 hover:text-gray-900 mr-2"
                 >
-                  {{ __("รายการจอง") }}
+                  {{ __("กลับรายการจอง") }}
                 </inertia-link>
               </div>
             </div>
