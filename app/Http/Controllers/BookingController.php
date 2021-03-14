@@ -142,9 +142,9 @@ class BookingController extends Controller
             ]);
         }
 
-        dd($request->type);
+        //dd($request->type);
 
-        if ($request->type == null) {
+        if ($request->type === null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
                 return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
@@ -206,7 +206,7 @@ class BookingController extends Controller
         $booking->save();
         */
 
-        if ($request->type == null) {
+        if ($request->type === null) {
             $app = Appointment::find($request->appointment_id);
             if ($app->pit || $app->cit) {
                 return back()->with('error', 'ไม่พบหมายเลขผู้เสียภาษี');
