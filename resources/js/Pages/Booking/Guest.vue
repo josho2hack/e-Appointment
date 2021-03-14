@@ -8,7 +8,7 @@
         >
             <inertia-link
                 v-if="$page.props.auth.user"
-                href="/dashboard"
+                :href="route('dashboard')"
                 class="text-sm text-gray-700 underline"
             >
                 {{ __("Dashboard") }}
@@ -53,7 +53,7 @@
             >
                 <inertia-link
                     v-if="$page.props.auth.user"
-                    href="/dashboard"
+                    :href="route('dashboard')"
                     class="text-sm text-gray-700 underline"
                 >
                     {{ __("Dashboard") }}

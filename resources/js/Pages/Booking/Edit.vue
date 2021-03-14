@@ -634,7 +634,7 @@
                                                 <inertia-link
                                                     :href="
                                                         route(
-                                                            'appointments.index'
+                                                            'bookings.index'
                                                         )
                                                     "
                                                     class="underline text-sm text-gray-600 hover:text-gray-900 mr-2"
@@ -670,11 +670,8 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
 import BreezeValidationErrors from "@/Components/ValidationErrors";
 import FlashMessages from "@/Components/FlashMessages";
-//import Checkbox from "@/Components/CheckboxV3";
-import { mask } from "vue-the-mask";
 
 export default {
-    directives: { mask },
 
     components: {
         BreezeAuthenticatedLayout,
@@ -685,143 +682,30 @@ export default {
 
     props: {
         appointment: Object,
-        rounds: Object,
+        round: Object,
         subjects: Object,
         customerOptions: Object,
+        employee: Object,
+        booking: Object,
     },
 
     data() {
         return {
             form: this.$inertia.form({
-                nid: null,
-                name: "",
-                type: null,
-                phone: "",
-                email: "",
-                facebook: "",
-                line_id: "",
-                // meeting_online: "",
-                detail: "",
-                date: this.formatDate(new Date()),
-                appointment_id: this.appointment.id,
-                customer_option_id: null,
-                round_id: null,
-                user_id: this.$page.props.auth.user.id,
-                subjects: [],
-                worker: this.appointment.worker,
+                meeting_online: null,
+                status: null,
+                employee: null,
             }),
-
-            hasRequirePIN:
-                this.customerOptions.filter((c) => c.require_pin === 1)
-                    .length === 0
-                    ? false
-                    : true,
-
-            bookingAllDay: [],
-            dateInfo: {
-                isHoliday: false,
-                info: "",
-            },
         };
     },
 
     methods: {
         submit() {
-            this.form.post(this.route("bookings.store"));
+            this.form.post(this.route("bookings.update"));
         },
         minuteFormat(value) {
             let time = value.split(":");
             return time[0] + ":" + time[1];
-        },
-        getInfoNID() {
-            if (this.form.nid == null || this.form.nid.length != 13) {
-                $("#nid").focus();
-            } else {
-                if (this.appointment.pit || this.appointment.cit) {
-                    axios
-                        .get("../nid/" + this.form.nid)
-                        .then((response) => {
-                            //console.log(response.data);
-                            this.form.name =
-                                response.data.lastName === ""
-                                    ? response.data.firstName
-                                    : response.data.firstName +
-                                      " " +
-                                      response.data.lastName;
-                            if (
-                                response.data.sexType === null &&
-                                response.data.firstName !== ""
-                            ) {
-                                this.form.type = 1;
-                            } else if (
-                                response.data.firstName !== "" &&
-                                response.data.lastName !== ""
-                            ) {
-                                this.form.type = 0;
-                            }
-                        })
-
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-            }
-        },
-        formatDate(date) {
-            var month = date.getMonth() + 1;
-            var m = month < 10 ? "0" + month : month;
-            var day = date.getDate();
-            var d = day < 10 ? "0" + day : day;
-
-            return date.getFullYear() + "-" + m + "-" + d;
-        },
-        getDateInfo() {
-            this.form.round_id = null;
-            this.dateInfo.isHoliday = false;
-            this.dateInfo.info = "";
-            var date = new Date(this.form.date);
-            if (date.getDay() === 0 || date.getDay() === 6) {
-                this.dateInfo.isHoliday = true;
-                this.dateInfo.info = "วันหยุดราชการ";
-            } else {
-                axios
-                    .get("../holiday/" + this.form.date)
-                    .then((response) => {
-                        //console.log(response.data);
-                        if (response.data.length != 0) {
-                            this.dateInfo.isHoliday = true;
-                            this.dateInfo.info = response.data[0].detail;
-                        }
-                    })
-
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            }
-
-            if (!this.dateInfo.isHoliday) {
-                axios
-                    .get("../booking/" + this.form.date)
-                    .then((response) => {
-                        this.bookingAllDay = response.data;
-                        this.rounds.forEach((r) => {
-                            var bookingInRound = this.bookingAllDay.filter(
-                                (b) => b.round_id === r.id
-                            );
-                            if (
-                                this.appointment.worker <= bookingInRound.length
-                            ) {
-                                r.isFull = true;
-                            } else {
-                                r.isFull = false;
-                            }
-                        });
-                    })
-
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            }
         },
     },
 
@@ -829,7 +713,6 @@ export default {
 
     mounted() {
         //console.log(this.subjects);
-        this.getDateInfo();
     },
 };
 </script>

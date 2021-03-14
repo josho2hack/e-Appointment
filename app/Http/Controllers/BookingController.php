@@ -167,7 +167,7 @@ class BookingController extends Controller
         $result->subjects()->attach($request->subjects);
         //dd($result->id);
         Mail::to($result->email)->send(new MailBooking($result));
-        return redirect()->route('index')->with('success', 'ระบบบันทึกข้อมูลการจองนัดหมายของท่านแล้ว โปรดตรวจสอบอีเมล์');;
+        return redirect()->route('index')->with('success', 'ระบบบันทึกข้อมูลการจองนัดหมายของท่านแล้ว โปรดตรวจสอบอีเมล์');
     }
 
     public function store(Request $request)
@@ -276,12 +276,9 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        $request->validate([
-            'meeting_online' => 'required',
-            'status' => 'required',
-            'employee_id' => 'required',
-            //'assign_user_id' => 'required',
-        ]);
+        if ($request->employee) {
+            $request->assign_user_id = Auth::user()->id;
+        }
 
         $booking->update($request->all());
         return redirect()->route('bookings.index');
