@@ -817,6 +817,7 @@
                                     :appointment="appointment.name"
                                     :round="roundInfo"
                                     :subject="subject"
+                                    :customer="customerInfo"
                                     @close="openBookingModal = false"
                                     @submit="submit"
                                 />
@@ -1045,6 +1046,7 @@ export default {
             openBookingModal: false,
             roundInfo: "",
             subject: "",
+            customerInfo: "",
         };
     },
     watch: {},
@@ -1148,6 +1150,13 @@ export default {
             }
         },
         openModal() {
+            if (this.form.customer_option_id) {
+                let customer = this.customerOptions.filter(
+                    (c) => c.id == this.form.customer_option_id
+                );
+                //console.log(rseclect[0].start);
+                this.customerInfo = customer.name;
+            }
             if (this.form.round_id) {
                 let rseclect = this.rounds.filter(
                     (r) => r.id == this.form.round_id

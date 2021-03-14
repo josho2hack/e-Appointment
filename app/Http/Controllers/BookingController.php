@@ -142,7 +142,7 @@ class BookingController extends Controller
             ]);
         }
 
-        dd($request->all());
+        //dd($request->all());
 
         if ($request->type == null) {
             $app = Appointment::find($request->appointment_id);

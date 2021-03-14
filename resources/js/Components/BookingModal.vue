@@ -75,9 +75,9 @@
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
                             >นิติบุลคล</span
                         >
-                        <span v-else
+                        <span  v-if="customerInfo !== ''"
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
-                            >อื่นๆ</span
+                            >{{ customer }}</span
                         >
                     </div>
                 </div>
@@ -252,6 +252,7 @@ export default {
         date: String,
         appointment: String,
         round: String,
+        customer: String,
         subject: String,
     },
 };
