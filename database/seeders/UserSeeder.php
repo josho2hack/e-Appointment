@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'Admin';
         $user->phone = '02-272-8901';
         $user->email = 'appointment@rd.go.th';
-        $user->password = Hash::make('password');
+        $user->password = Hash::make('p@ssw0rd');
         $user->role_id = $role->id;
         $user->office_id = 1;
         $user->level = "0";
