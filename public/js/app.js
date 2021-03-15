@@ -37650,8 +37650,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
         id: "employee",
         name: "employee",
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
           return $data.lsk = $event;
+        }),
+        onChange: _cache[2] || (_cache[2] = function () {
+          return $options.selectWorker && $options.selectWorker.apply($options, arguments);
         }),
         autofocus: "",
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -37659,17 +37662,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: emp.ID,
           value: emp.ID,
-          disabled: emp.isFull,
-          onSelect: _cache[1] || (_cache[1] = function () {
-            return $options.selectWorker && $options.selectWorker.apply($options, arguments);
-          })
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 41
-        /* TEXT, PROPS, HYDRATE_EVENTS */
+          disabled: emp.isFull
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 9
+        /* TEXT, PROPS */
         , ["value", "disabled"]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))], 512
-      /* NEED_PATCH */
+      ))], 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.lsk]])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ลิงค์ประชุมออนไลน์ (meeting_online) "), $props.booking.status !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_86, [_hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         type: "text",
         name: "meeting_online",
