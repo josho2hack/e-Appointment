@@ -270,10 +270,10 @@ class BookingController extends Controller
         $user_filter = array_filter($user, function($obj) {
             if (isset($obj->DataUser)) {
                 foreach ($obj->DataUser as $u) {
-                    if ($u->EMPTYPE == "1") return true;
+                    if ($u->EMPTYPE != "1") return false;
                 }
             }
-            return false;
+            return true;
         });
 
         dd($user_filter);
