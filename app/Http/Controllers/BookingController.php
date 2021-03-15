@@ -270,7 +270,7 @@ class BookingController extends Controller
         $user_filter = array_filter($user, function($v, $k) {
             return $k == 'EMPTYPE' || $v == 1;
         }, ARRAY_FILTER_USE_BOTH);
-        dd($user_filter);
+        dd($user);
 
         return Inertia::render('Booking/Edit', [
             'appointment' => $booking->appointment,
