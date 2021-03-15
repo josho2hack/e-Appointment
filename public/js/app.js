@@ -31257,23 +31257,25 @@ __webpack_require__.r(__webpack_exports__);
       return time[0] + ":" + time[1];
     },
     selectWorker: function selectWorker() {
-      var emp = this.employees.filter(function (e) {
-        return e.employee.lsk === lsk;
-      });
-      this.form.employee.lsk = emp.ID;
-      this.form.employee.title = emp.TITLE;
-      this.form.employee.first_name = emp.FNAME;
-      this.form.employee.last_name = emp.LNAME;
-      this.form.employee.pin = emp.PIN;
-      this.form.employee.email = emp.EMAIL;
-      this.form.employee.uid = emp.UID;
-      this.form.employee.position = emp.POSITION_M;
-      this.form.employee["class"] = emp.CLASS_NEW;
-      this.form.employee.position_action = emp.POSACT;
-      this.form.employee.groupname = emp.GROUPNAME;
-      this.form.employee.level = emp.LEVEL;
-      this.form.employee.employee_type = emp.EMPTYPE;
-      this.form.employee.office_id = this.office.id;
+      for (var emp in this.employees) {
+        if (emp.ID === lsk) {
+          this.form.employee.lsk = emp.ID;
+          this.form.employee.title = emp.TITLE;
+          this.form.employee.first_name = emp.FNAME;
+          this.form.employee.last_name = emp.LNAME;
+          this.form.employee.pin = emp.PIN;
+          this.form.employee.email = emp.EMAIL;
+          this.form.employee.uid = emp.UID;
+          this.form.employee.position = emp.POSITION_M;
+          this.form.employee["class"] = emp.CLASS_NEW;
+          this.form.employee.position_action = emp.POSACT;
+          this.form.employee.groupname = emp.GROUPNAME;
+          this.form.employee.level = emp.LEVEL;
+          this.form.employee.employee_type = emp.EMPTYPE;
+          this.form.employee.office_id = this.office.id;
+        }
+      }
+
       console.log(this.form);
     }
   },
@@ -31283,24 +31285,24 @@ __webpack_require__.r(__webpack_exports__);
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-    console.log(this.employees);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this.bookingAllDay = response.data;
 
-      _this.employees.forEach(function (e) {
+      for (var emp in _this.employees) {
         var bookingInEmployee = _this.bookingAllDay.filter(function (b) {
-          return b.employee.lsk === e.ID;
+          return b.employee.lsk === emp.ID;
         });
 
         if (bookingInEmployee.length !== 0) {
-          e.isFull = true;
+          emp.isFull = true;
         } else {
-          e.isFull = false;
+          emp.isFull = false;
         }
-      });
+      }
     })["catch"](function (error) {
       console.log(error);
     });
+    console.log(this.employees);
   }
 });
 

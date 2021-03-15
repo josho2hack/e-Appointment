@@ -538,32 +538,33 @@ export default {
 
   methods: {
     submit() {
-      this.form.put(this.route("bookings.update",this.booking.id));
+      this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat(value) {
       let time = value.split(":");
       return time[0] + ":" + time[1];
     },
-    selectWorker(){
-        var emp = this.employees.filter(
-            (e) => e.employee.lsk === lsk
-          );
-        this.form.employee.lsk = emp.ID
-        this.form.employee.title = emp.TITLE
-        this.form.employee.first_name = emp.FNAME
-        this.form.employee.last_name = emp.LNAME
-        this.form.employee.pin = emp.PIN
-        this.form.employee.email = emp.EMAIL
-        this.form.employee.uid = emp.UID
-        this.form.employee.position = emp.POSITION_M
-        this.form.employee.class = emp.CLASS_NEW
-        this.form.employee.position_action = emp.POSACT
-        this.form.employee.groupname = emp.GROUPNAME
-        this.form.employee.level = emp.LEVEL
-        this.form.employee.employee_type = emp.EMPTYPE
-        this.form.employee.office_id = this.office.id
-        console.log(this.form)
-    }
+    selectWorker() {
+      for (var emp in this.employees) {
+        if (emp.ID === lsk) {
+          this.form.employee.lsk = emp.ID;
+          this.form.employee.title = emp.TITLE;
+          this.form.employee.first_name = emp.FNAME;
+          this.form.employee.last_name = emp.LNAME;
+          this.form.employee.pin = emp.PIN;
+          this.form.employee.email = emp.EMAIL;
+          this.form.employee.uid = emp.UID;
+          this.form.employee.position = emp.POSITION_M;
+          this.form.employee.class = emp.CLASS_NEW;
+          this.form.employee.position_action = emp.POSACT;
+          this.form.employee.groupname = emp.GROUPNAME;
+          this.form.employee.level = emp.LEVEL;
+          this.form.employee.employee_type = emp.EMPTYPE;
+          this.form.employee.office_id = this.office.id;
+        }
+      }
+      console.log(this.form);
+    },
   },
 
   computed: {},
@@ -571,26 +572,28 @@ export default {
   mounted() {
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-    console.log(this.employees);
+
     axios
       .get("../../booking/" + this.booking.date)
       .then((response) => {
         this.bookingAllDay = response.data;
-        this.employees.forEach((e) => {
+        for (var emp in this.employees) {
           var bookingInEmployee = this.bookingAllDay.filter(
-            (b) => b.employee.lsk === e.ID
+            (b) => b.employee.lsk === emp.ID
           );
           if (bookingInEmployee.length !== 0) {
-            e.isFull = true;
+            emp.isFull = true;
           } else {
-            e.isFull = false;
+            emp.isFull = false;
           }
-        });
+        }
       })
 
       .catch(function (error) {
         console.log(error);
       });
+
+    console.log(this.employees);
   },
 };
 </script>
