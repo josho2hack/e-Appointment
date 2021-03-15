@@ -31257,7 +31257,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
-      lsk: this.employee ? this.employee.lsk : null
+      lsk: this.employee ? this.employee.lsk : null,
+      emp_array: []
     };
   },
   methods: {
@@ -31296,7 +31297,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["office_id"] = _this.office.id;
         }
       });
-      console.log(this.form.employee);
     }
   },
   computed: {},
@@ -31305,24 +31305,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
+    this.emp_array = Object.entries(this.employees);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this2.bookingAllDay = response.data;
 
-      for (var emp in _this2.employees) {
+      _this2.emp_array.forEach(function (e) {
         var bookingInEmployee = _this2.bookingAllDay.filter(function (b) {
-          b.employee ? b.employee.lsk == emp.ID : null;
+          b.employee ? b.employee.lsk == e.ID : null;
         });
 
         if (bookingInEmployee.length !== 0) {
-          emp["isFull"] = true;
+          e["isFull"] = true;
         } else {
-          emp["isFull"] = false;
+          e["isFull"] = false;
         }
-      }
+      });
     })["catch"](function (error) {
       console.log(error);
-    });
-    console.log(this.employees);
+    }); //console.log(this.employees);
   }
 });
 

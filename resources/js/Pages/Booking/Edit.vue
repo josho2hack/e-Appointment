@@ -533,6 +533,7 @@ export default {
       }),
 
       lsk: this.employee ? this.employee.lsk : null,
+      emp_array: [],
     };
   },
 
@@ -566,8 +567,6 @@ export default {
           this.form.employee["office_id"] = this.office.id;
         }
       });
-
-      console.log(this.form.employee);
     },
   },
 
@@ -576,28 +575,28 @@ export default {
   mounted() {
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-
+    this.emp_array = Object.entries(this.employees);
     axios
       .get("../../booking/" + this.booking.date)
       .then((response) => {
         this.bookingAllDay = response.data;
-        for (var emp in this.employees) {
+        this.emp_array.forEach((e) => {
           var bookingInEmployee = this.bookingAllDay.filter((b) => {
-            b.employee ? b.employee.lsk == emp.ID : null;
+            b.employee ? b.employee.lsk == e.ID : null;
           });
           if (bookingInEmployee.length !== 0) {
-            emp["isFull"] = true;
+            e["isFull"] = true;
           } else {
-            emp["isFull"] = false;
+            e["isFull"] = false;
           }
-        }
+        })
       })
 
       .catch(function (error) {
         console.log(error);
       });
 
-    console.log(this.employees);
+    //console.log(this.employees);
   },
 };
 </script>
