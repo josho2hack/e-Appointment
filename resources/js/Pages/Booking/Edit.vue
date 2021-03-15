@@ -396,6 +396,7 @@
                               id="employee"
                               name="employee"
                               v-model="form.employee"
+                              autofocus
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                               <option
@@ -421,14 +422,9 @@
                               for="meeting_online"
                               class="block text-sm font-medium text-gray-700"
                             >
-                              ประชุมออนไลน์
+                              ลิงค์ประชุมออนไลน์
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                              <span
-                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
-                              >
-                                ลิงค์ประชุมออนไลน์
-                              </span>
                               <input
                                 type="text"
                                 name="meeting_online"
