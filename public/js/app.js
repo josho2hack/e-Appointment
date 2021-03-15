@@ -31257,8 +31257,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
-      lsk: this.employee ? this.employee.lsk : null,
-      emp_array: []
+      lsk: this.employee ? this.employee.lsk : null
     };
   },
   methods: {
@@ -31305,19 +31304,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-    this.emp_array = Object.entries(this.employees);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this2.bookingAllDay = response.data;
 
-      _this2.emp_array.forEach(function (e) {
+      _this2.employees.forEach(function (e) {
         var bookingInEmployee = _this2.bookingAllDay.filter(function (b) {
           b.employee ? b.employee.lsk == e.ID : null;
         });
 
         if (bookingInEmployee.length !== 0) {
-          e["isFull"] = true;
+          e.isFull = true;
         } else {
-          e["isFull"] = false;
+          e.isFull = false;
         }
       });
     })["catch"](function (error) {
@@ -37680,7 +37678,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         autofocus: "",
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.emp_array, function (emp) {
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.employees, function (emp) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: emp.ID,
           value: emp.ID,

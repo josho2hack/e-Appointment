@@ -401,7 +401,7 @@
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                               <option
-                                v-for="emp in emp_array"
+                                v-for="emp in employees"
                                 :key="emp.ID"
                                 :value="emp.ID"
                                 :disabled="emp.isFull"
@@ -533,7 +533,6 @@ export default {
       }),
 
       lsk: this.employee ? this.employee.lsk : null,
-      emp_array: [],
     };
   },
 
@@ -575,19 +574,18 @@ export default {
   mounted() {
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-    this.emp_array = Object.entries(this.employees);
     axios
       .get("../../booking/" + this.booking.date)
       .then((response) => {
         this.bookingAllDay = response.data;
-        this.emp_array.forEach((e) => {
+        this.employees.forEach((e) => {
           var bookingInEmployee = this.bookingAllDay.filter((b) => {
             b.employee ? b.employee.lsk == e.ID : null;
           });
           if (bookingInEmployee.length !== 0) {
-            e["isFull"] = true;
+            e.isFull = true;
           } else {
-            e["isFull"] = false;
+            e.isFull = false;
           }
         })
       })
