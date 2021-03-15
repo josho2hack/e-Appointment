@@ -31253,7 +31253,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: Object,
+        employee: Array,
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
