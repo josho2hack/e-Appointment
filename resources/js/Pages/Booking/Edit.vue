@@ -395,16 +395,16 @@
                             <select
                               id="employee"
                               name="employee"
-                              v-model="form.employee_id"
+                              v-model="form.employee"
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                               <option
                                 v-for="emp in employees"
-                                :key="emp.id"
-                                :value="emp.id"
-                                :selected="emp.id == employee.id"
+                                :key="emp.ID"
+                                :value="emp.ID"
+                                :selected="emp.ID == employee.lsk"
                               >
-                                {{ emp.first_name + " " + emp.last_name }}
+                                {{ emp.FNAME + " " + emp.LNAME }}
                               </option>
                             </select>
                           </div>
@@ -522,7 +522,6 @@ export default {
     employee: Object,
     employees: Object,
     booking: Object,
-    office: Object,
   },
 
   data() {
@@ -530,7 +529,7 @@ export default {
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee_id: this.booking.employee_id,
+        employee: this.booking.employee_id,
       }),
     };
   },
