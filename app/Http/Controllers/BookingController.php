@@ -264,7 +264,7 @@ class BookingController extends Controller
                 'checkPass' => env('EOFFICE_CHKPASS'),
                 'officeId' => Auth::user()->office->code,
             ]);
-            $user = $response->json();
+            $user = $response;
         }
 
         $user_filter = array_filter($user, function($obj) {
