@@ -326,7 +326,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        dd($request);
+        dd($request->employee);
         if ($request->employee) {
             $request->assign_user_id = Auth::user()->id;
         }
