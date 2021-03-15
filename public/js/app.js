@@ -31241,24 +31241,65 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: this.booking.employee_id
+        employee: {},
+        lsk_old: this.employee.lsk,
+        meeting_old: this.booking.meeting_online
       }),
       lsk: this.employee ? this.employee.lsk : null
     };
   },
   methods: {
     submit: function submit() {
-      this.form.post(this.route("bookings.update"));
+      this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat: function minuteFormat(value) {
       var time = value.split(":");
       return time[0] + ":" + time[1];
+    },
+    selectWorker: function selectWorker() {
+      var emp = this.employees.filter(function (e) {
+        return e.employee.lsk === lsk;
+      });
+      this.form.employee.lsk = emp.ID;
+      this.form.employee.title = emp.TITLE;
+      this.form.employee.first_name = emp.FNAME;
+      this.form.employee.last_name = emp.LNAME;
+      this.form.employee.pin = emp.PIN;
+      this.form.employee.email = emp.EMAIL;
+      this.form.employee.uid = emp.UID;
+      this.form.employee.position = emp.POSITION_M;
+      this.form.employee["class"] = emp.CLASS_NEW;
+      this.form.employee.position_action = emp.POSACT;
+      this.form.employee.groupname = emp.GROUPNAME;
+      this.form.employee.level = emp.LEVEL;
+      this.form.employee.employee_type = emp.EMPTYPE;
+      this.form.employee.office_id = this.office.id;
     }
   },
   computed: {},
-  mounted: function mounted() {//console.log(this.$page.props.auth.user);
+  mounted: function mounted() {
+    var _this = this;
+
+    //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
     //console.log(this.office.code.substr(5, 3));
+    axios.get("../booking/" + this.booking.date).then(function (response) {
+      _this.bookingAllDay = response.data;
+
+      _this.employees.forEach(function (e) {
+        var bookingInEmployee = _this.bookingAllDay.filter(function (b) {
+          return b.employee.lsk === e.ID;
+        });
+
+        if (bookingInEmployee.length !== 0) {
+          e.isFull = true;
+        } else {
+          e.isFull = false;
+        }
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -33989,7 +34030,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"]), _ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_nav_link, {
     key: 0,
-    href: _ctx.route('report'),
+    href: "#",
     active: _ctx.route().current('report')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34002,11 +34043,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href", "active"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_ctx.$page.props.auth.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
+  , ["active"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [_ctx.$page.props.auth.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
     key: 0,
     "class": "w-8 h-8 mr-2 rounded-full border border-gray-400",
     src: _ctx.$page.props.auth.user.avatar,
-    alt: "{{ $page.props.auth.user.first_name }}\r\n                                    {{ $page.props.auth.user.last_name }}"
+    alt: "{{ $page.props.auth.user.first_name }}\n                                    {{ $page.props.auth.user.last_name }}"
   }, null, 8
   /* PROPS */
   , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_9, [_hoisted_10])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Settings Dropdown "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_dropdown, {
@@ -34115,7 +34156,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"]), _ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_responsive_nav_link, {
     key: 0,
-    href: _ctx.route('report'),
+    href: "#",
     active: _ctx.route().current('report')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -34128,11 +34169,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href", "active"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Responsive Settings Options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [_ctx.$page.props.auth.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
+  , ["active"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Responsive Settings Options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [_ctx.$page.props.auth.user.avatar ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
     key: 0,
     "class": "w-10 h-10 rounded-full border border-gray-400",
     src: _ctx.$page.props.auth.user.avatar,
-    alt: "{{ $page.props.auth.user.first_name }}\r\n                                    {{ $page.props.auth.user.last_name }}"
+    alt: "{{ $page.props.auth.user.first_name }}\n                                    {{ $page.props.auth.user.last_name }}"
   }, null, 8
   /* PROPS */
   , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_21, [_hoisted_22]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.first_name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.last_name), 1
@@ -37457,7 +37498,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายงาน หรือปรับปรุงสถานะการจองเมื่อแล้วเสร็จ")), 1
       /* TEXT */
       )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-        onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" หมายเลขผู้เสียภาษี "), $props.appointment.pit || $props.appointment.cit || _ctx.hasRequirePIN ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("หมายเลขผู้เสียภาษี")), 1
@@ -37608,8 +37649,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
         id: "employee",
         name: "employee",
-        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-          return $data.form.employee = $event;
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.lsk = $event;
         }),
         autofocus: "",
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -37617,19 +37658,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: emp.ID,
           value: emp.ID,
-          selected: emp.ID == $data.lsk
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 9
-        /* TEXT, PROPS */
-        , ["value", "selected"]);
+          disabled: emp.isFull,
+          onChange: _cache[1] || (_cache[1] = function () {
+            return $options.selectWorker && $options.selectWorker.apply($options, arguments);
+          })
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 41
+        /* TEXT, PROPS, HYDRATE_EVENTS */
+        , ["value", "disabled"]);
       }), 128
       /* KEYED_FRAGMENT */
       ))], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.employee]])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ลิงค์ประชุมออนไลน์ (meeting_online) "), $props.booking.status !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_86, [_hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.lsk]])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ลิงค์ประชุมออนไลน์ (meeting_online) "), $props.booking.status !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_86, [_hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         type: "text",
         name: "meeting_online",
         id: "meeting_online",
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.form.meeting_online = $event;
         }),
         autofocus: "",
@@ -37644,7 +37688,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
         id: "status",
         name: "status",
-        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
           return $data.form.status = $event;
         }),
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

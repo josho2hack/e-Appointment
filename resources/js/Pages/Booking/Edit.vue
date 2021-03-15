@@ -395,7 +395,7 @@
                             <select
                               id="employee"
                               name="employee"
-                              v-model="form.employee"
+                              v-model="lsk"
                               autofocus
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
@@ -403,7 +403,8 @@
                                 v-for="emp in employees"
                                 :key="emp.ID"
                                 :value="emp.ID"
-                                :selected="emp.ID == lsk"
+                                :disabled="emp.isFull"
+                                @change="selectWorker"
                               >
                                 {{ emp.FNAME + " " + emp.LNAME }}
                               </option>
@@ -526,20 +527,42 @@ export default {
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: this.booking.employee_id,
+        employee: {},
+        lsk_old: this.employee.lsk,
+        meeting_old: this.booking.meeting_online,
       }),
-      lsk: this.employee ? this.employee.lsk : null
+
+      lsk: this.employee ? this.employee.lsk : null,
     };
   },
 
   methods: {
     submit() {
-      this.form.post(this.route("bookings.update"));
+      this.form.put(this.route("bookings.update",this.booking.id));
     },
     minuteFormat(value) {
       let time = value.split(":");
       return time[0] + ":" + time[1];
     },
+    selectWorker(){
+        var emp = this.employees.filter(
+            (e) => e.employee.lsk === lsk
+          );
+        this.form.employee.lsk = emp.ID
+        this.form.employee.title = emp.TITLE
+        this.form.employee.first_name = emp.FNAME
+        this.form.employee.last_name = emp.LNAME
+        this.form.employee.pin = emp.PIN
+        this.form.employee.email = emp.EMAIL
+        this.form.employee.uid = emp.UID
+        this.form.employee.position = emp.POSITION_M
+        this.form.employee.class = emp.CLASS_NEW
+        this.form.employee.position_action = emp.POSACT
+        this.form.employee.groupname = emp.GROUPNAME
+        this.form.employee.level = emp.LEVEL
+        this.form.employee.employee_type = emp.EMPTYPE
+        this.form.employee.office_id = this.office.id
+    }
   },
 
   computed: {},
@@ -548,6 +571,25 @@ export default {
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
     //console.log(this.office.code.substr(5, 3));
+    axios
+      .get("../booking/" + this.booking.date)
+      .then((response) => {
+        this.bookingAllDay = response.data;
+        this.employees.forEach((e) => {
+          var bookingInEmployee = this.bookingAllDay.filter(
+            (b) => b.employee.lsk === e.ID
+          );
+          if (bookingInEmployee.length !== 0) {
+            e.isFull = true;
+          } else {
+            e.isFull = false;
+          }
+        });
+      })
+
+      .catch(function (error) {
+        console.log(error);
+      });
   },
 };
 </script>

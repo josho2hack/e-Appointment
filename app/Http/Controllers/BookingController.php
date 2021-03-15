@@ -80,7 +80,7 @@ class BookingController extends Controller
 
     public function getAllDay($date)
     {
-        $data = Booking::where('date', $date)->get();
+        $data = Booking::with('employee')->where('date', $date)->get();
         return response()->json($data, 200, [], JSON_NUMERIC_CHECK);
     }
 
@@ -326,6 +326,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
+        dd($request);
         if ($request->employee) {
             $request->assign_user_id = Auth::user()->id;
         }
