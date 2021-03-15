@@ -527,7 +527,7 @@ export default {
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: {},
+        employee: [],
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online,
       }),
@@ -546,6 +546,7 @@ export default {
     },
     selectWorker() {
       for (var emp in this.employees) {
+          console.log(emp.ID == this.lsk)
         if (emp.ID == this.lsk) {
           this.form.employee['lsk'] = emp.ID;
           this.form.employee['title'] = emp.TITLE;
@@ -563,7 +564,7 @@ export default {
           this.form.employee['office_id'] = this.office.id;
         }
       }
-      console.log(this.form.employee);
+       console.log(this.form.employee);
     },
   },
 

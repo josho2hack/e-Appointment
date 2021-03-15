@@ -31241,7 +31241,7 @@ __webpack_require__.r(__webpack_exports__);
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: {},
+        employee: [],
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
@@ -31258,6 +31258,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectWorker: function selectWorker() {
       for (var emp in this.employees) {
+        console.log(emp.ID == this.lsk);
+
         if (emp.ID == this.lsk) {
           this.form.employee['lsk'] = emp.ID;
           this.form.employee['title'] = emp.TITLE;
