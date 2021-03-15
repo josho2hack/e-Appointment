@@ -547,27 +547,26 @@ export default {
     selectWorker() {
       const objectArray = Object.entries(this.employees);
       objectArray.forEach(([key, value]) => {
-        console.log(key);
-        console.log(value);
-      });
-      for (var e in this.employees) {
-        if (emp.ID == this.lsk) {
-          this.form.employee["lsk"] = emp.ID;
-          this.form.employee["title"] = emp.TITLE;
-          this.form.employee["first_name"] = emp.FNAME;
-          this.form.employee["last_name"] = emp.LNAME;
-          this.form.employee["pin"] = emp.PIN;
-          this.form.employee["email"] = emp.EMAIL;
-          this.form.employee["uid"] = emp.UID;
-          this.form.employee["position"] = emp.POSITION_M;
-          this.form.employee["class"] = emp.CLASS_NEW;
-          this.form.employee["position_action"] = emp.POSACT;
-          this.form.employee["groupname"] = emp.GROUPNAME;
-          this.form.employee["level"] = emp.LEVEL;
-          this.form.employee["employee_type"] = emp.EMPTYPE;
+        //console.log(key);
+        //console.log(value);
+        if (value.ID == this.lsk) {
+          this.form.employee["lsk"] = value.ID;
+          this.form.employee["title"] = value.TITLE;
+          this.form.employee["first_name"] = value.FNAME;
+          this.form.employee["last_name"] = value.LNAME;
+          this.form.employee["pin"] = value.PIN;
+          this.form.employee["email"] = value.EMAIL;
+          this.form.employee["uid"] = value.UID;
+          this.form.employee["position"] = value.POSITION_M;
+          this.form.employee["class"] = value.CLASS_NEW;
+          this.form.employee["position_action"] = value.POSACT;
+          this.form.employee["groupname"] = value.GROUPNAME;
+          this.form.employee["level"] = value.LEVEL;
+          this.form.employee["employee_type"] = value.EMPTYPE;
           this.form.employee["office_id"] = this.office.id;
         }
-      }
+      });
+
       console.log(this.form.employee);
     },
   },

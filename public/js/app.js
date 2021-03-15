@@ -31269,49 +31269,47 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return time[0] + ":" + time[1];
     },
     selectWorker: function selectWorker() {
+      var _this = this;
+
       var objectArray = Object.entries(this.employees);
       objectArray.forEach(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
             key = _ref2[0],
             value = _ref2[1];
 
-        console.log(key);
-        console.log(value);
-      });
-
-      for (var e in this.employees) {
-        if (emp.ID == this.lsk) {
-          this.form.employee["lsk"] = emp.ID;
-          this.form.employee["title"] = emp.TITLE;
-          this.form.employee["first_name"] = emp.FNAME;
-          this.form.employee["last_name"] = emp.LNAME;
-          this.form.employee["pin"] = emp.PIN;
-          this.form.employee["email"] = emp.EMAIL;
-          this.form.employee["uid"] = emp.UID;
-          this.form.employee["position"] = emp.POSITION_M;
-          this.form.employee["class"] = emp.CLASS_NEW;
-          this.form.employee["position_action"] = emp.POSACT;
-          this.form.employee["groupname"] = emp.GROUPNAME;
-          this.form.employee["level"] = emp.LEVEL;
-          this.form.employee["employee_type"] = emp.EMPTYPE;
-          this.form.employee["office_id"] = this.office.id;
+        //console.log(key);
+        //console.log(value);
+        if (value.ID == _this.lsk) {
+          _this.form.employee["lsk"] = value.ID;
+          _this.form.employee["title"] = value.TITLE;
+          _this.form.employee["first_name"] = value.FNAME;
+          _this.form.employee["last_name"] = value.LNAME;
+          _this.form.employee["pin"] = value.PIN;
+          _this.form.employee["email"] = value.EMAIL;
+          _this.form.employee["uid"] = value.UID;
+          _this.form.employee["position"] = value.POSITION_M;
+          _this.form.employee["class"] = value.CLASS_NEW;
+          _this.form.employee["position_action"] = value.POSACT;
+          _this.form.employee["groupname"] = value.GROUPNAME;
+          _this.form.employee["level"] = value.LEVEL;
+          _this.form.employee["employee_type"] = value.EMPTYPE;
+          _this.form.employee["office_id"] = _this.office.id;
         }
-      }
-
+      });
       console.log(this.form.employee);
     }
   },
   computed: {},
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
-      _this.bookingAllDay = response.data;
+      _this2.bookingAllDay = response.data;
 
-      for (var emp in _this.employees) {
-        var bookingInEmployee = _this.bookingAllDay.filter(function (b) {
+      for (var emp in _this2.employees) {
+        var bookingInEmployee = _this2.bookingAllDay.filter(function (b) {
           b.employee ? b.employee.lsk == emp.ID : null;
         });
 
