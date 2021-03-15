@@ -404,7 +404,7 @@
                                 :key="emp.ID"
                                 :value="emp.ID"
                                 :disabled="emp.isFull"
-                                @change="selectWorker"
+                                @select="selectWorker"
                               >
                                 {{ emp.FNAME + " " + emp.LNAME }}
                               </option>
@@ -562,6 +562,7 @@ export default {
         this.form.employee.level = emp.LEVEL
         this.form.employee.employee_type = emp.EMPTYPE
         this.form.employee.office_id = this.office.id
+        console.log(this.form)
     }
   },
 

@@ -31274,6 +31274,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.employee.level = emp.LEVEL;
       this.form.employee.employee_type = emp.EMPTYPE;
       this.form.employee.office_id = this.office.id;
+      console.log(this.form);
     }
   },
   computed: {},
@@ -37659,7 +37660,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: emp.ID,
           value: emp.ID,
           disabled: emp.isFull,
-          onChange: _cache[1] || (_cache[1] = function () {
+          onSelect: _cache[1] || (_cache[1] = function () {
             return $options.selectWorker && $options.selectWorker.apply($options, arguments);
           })
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 41
