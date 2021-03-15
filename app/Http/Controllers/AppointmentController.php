@@ -69,6 +69,10 @@ class AppointmentController extends Controller
             'fri' => 'required',
         ]);
 
+        if (!$request->official && !$request->employee) {
+            return back()->with('error', 'โปรดเลือกเจ้าหน้าที่เพื่อรับการนัดหมาย');
+        }
+
         $request['uuid'] = (string) Str::orderedUuid();
         $request['office_id'] = Auth::user()->office_id;
         $request['user_id'] = Auth::user()->id;
