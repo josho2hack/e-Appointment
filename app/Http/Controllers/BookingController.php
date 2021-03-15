@@ -273,11 +273,9 @@ class BookingController extends Controller
                 if (isset($obj['EMPTYPE'])) {
                     if (Auth::user()->level == 3) {
                         if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                    }else if(Auth::user()->level <= 2){
+                    } else if (Auth::user()->level <= 2) {
                         if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level) return true;
-                    }
-
-                    else return false;
+                    } else return false;
                 }
             });
         } else if (!$booking->appointment->official && $booking->appointment->employee) {
@@ -294,11 +292,9 @@ class BookingController extends Controller
                 if (isset($obj['EMPTYPE'])) {
                     if (Auth::user()->level == 3) {
                         if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                    }else if(Auth::user()->level <= 2){
+                    } else if (Auth::user()->level <= 2) {
                         if ($obj['LEVEL'] > Auth::user()->level) return true;
-                    }
-
-                    else return false;
+                    } else return false;
                 }
             });
         }
@@ -326,12 +322,51 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        dd($request->employee);
-        if ($request->employee) {
+        dd($request->employee->lsk, $request->employee->lsk_old);
+        if ($request->employee->lsk != $request->employee->lsk_old) {
             $request->assign_user_id = Auth::user()->id;
+            $request->status = 0;
+
+            $user = User::where('lsk', $request->employee->lsk)->first();
+
+            if (!$user) {
+                $role = Role::where('name', 'employee')->first();
+                $user = new User();
+                $user->role_id = $role->id;
+            }
+
+            $user->title = $request->employee->title;
+            $user->first_name = $request->employee->first_name;
+            $user->last_name = $request->employee->last_name;
+            $user->email = $request->employee->email;
+            $user->lsk = $request->employee->lsk;
+            $user->uid = $request->employee->uid;
+            $user->position = $request->employee->position;
+            $user->class = $request->employee->class;
+            $user->position_action = $request->employee->position_action;
+            $user->groupname = $request->employee->groupname;
+            $user->level = $request->employee->level;
+            $user->employee_type = $request->employee->employee_type;
+            $user->office_id = $request->employee->office_id;
+            $user->save();
+
+            $request->employee_id = $user->id;
         }
 
+        $data = $request->all();
+        unset($data["employee"]);
+        unset($data["lsk_old"]);
+        unset($data["meeting_old"]);
+
         $booking->update($request->all());
+
+        if ($request->meeting_old != $request->meeting_online) {
+            Mail::to($booking->email)->send(new MailBooking($booking));
+        }
+        if ($request->employee->lsk_old != $request->employee->lsk) {
+            Mail::to($booking->email)->send(new MailBooking($booking));
+            $user()->notify(new NotificationsBooking($booking));
+        }
         return redirect()->route('bookings.index');
     }
 
