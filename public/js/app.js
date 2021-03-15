@@ -31216,6 +31216,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.vue");
 /* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.vue");
 /* harmony import */ var _Components_FlashMessages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FlashMessages */ "./resources/js/Components/FlashMessages.vue");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -31257,26 +31269,32 @@ __webpack_require__.r(__webpack_exports__);
       return time[0] + ":" + time[1];
     },
     selectWorker: function selectWorker() {
-      for (var e in this.employees) {
-        console.log(e['ID']);
-        console.log(e.ID);
-        console.log(e.ID == this.lsk);
+      var objectArray = Object.entries(this.employees);
+      objectArray.forEach(function (_ref) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            key = _ref2[0],
+            value = _ref2[1];
 
+        console.log(key);
+        console.log(value);
+      });
+
+      for (var e in this.employees) {
         if (emp.ID == this.lsk) {
-          this.form.employee['lsk'] = emp.ID;
-          this.form.employee['title'] = emp.TITLE;
-          this.form.employee['first_name'] = emp.FNAME;
-          this.form.employee['last_name'] = emp.LNAME;
-          this.form.employee['pin'] = emp.PIN;
-          this.form.employee['email'] = emp.EMAIL;
-          this.form.employee['uid'] = emp.UID;
-          this.form.employee['position'] = emp.POSITION_M;
-          this.form.employee['class'] = emp.CLASS_NEW;
-          this.form.employee['position_action'] = emp.POSACT;
-          this.form.employee['groupname'] = emp.GROUPNAME;
-          this.form.employee['level'] = emp.LEVEL;
-          this.form.employee['employee_type'] = emp.EMPTYPE;
-          this.form.employee['office_id'] = this.office.id;
+          this.form.employee["lsk"] = emp.ID;
+          this.form.employee["title"] = emp.TITLE;
+          this.form.employee["first_name"] = emp.FNAME;
+          this.form.employee["last_name"] = emp.LNAME;
+          this.form.employee["pin"] = emp.PIN;
+          this.form.employee["email"] = emp.EMAIL;
+          this.form.employee["uid"] = emp.UID;
+          this.form.employee["position"] = emp.POSITION_M;
+          this.form.employee["class"] = emp.CLASS_NEW;
+          this.form.employee["position_action"] = emp.POSACT;
+          this.form.employee["groupname"] = emp.GROUPNAME;
+          this.form.employee["level"] = emp.LEVEL;
+          this.form.employee["employee_type"] = emp.EMPTYPE;
+          this.form.employee["office_id"] = this.office.id;
         }
       }
 
@@ -31298,9 +31316,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         if (bookingInEmployee.length !== 0) {
-          emp['isFull'] = true;
+          emp["isFull"] = true;
         } else {
-          emp['isFull'] = false;
+          emp["isFull"] = false;
         }
       }
     })["catch"](function (error) {

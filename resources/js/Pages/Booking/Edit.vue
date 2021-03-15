@@ -545,28 +545,30 @@ export default {
       return time[0] + ":" + time[1];
     },
     selectWorker() {
+      const objectArray = Object.entries(this.employees);
+      objectArray.forEach(([key, value]) => {
+        console.log(key);
+        console.log(value);
+      });
       for (var e in this.employees) {
-          console.log(e['ID'])
-          console.log(e.ID)
-          console.log(e.ID == this.lsk)
         if (emp.ID == this.lsk) {
-          this.form.employee['lsk'] = emp.ID;
-          this.form.employee['title'] = emp.TITLE;
-          this.form.employee['first_name'] = emp.FNAME;
-          this.form.employee['last_name'] = emp.LNAME;
-          this.form.employee['pin'] = emp.PIN;
-          this.form.employee['email'] = emp.EMAIL;
-          this.form.employee['uid'] = emp.UID;
-          this.form.employee['position'] = emp.POSITION_M;
-          this.form.employee['class'] = emp.CLASS_NEW;
-          this.form.employee['position_action'] = emp.POSACT;
-          this.form.employee['groupname'] = emp.GROUPNAME;
-          this.form.employee['level'] = emp.LEVEL;
-          this.form.employee['employee_type'] = emp.EMPTYPE;
-          this.form.employee['office_id'] = this.office.id;
+          this.form.employee["lsk"] = emp.ID;
+          this.form.employee["title"] = emp.TITLE;
+          this.form.employee["first_name"] = emp.FNAME;
+          this.form.employee["last_name"] = emp.LNAME;
+          this.form.employee["pin"] = emp.PIN;
+          this.form.employee["email"] = emp.EMAIL;
+          this.form.employee["uid"] = emp.UID;
+          this.form.employee["position"] = emp.POSITION_M;
+          this.form.employee["class"] = emp.CLASS_NEW;
+          this.form.employee["position_action"] = emp.POSACT;
+          this.form.employee["groupname"] = emp.GROUPNAME;
+          this.form.employee["level"] = emp.LEVEL;
+          this.form.employee["employee_type"] = emp.EMPTYPE;
+          this.form.employee["office_id"] = this.office.id;
         }
       }
-       console.log(this.form.employee);
+      console.log(this.form.employee);
     },
   },
 
@@ -581,13 +583,13 @@ export default {
       .then((response) => {
         this.bookingAllDay = response.data;
         for (var emp in this.employees) {
-          var bookingInEmployee = this.bookingAllDay.filter(
-            (b) => {b.employee ? b.employee.lsk == emp.ID : null}
-          );
+          var bookingInEmployee = this.bookingAllDay.filter((b) => {
+            b.employee ? b.employee.lsk == emp.ID : null;
+          });
           if (bookingInEmployee.length !== 0) {
-            emp['isFull'] = true;
+            emp["isFull"] = true;
           } else {
-            emp['isFull'] = false;
+            emp["isFull"] = false;
           }
         }
       })
