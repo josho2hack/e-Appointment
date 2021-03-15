@@ -402,7 +402,7 @@
                                 v-for="emp in employees"
                                 :key="emp.ID"
                                 :value="emp.ID"
-                                :selected="emp.ID == employee.lsk"
+                                :selected="emp.ID == lsk"
                               >
                                 {{ emp.FNAME + " " + emp.LNAME }}
                               </option>
@@ -532,6 +532,7 @@ export default {
         status: this.booking.status,
         employee: this.booking.employee_id,
       }),
+      lsk: this.employee ? this.employee.lsk : null
     };
   },
 

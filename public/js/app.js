@@ -31242,7 +31242,8 @@ __webpack_require__.r(__webpack_exports__);
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: this.booking.employee_id
-      })
+      }),
+      lsk: this.employee ? this.employee.lsk : null
     };
   },
   methods: {
@@ -37620,7 +37621,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: emp.ID,
           value: emp.ID,
-          selected: emp.ID == $props.employee.lsk
+          selected: emp.ID == $data.lsk
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(emp.FNAME + " " + emp.LNAME), 9
         /* TEXT, PROPS */
         , ["value", "selected"]);
