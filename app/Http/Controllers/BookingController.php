@@ -264,19 +264,17 @@ class BookingController extends Controller
                 'checkPass' => env('EOFFICE_CHKPASS'),
                 'officeId' => Auth::user()->office->code,
             ]);
-            $user = $response->array();
+            $user = $response->json();
         }
 
-        $user_filter = array_filter($user, function($obj) {
-            if (isset($obj->DataUser)) {
-                foreach ($obj->DataUser as $u) {
-                    if ($u->EMPTYPE != 1) return false;
-                }
+        $user_filter = array_filter($user, function ($obj) {
+            foreach ($obj->DataUser as $u) {
+                if ($u->EMPTYPE == 1) return true;
+                else return false;
             }
-            return true;
         });
 
-        dd($user,$user_filter);
+        dd($user, $user_filter);
 
         return Inertia::render('Booking/Edit', [
             'appointment' => $booking->appointment,
