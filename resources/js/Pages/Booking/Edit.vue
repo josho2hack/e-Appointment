@@ -527,7 +527,21 @@ export default {
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: Array,
+        employee: {
+          lsk: this.lsk,
+          title: "",
+          irst_name: "",
+          last_name: "",
+          email: "",
+          uid: "",
+          position: "",
+          class: "",
+          position_action: "",
+          groupname: "",
+          level: "",
+          employee_type: "",
+          office_id: this.office.id,
+        },
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online,
       }),
@@ -538,7 +552,7 @@ export default {
 
   methods: {
     submit() {
-        console.log(this.form);
+      console.log(this.form);
       this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat(value) {
@@ -551,11 +565,9 @@ export default {
         //console.log(key);
         //console.log(value);
         if (value.ID == this.lsk) {
-          this.form.employee["lsk"] = value.ID;
           this.form.employee["title"] = value.TITLE;
           this.form.employee["first_name"] = value.FNAME;
           this.form.employee["last_name"] = value.LNAME;
-          this.form.employee["pin"] = value.PIN;
           this.form.employee["email"] = value.EMAIL;
           this.form.employee["uid"] = value.UID;
           this.form.employee["position"] = value.POSITION_M;
@@ -564,10 +576,9 @@ export default {
           this.form.employee["groupname"] = value.GROUPNAME;
           this.form.employee["level"] = value.LEVEL;
           this.form.employee["employee_type"] = value.EMPTYPE;
-          this.form.employee["office_id"] = this.office.id;
         }
       });
-     console.log(this.form);
+      console.log(this.form);
     },
   },
 
@@ -589,7 +600,7 @@ export default {
           } else {
             e.isFull = false;
           }
-        })
+        });
       })
 
       .catch(function (error) {

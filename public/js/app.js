@@ -31253,7 +31253,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
-        employee: Array,
+        employee: {
+          lsk: this.lsk,
+          title: "",
+          irst_name: "",
+          last_name: "",
+          email: "",
+          uid: "",
+          position: "",
+          "class": "",
+          position_action: "",
+          groupname: "",
+          level: "",
+          employee_type: "",
+          office_id: this.office.id
+        },
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
@@ -31281,11 +31295,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         //console.log(key);
         //console.log(value);
         if (value.ID == _this.lsk) {
-          _this.form.employee["lsk"] = value.ID;
           _this.form.employee["title"] = value.TITLE;
           _this.form.employee["first_name"] = value.FNAME;
           _this.form.employee["last_name"] = value.LNAME;
-          _this.form.employee["pin"] = value.PIN;
           _this.form.employee["email"] = value.EMAIL;
           _this.form.employee["uid"] = value.UID;
           _this.form.employee["position"] = value.POSITION_M;
@@ -31294,7 +31306,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["groupname"] = value.GROUPNAME;
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
-          _this.form.employee["office_id"] = _this.office.id;
         }
       });
       console.log(this.form);
