@@ -31256,7 +31256,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {},
-  mounted: function mounted() {//console.log(this.subjects);
+  mounted: function mounted() {
+    console.log(this.$page.props.auth.user);
   }
 });
 

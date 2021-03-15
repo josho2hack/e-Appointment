@@ -545,7 +545,7 @@ export default {
   computed: {},
 
   mounted() {
-    //console.log(this.subjects);
+    console.log(this.$page.props.auth.user);
   },
 };
 </script>
