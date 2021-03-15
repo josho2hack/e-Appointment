@@ -267,9 +267,15 @@ class BookingController extends Controller
             $user = $response->json();
         }
 
-        $user_filter = array_filter($user->DataUser, function($v, $k) {
-            return $k == 'EMPTYPE' || $v == 1;
-        }, ARRAY_FILTER_USE_BOTH);
+        $user_filter = array_filter($user, function($obj) {
+            if (isset($obj->DataUser)) {
+                foreach ($obj->DataUser as $user) {
+                    if ($user->EMPTYPE == 1) return true;
+                }
+            }
+            return false;
+        });
+
         dd($user_filter);
 
         return Inertia::render('Booking/Edit', [
