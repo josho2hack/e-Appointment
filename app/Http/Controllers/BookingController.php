@@ -322,7 +322,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        dd($request['employee']['lsk'], $request['lsk_old'] ,  $request->employee->lsk);
+        dd($request['employee']['lsk'], $request['lsk_old']);
         if ($request->employee->lsk != $request->lsk_old) {
             $request->assign_user_id = Auth::user()->id;
             $request->status = 0;
