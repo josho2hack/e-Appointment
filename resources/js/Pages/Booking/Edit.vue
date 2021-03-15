@@ -546,7 +546,7 @@ export default {
     },
     selectWorker() {
       for (var emp in this.employees) {
-        if (emp.ID === lsk) {
+        if (emp.ID === this.lsk) {
           this.form.employee.lsk = emp.ID;
           this.form.employee.title = emp.TITLE;
           this.form.employee.first_name = emp.FNAME;
@@ -582,9 +582,9 @@ export default {
             (b) => {b.employee ? b.employee.lsk == emp.ID : null}
           );
           if (bookingInEmployee.length !== 0) {
-            emp.isFull = true;
+            emp['isFull'] = true;
           } else {
-            emp.isFull = false;
+            emp['isFull'] = false;
           }
         }
       })

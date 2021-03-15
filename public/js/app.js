@@ -31258,7 +31258,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectWorker: function selectWorker() {
       for (var emp in this.employees) {
-        if (emp.ID === lsk) {
+        if (emp.ID === this.lsk) {
           this.form.employee.lsk = emp.ID;
           this.form.employee.title = emp.TITLE;
           this.form.employee.first_name = emp.FNAME;
@@ -31294,9 +31294,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         if (bookingInEmployee.length !== 0) {
-          emp.isFull = true;
+          emp['isFull'] = true;
         } else {
-          emp.isFull = false;
+          emp['isFull'] = false;
         }
       }
     })["catch"](function (error) {
