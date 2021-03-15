@@ -538,6 +538,7 @@ export default {
 
   methods: {
     submit() {
+        console.log(this.form);
       this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat(value) {
@@ -566,6 +567,7 @@ export default {
           this.form.employee["office_id"] = this.office.id;
         }
       });
+     console.log(this.form);
     },
   },
 

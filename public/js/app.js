@@ -31262,6 +31262,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   methods: {
     submit: function submit() {
+      console.log(this.form);
       this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat: function minuteFormat(value) {
@@ -31296,6 +31297,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["office_id"] = _this.office.id;
         }
       });
+      console.log(this.form);
     }
   },
   computed: {},
