@@ -31290,7 +31290,7 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var emp in _this.employees) {
         var bookingInEmployee = _this.bookingAllDay.filter(function (b) {
-          return b.employee.lsk === emp.ID;
+          b.employee.lsk ? b.employee.lsk == emp.ID : null;
         });
 
         if (bookingInEmployee.length !== 0) {

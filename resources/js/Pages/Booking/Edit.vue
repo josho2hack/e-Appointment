@@ -579,7 +579,7 @@ export default {
         this.bookingAllDay = response.data;
         for (var emp in this.employees) {
           var bookingInEmployee = this.bookingAllDay.filter(
-            (b) => b.employee.lsk === emp.ID
+            (b) => {b.employee.lsk ? b.employee.lsk == emp.ID : null}
           );
           if (bookingInEmployee.length !== 0) {
             emp.isFull = true;
