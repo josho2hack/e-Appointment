@@ -31258,6 +31258,7 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   mounted: function mounted() {
     console.log(this.$page.props.auth.user);
+    console.log(this.office.code);
     console.log(this.office.code.substring(5, 3));
   }
 });
