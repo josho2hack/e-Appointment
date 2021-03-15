@@ -376,9 +376,9 @@
                         v-if="
                           booking.status !== 1 &&
                           (($page.props.auth.user.level <= 3 &&
-                            office.code.substring(5, 3) == '000') ||
+                            office.code.substr(5, 3) == '000') ||
                             ($page.props.auth.user.level <= 2 &&
-                              office.code.substring(5, 3) != '000'))
+                              office.code.substr(5, 3) != '000'))
                         "
                         class="px-4 pb-4 bg-white space-y-6 sm:p-6"
                       >
@@ -545,9 +545,9 @@ export default {
   computed: {},
 
   mounted() {
-    console.log(this.$page.props.auth.user);
-    console.log(this.office.code);
-    console.log(this.office.code.substring(5, 3));
+    //console.log(this.$page.props.auth.user);
+    //console.log(this.office.code);
+    //console.log(this.office.code.substr(5, 3));
   },
 };
 </script>
