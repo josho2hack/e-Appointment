@@ -313,7 +313,7 @@ class BookingController extends Controller
             'employee' => $booking->employee,
             'employees' => $user_filter,
             'booking' => $booking,
-            'office' => $booking->office,
+            'office' => $booking->appointment->office,
         ]);
     }
 
