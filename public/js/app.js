@@ -31242,7 +31242,7 @@ __webpack_require__.r(__webpack_exports__);
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {},
-        lsk_old: this.employee.lsk,
+        lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online
       }),
       lsk: this.employee ? this.employee.lsk : null
