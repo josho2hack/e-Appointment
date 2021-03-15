@@ -268,7 +268,7 @@ class BookingController extends Controller
         }
 
         $user_filter = array_filter($user, function ($obj) {
-            dd($obj,$obj->EMPTYPE);
+            dd($obj);
             if (isset($obj->EMPTYPE)) {
                 if ($obj->EMPTYPEE == 1) return true;
                 else return false;
