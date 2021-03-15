@@ -546,6 +546,8 @@ export default {
     },
     selectWorker() {
       for (var emp in this.employees) {
+          console.log(emp.ID)
+          console.log(this.lsk)
           console.log(emp.ID == this.lsk)
         if (emp.ID == this.lsk) {
           this.form.employee['lsk'] = emp.ID;

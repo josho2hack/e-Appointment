@@ -31258,6 +31258,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectWorker: function selectWorker() {
       for (var emp in this.employees) {
+        console.log(emp.ID);
+        console.log(this.lsk);
         console.log(emp.ID == this.lsk);
 
         if (emp.ID == this.lsk) {
