@@ -31283,7 +31283,7 @@ __webpack_require__.r(__webpack_exports__);
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
-    //console.log(this.office.code.substr(5, 3));
+    console.log(this.employees);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this.bookingAllDay = response.data;
 
