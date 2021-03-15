@@ -31233,7 +31233,8 @@ __webpack_require__.r(__webpack_exports__);
     customerOption: Object,
     employee: Object,
     employees: Object,
-    booking: Object
+    booking: Object,
+    office: Object
   },
   data: function data() {
     return {
@@ -37604,7 +37605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "ml-3 block text-sm font-medium text-gray-700"
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat($props.round.start)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat($props.round.end)), 9
       /* TEXT, PROPS */
-      , ["for"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" มอบหมายงาน "), $props.booking.status !== 1 && (_ctx.$page.props.auth.user.level <= 3 && _ctx.office.code.substring(5, 3) === '000' || _ctx.$page.props.auth.user.level <= 2 && _ctx.office.code.substring(5, 3) !== '000') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายงาน")), 1
+      , ["for"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" มอบหมายงาน "), $props.booking.status !== 1 && (_ctx.$page.props.auth.user.level <= 3 && $props.office.code.substring(5, 3) === '000' || _ctx.$page.props.auth.user.level <= 2 && $props.office.code.substring(5, 3) !== '000') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายงาน")), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายให้")), 1
       /* TEXT */

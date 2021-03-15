@@ -522,6 +522,7 @@ export default {
     employee: Object,
     employees: Object,
     booking: Object,
+    office: Object,
   },
 
   data() {
