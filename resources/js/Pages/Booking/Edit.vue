@@ -395,7 +395,7 @@
                             <select
                               id="employee"
                               name="employee"
-                              v-model="lsk"
+                              v-model="form.employee.lsk"
                               @change="selectWorker"
                               autofocus
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -528,7 +528,7 @@ export default {
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {
-          lsk: this.lsk,
+          lsk: "",
           title: "",
           irst_name: "",
           last_name: "",
@@ -545,8 +545,6 @@ export default {
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online,
       }),
-
-      lsk: this.employee ? this.employee.lsk : null,
     };
   },
 
@@ -564,7 +562,7 @@ export default {
       objectArray.forEach(([key, value]) => {
         //console.log(key);
         //console.log(value);
-        if (value.ID == this.lsk) {
+        if (value.ID == this.form.employee.lsk) {
           this.form.employee["title"] = value.TITLE;
           this.form.employee["first_name"] = value.FNAME;
           this.form.employee["last_name"] = value.LNAME;
