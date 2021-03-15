@@ -530,7 +530,7 @@ export default {
         employee: {
           lsk: "",
           title: "",
-          irst_name: "",
+          first_name: "",
           last_name: "",
           email: "",
           uid: "",
@@ -589,7 +589,8 @@ export default {
       .get("../../booking/" + this.booking.date)
       .then((response) => {
         this.bookingAllDay = response.data;
-        this.employees.forEach((e) => {
+        const objectArray = Object.entries(this.employees);
+        objectArray.forEach((e) => {
           var bookingInEmployee = this.bookingAllDay.filter((b) => {
             b.employee ? b.employee.lsk == e.ID : null;
           });
@@ -605,7 +606,7 @@ export default {
         console.log(error);
       });
 
-    //console.log(this.employees);
+    console.log(this.employees);
   },
 };
 </script>

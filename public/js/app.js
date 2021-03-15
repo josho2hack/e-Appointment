@@ -31256,7 +31256,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         employee: {
           lsk: "",
           title: "",
-          irst_name: "",
+          first_name: "",
           last_name: "",
           email: "",
           uid: "",
@@ -31318,8 +31318,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     //console.log(this.office.code);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this2.bookingAllDay = response.data;
-
-      _this2.employees.forEach(function (e) {
+      var objectArray = Object.entries(_this2.employees);
+      objectArray.forEach(function (e) {
         var bookingInEmployee = _this2.bookingAllDay.filter(function (b) {
           b.employee ? b.employee.lsk == e.ID : null;
         });
@@ -31332,7 +31332,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       });
     })["catch"](function (error) {
       console.log(error);
-    }); //console.log(this.employees);
+    });
+    console.log(this.employees);
   }
 });
 
