@@ -546,6 +546,7 @@ export default {
 
   mounted() {
     console.log(this.$page.props.auth.user);
+    console.log(this.office);
   },
 };
 </script>
