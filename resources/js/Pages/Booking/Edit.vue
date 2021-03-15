@@ -572,7 +572,7 @@ export default {
     //console.log(this.office.code);
     //console.log(this.office.code.substr(5, 3));
     axios
-      .get("../booking/" + this.booking.date)
+      .get("../../booking/" + this.booking.date)
       .then((response) => {
         this.bookingAllDay = response.data;
         this.employees.forEach((e) => {
