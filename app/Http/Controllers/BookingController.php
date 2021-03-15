@@ -322,7 +322,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        dd($request->employee->lsk, $request->employee->lsk_old);
+        dd($request['employee']['lsk'], $request['employee']['lsk_old']);
         if ($request->employee->lsk != $request->employee->lsk_old) {
             $request->assign_user_id = Auth::user()->id;
             $request->status = 0;
@@ -353,17 +353,17 @@ class BookingController extends Controller
             $request->employee_id = $user->id;
         }
 
-        $data = $request->all();
-        unset($data["employee"]);
-        unset($data["lsk_old"]);
-        unset($data["meeting_old"]);
+        $temp = $request->all();
+        unset($request["employee"]);
+        unset($request["lsk_old"]);
+        unset($request["meeting_old"]);
 
         $booking->update($request->all());
 
-        if ($request->meeting_old != $request->meeting_online) {
+        if ($temp['meeting_old'] != $temp['meeting_online']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
         }
-        if ($request->employee->lsk_old != $request->employee->lsk) {
+        if ($temp['employee']['lsk_old'] != $temp['employee']['lsk']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
             $user()->notify(new NotificationsBooking($booking));
         }
