@@ -15,6 +15,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
 {
@@ -160,7 +161,7 @@ class BookingController extends Controller
         })->get();
         //dd(count($bookings));
         if ($request->worker <= count($bookings)) {
-             return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
+            return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
         }
 
         $result = Booking::create($booking);
@@ -222,7 +223,7 @@ class BookingController extends Controller
         })->get();
         //dd($request->worker,$request->round_id,count($bookings));
         if ($request->worker <= count($bookings)) {
-             return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
+            return back()->with('error', 'รอบนัดหมายเต็ม โปรดเลือกรอบใหม่');
         }
 
         $result = Booking::create($booking);
@@ -257,12 +258,27 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
+        if ((substr(Auth::user()->office->code, 5, 3) == '000' && Auth::user()->level == 3) || Auth::user()->level <= 2) {
+            $response = Http::post(env('EOFFICE_EMP'), [
+                'checkUser' => env('EOFFICE_CHKUSER'),
+                'checkPass' => env('EOFFICE_CHKPASS'),
+                'officeId' => Auth::user()->office->code,
+            ]);
+            $user = $response->json();
+        }
+
+        $user_filter = array_filter($user, function($v, $k) {
+            return $k == 'EMPTYPE' || $v == 1;
+        }, ARRAY_FILTER_USE_BOTH);
+        dd($user_filter);
+
         return Inertia::render('Booking/Edit', [
             'appointment' => $booking->appointment,
             'round' => $booking->round,
             'subjects' => $booking->subjects,
             'customerOption' => $booking->customerOption,
             'employee' => $booking->employee,
+            'employees' => $user_filter,
             'booking' => $booking,
         ]);
     }

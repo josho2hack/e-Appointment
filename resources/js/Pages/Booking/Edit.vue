@@ -68,19 +68,13 @@
                                                                 }}</label
                                                             >
                                                             <input
+                                                                disabled
                                                                 type="text"
                                                                 name="nid"
                                                                 id="nid"
-                                                                v-model="
-                                                                    form.nid
+                                                                :value="
+                                                                    booking.nid
                                                                 "
-                                                                required
-                                                                maxlength="13"
-                                                                autofocus
-                                                                @focusout="
-                                                                    getInfoNID
-                                                                "
-                                                                autocomplete="appointment-name"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
                                                         </div>
@@ -105,7 +99,8 @@
                                                         <!-- cit -->
                                                         <div
                                                             v-if="
-                                                                appointment.pit
+                                                                booking.type ==
+                                                                0
                                                             "
                                                             class="flex items-start"
                                                         >
@@ -116,13 +111,7 @@
                                                                     type="checkbox"
                                                                     name="pit"
                                                                     value="0"
-                                                                    v-model="
-                                                                        form.type
-                                                                    "
-                                                                    :checked="
-                                                                        form.type ==
-                                                                        0
-                                                                    "
+                                                                    checked="checked"
                                                                     disabled
                                                                 />
                                                             </div>
@@ -149,7 +138,8 @@
                                                         <!-- pit -->
                                                         <div
                                                             v-if="
-                                                                appointment.cit
+                                                                booking.type ==
+                                                                1
                                                             "
                                                             class="flex items-start"
                                                         >
@@ -160,13 +150,7 @@
                                                                     type="checkbox"
                                                                     name="cit"
                                                                     value="1"
-                                                                    v-model="
-                                                                        form.type
-                                                                    "
-                                                                    :checked="
-                                                                        form.type ==
-                                                                        1
-                                                                    "
+                                                                    checked="checked"
                                                                     disabled
                                                                 />
                                                             </div>
@@ -192,37 +176,30 @@
                                                         </div>
                                                         <!-- Customer Option -->
                                                         <div
-                                                            v-for="customer in customerOptions"
-                                                            :key="customer.id"
+                                                            v-if="
+                                                                customerOption
+                                                            "
                                                             class="flex items-center"
                                                         >
                                                             <input
-                                                                :id="
-                                                                    'c' +
-                                                                    customer.id
-                                                                "
                                                                 :name="
                                                                     'c' +
-                                                                    customer.id
+                                                                    customerOption.id
                                                                 "
-                                                                :value="
-                                                                    customer.id
-                                                                "
-                                                                v-model="
-                                                                    form.customer_option_id
-                                                                "
-                                                                type="radio"
+                                                                type="checkbox"
+                                                                checked="checked"
+                                                                disabled
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                             />
                                                             <label
                                                                 :for="
                                                                     'c' +
-                                                                    customer.id
+                                                                    customerOption.id
                                                                 "
                                                                 class="ml-3 block text-sm font-medium text-gray-700"
                                                             >
                                                                 {{
-                                                                    customer.name
+                                                                    customerOption.name
                                                                 }}
                                                             </label>
                                                         </div>
@@ -250,15 +227,13 @@
                                                                 }}</label
                                                             >
                                                             <input
+                                                                disabled
                                                                 type="text"
                                                                 name="name"
                                                                 id="name"
-                                                                v-model="
-                                                                    form.name
+                                                                :value="
+                                                                    booking.name
                                                                 "
-                                                                required
-                                                                autofocus
-                                                                autocomplete="appointment-name"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
                                                         </div>
@@ -291,16 +266,12 @@
                                                                 class="flex items-center h-5"
                                                             >
                                                                 <input
+                                                                    disabled
                                                                     type="checkbox"
+                                                                    checked="checked"
                                                                     :name="
                                                                         's' +
                                                                         item.id
-                                                                    "
-                                                                    :value="
-                                                                        item.id
-                                                                    "
-                                                                    v-model="
-                                                                        form.subjects
                                                                     "
                                                                 />
                                                             </div>
@@ -342,14 +313,12 @@
                                                                 }}</label
                                                             >
                                                             <textarea
+                                                                disabled
                                                                 name="detail"
                                                                 id="detail"
-                                                                v-model="
-                                                                    form.detail
+                                                                :value="
+                                                                    booking.detail
                                                                 "
-                                                                required
-                                                                autofocus
-                                                                autocomplete="appointment-detail"
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md resize"
                                                             />
                                                         </div>
@@ -380,12 +349,10 @@
                                                                 type="text"
                                                                 name="phone"
                                                                 id="phone"
-                                                                v-model="
-                                                                    form.phone
+                                                                :value="
+                                                                    booking.phone
                                                                 "
-                                                                required
-                                                                autofocus
-                                                                autocomplete="appointment-name"
+                                                                disabled
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
                                                         </div>
@@ -414,12 +381,10 @@
                                                                 type="email"
                                                                 name="email"
                                                                 id="email"
-                                                                v-model="
-                                                                    form.email
+                                                                :value="
+                                                                    booking.email
                                                                 "
-                                                                required
-                                                                autofocus
-                                                                autocomplete="appointment-name"
+                                                                disabled
                                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                             />
                                                         </div>
@@ -437,7 +402,7 @@
                                                         class="col-span-3 sm:col-span-2"
                                                     >
                                                         <label
-                                                            for="company_website"
+                                                            for="facebook"
                                                             class="block text-sm font-medium text-gray-700"
                                                         >
                                                             Facebook
@@ -454,13 +419,11 @@
                                                                 type="text"
                                                                 name="facebook"
                                                                 id="facebook"
-                                                                v-model="
-                                                                    form.facebook
+                                                                :value="
+                                                                    booking.facebook
                                                                 "
-                                                                autofocus
-                                                                autocomplete="booking-facebook"
+                                                                disabled
                                                                 class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                                                placeholder=""
                                                             />
                                                         </div>
                                                     </div>
@@ -477,7 +440,7 @@
                                                         class="col-span-3 sm:col-span-2"
                                                     >
                                                         <label
-                                                            for="company_website"
+                                                            for="line_id"
                                                             class="block text-sm font-medium text-gray-700"
                                                         >
                                                             Line
@@ -494,19 +457,17 @@
                                                                 type="text"
                                                                 name="line_id"
                                                                 id="line_id"
-                                                                v-model="
-                                                                    form.line_id
+                                                                :value="
+                                                                    booking.line_id
                                                                 "
-                                                                autofocus
-                                                                autocomplete="booking-line_id"
+                                                                disabled
                                                                 class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                                                placeholder=""
                                                             />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- เลือกวันนัด -->
+                                            <!-- วันนัด -->
                                             <div
                                                 class="px-4 pb-4 bg-white space-y-6 sm:p-6"
                                             >
@@ -514,7 +475,7 @@
                                                     <legend
                                                         class="text-base font-medium text-gray-900"
                                                     >
-                                                        {{ __("เลือกวันนัด") }}
+                                                        {{ __("วันนัดหมาย") }}
                                                     </legend>
                                                     <div class="mt-4 space-y-4">
                                                         <div
@@ -536,14 +497,10 @@
                                                                     type="date"
                                                                     name="date"
                                                                     id="date"
-                                                                    v-model="
-                                                                        form.date
+                                                                    :value="
+                                                                        booking.date
                                                                     "
-                                                                    required
-                                                                    @change="
-                                                                        getDateInfo
-                                                                    "
-                                                                    autocomplete="current-date"
+                                                                    disabled
                                                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                                 />
                                                             </div>
@@ -551,19 +508,7 @@
                                                     </div>
                                                 </fieldset>
                                             </div>
-                                            <div>
-                                                <span
-                                                    class="px-4 text-red-400"
-                                                    >{{ dateInfo.info }}</span
-                                                >
-                                            </div>
-                                            <div>
-                                                <span class="px-4 text-gray-400"
-                                                    >หากไม่สามารถเลือกรอบนัดหมายได้
-                                                    โปรดเลือกวันนัดใหม่</span
-                                                >
-                                            </div>
-                                            <!-- เลือกรอบนัดหมาย -->
+                                            <!-- รอบนัดหมาย -->
                                             <div
                                                 class="px-4 pb-4 bg-white space-y-6 sm:p-6"
                                             >
@@ -571,16 +516,10 @@
                                                     <legend
                                                         class="text-base font-medium text-gray-900"
                                                     >
-                                                        {{
-                                                            __(
-                                                                "เลือกรอบนัดหมาย"
-                                                            )
-                                                        }}
+                                                        {{ __("รอบนัดหมาย") }}
                                                     </legend>
                                                     <div class="mt-4 space-y-4">
                                                         <div
-                                                            v-for="round in rounds"
-                                                            :key="round.id"
                                                             class="flex items-center"
                                                         >
                                                             <input
@@ -592,17 +531,9 @@
                                                                     'r' +
                                                                     round.id
                                                                 "
-                                                                :value="
-                                                                    round.id
-                                                                "
-                                                                v-model="
-                                                                    form.round_id
-                                                                "
-                                                                type="radio"
-                                                                :disabled="
-                                                                    dateInfo.isHoliday ||
-                                                                    round.isFull
-                                                                "
+                                                                type="checkbox"
+                                                                checked="checked"
+                                                                disabled
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                             />
                                                             <label
@@ -628,14 +559,133 @@
                                                     </div>
                                                 </fieldset>
                                             </div>
+                                            <!-- มอบหมายงาน -->
+                                            <div
+                                                v-if="booking.status !== 1"
+                                                class="px-4 pb-4 bg-white space-y-6 sm:p-6"
+                                            >
+                                                <fieldset>
+                                                    <legend
+                                                        class="text-base font-medium text-gray-900"
+                                                    >
+                                                        {{ __("มอบหมายงาน") }}
+                                                    </legend>
+                                                    <div class="mt-4 space-y-4">
+                                                        <label
+                                                            for="employee"
+                                                            class="block text-sm font-medium text-gray-700"
+                                                            >{{
+                                                                __("มอบหมายให้")
+                                                            }}</label
+                                                        >
+                                                        <select
+                                                            id="employee"
+                                                            name="employee"
+                                                            v-model="form.employee_id"
+                                                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                        >
+                                                            <option
+                                                                v-for="emp in employees"
+                                                                :key="emp.id"
+                                                                :value="emp.id"
+                                                                :selected="emp.id == employee.id"
+                                                            >
+                                                                {{
+                                                                    emp.first_name + ' ' + emp.last_name
+                                                                }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <!-- ลิงค์ประชุมออนไลน์ (meeting_online) -->
+                                            <div
+                                                v-if="booking.status !== 1"
+                                                class="px-4 pb-4 bg-white space-y-6 sm:p-6"
+                                            >
+                                                <div
+                                                    class="grid grid-cols-3 gap-6"
+                                                >
+                                                    <div
+                                                        class="col-span-3 sm:col-span-2"
+                                                    >
+                                                        <label
+                                                            for="meeting_online"
+                                                            class="block text-sm font-medium text-gray-700"
+                                                        >
+                                                            ประชุมออนไลน์
+                                                        </label>
+                                                        <div
+                                                            class="mt-1 flex rounded-md shadow-sm"
+                                                        >
+                                                            <span
+                                                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+                                                            >
+                                                                ลิงค์ประชุมออนไลน์
+                                                            </span>
+                                                            <input
+                                                                type="text"
+                                                                name="meeting_online"
+                                                                id="meeting_online"
+                                                                v-model="
+                                                                    form.meeting_online
+                                                                "
+                                                                autofocus
+                                                                autocomplete="meeting_online"
+
+                                                                class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- สถานะ -->
+                                            <div
+                                                v-if="employee !== null && booking.status === 0"
+                                                class="px-4 pb-4 bg-white space-y-6 sm:p-6"
+                                            >
+                                                <fieldset>
+                                                    <legend
+                                                        class="text-base font-medium text-gray-900"
+                                                    >
+                                                        {{ __("สถานะ") }}
+                                                    </legend>
+                                                    <div class="mt-4 space-y-4">
+                                                        <label
+                                                            for="status"
+                                                            class="block text-sm font-medium text-gray-700"
+                                                            >{{
+                                                                __("สถานะการนัดหมาย")
+                                                            }}</label
+                                                        >
+                                                        <select
+                                                            id="status"
+                                                            name="status"
+                                                            v-model="form.status"
+                                                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                        >
+                                                            <option
+                                                                value="0"
+                                                                selected
+                                                            >
+                                                                กำลังดำเนินการ
+                                                            </option>
+                                                            <option
+                                                                value="1"
+                                                            >
+                                                                เสร็จสิ้น
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+
                                             <div
                                                 class="px-4 py-3 bg-gray-50 text-right sm:px-6"
                                             >
                                                 <inertia-link
                                                     :href="
-                                                        route(
-                                                            'bookings.index'
-                                                        )
+                                                        route('bookings.index')
                                                     "
                                                     class="underline text-sm text-gray-600 hover:text-gray-900 mr-2"
                                                 >
@@ -672,7 +722,6 @@ import BreezeValidationErrors from "@/Components/ValidationErrors";
 import FlashMessages from "@/Components/FlashMessages";
 
 export default {
-
     components: {
         BreezeAuthenticatedLayout,
         BreezeValidationErrors,
@@ -684,17 +733,18 @@ export default {
         appointment: Object,
         round: Object,
         subjects: Object,
-        customerOptions: Object,
+        customerOption: Object,
         employee: Object,
+        employees: Object,
         booking: Object,
     },
 
     data() {
         return {
             form: this.$inertia.form({
-                meeting_online: null,
-                status: null,
-                employee: null,
+                meeting_online: this.booking.meeting_online,
+                status: this.booking.status,
+                employee_id: this.booking.employee_id,
             }),
         };
     },

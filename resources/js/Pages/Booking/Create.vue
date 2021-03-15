@@ -437,7 +437,7 @@
                                                         class="col-span-3 sm:col-span-2"
                                                     >
                                                         <label
-                                                            for="company_website"
+                                                            for="facebook"
                                                             class="block text-sm font-medium text-gray-700"
                                                         >
                                                             Facebook
@@ -477,7 +477,7 @@
                                                         class="col-span-3 sm:col-span-2"
                                                     >
                                                         <label
-                                                            for="company_website"
+                                                            for="line_id"
                                                             class="block text-sm font-medium text-gray-700"
                                                         >
                                                             Line
