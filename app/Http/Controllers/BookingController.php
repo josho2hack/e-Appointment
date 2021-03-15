@@ -266,19 +266,15 @@ class BookingController extends Controller
             ]);
             $user = $response->json("DataUser");
         }
-        /*
 
         $user_filter = array_filter($user, function ($obj) {
-            if (isset($obj->DataUser)) {
-                foreach ($obj->DataUser as $u) {
-                    if ($u->EMPTYPE == 1) return true;
-                    else return false;
-                }
+            if (isset($obj->EMPTYPE)) {
+                if ($obj->EMPTYPEE == 1) return true;
+                else return false;
             }
         });
-        */
 
-        dd($user);
+        dd($user, $user_filter);
 
         return Inertia::render('Booking/Edit', [
             'appointment' => $booking->appointment,
