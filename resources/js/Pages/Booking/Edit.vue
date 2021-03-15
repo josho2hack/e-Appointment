@@ -545,10 +545,10 @@ export default {
       return time[0] + ":" + time[1];
     },
     selectWorker() {
-      for (var emp in this.employees) {
-          console.log(emp['ID'])
-          console.log(this.lsk)
-          console.log(emp.ID == this.lsk)
+      for (var e in this.employees) {
+          console.log(e['ID'])
+          console.log(e.ID)
+          console.log(e.ID == this.lsk)
         if (emp.ID == this.lsk) {
           this.form.employee['lsk'] = emp.ID;
           this.form.employee['title'] = emp.TITLE;
