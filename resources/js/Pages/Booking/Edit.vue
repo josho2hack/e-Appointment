@@ -528,7 +528,7 @@ export default {
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {
-          lsk: this.employees.lsk,
+          lsk: this.employee.lsk,
           title: "",
           first_name: "",
           last_name: "",
