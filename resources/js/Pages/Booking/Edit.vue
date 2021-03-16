@@ -585,6 +585,7 @@ export default {
   mounted() {
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
+    console.log(this.employee);
     axios
       .get("../../booking/" + this.booking.date)
       .then((response) => {
@@ -605,8 +606,6 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-
-    console.log(this.employee);
   },
 };
 </script>

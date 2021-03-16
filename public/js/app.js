@@ -31316,6 +31316,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     //console.log(this.$page.props.auth.user);
     //console.log(this.office.code);
+    console.log(this.employee);
     axios.get("../../booking/" + this.booking.date).then(function (response) {
       _this2.bookingAllDay = response.data;
       var objectArray = Object.entries(_this2.employees);
@@ -31333,7 +31334,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log(this.employee);
   }
 });
 
