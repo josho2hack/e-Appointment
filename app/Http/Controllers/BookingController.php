@@ -267,40 +267,39 @@ class BookingController extends Controller
                 'officeId' => Auth::user()->office->code,
             ]);
             $user = $response->json("DataUser");
-        }
 
-        if ($booking->appointment->official && !$booking->appointment->employee) {
-            $user_filter = array_filter($user, function ($obj) {
-                //dd($obj,$obj['EMPTYPE']);
-                if (isset($obj['EMPTYPE'])) {
-                    if (Auth::user()->level == 3) {
-                        if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                    } else if (Auth::user()->level <= 2) {
-                        if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level) return true;
-                    } else return false;
-                }
-            });
-        } else if (!$booking->appointment->official && $booking->appointment->employee) {
-            $user_filter = array_filter($user, function ($obj) {
-                //dd($obj,$obj['EMPTYPE']);
-                if (isset($obj['EMPTYPE'])) {
-                    if ($obj['EMPTYPE'] != '1') return true;
-                    else return false;
-                }
-            });
-        } else {
-            $user_filter = array_filter($user, function ($obj) {
-                //dd($obj,$obj['EMPTYPE']);
-                if (isset($obj['EMPTYPE'])) {
-                    if (Auth::user()->level == 3) {
-                        if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                    } else if (Auth::user()->level <= 2) {
-                        if ($obj['LEVEL'] > Auth::user()->level) return true;
-                    } else return false;
-                }
-            });
+            if ($booking->appointment->official && !$booking->appointment->employee) {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if (Auth::user()->level == 3) {
+                            if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
+                        } else if (Auth::user()->level <= 2) {
+                            if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level) return true;
+                        } else return false;
+                    }
+                });
+            } else if (!$booking->appointment->official && $booking->appointment->employee) {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if ($obj['EMPTYPE'] != '1') return true;
+                        else return false;
+                    }
+                });
+            } else {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if (Auth::user()->level == 3) {
+                            if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
+                        } else if (Auth::user()->level <= 2) {
+                            if ($obj['LEVEL'] > Auth::user()->level) return true;
+                        } else return false;
+                    }
+                });
+            }
         }
-
         //dd($user, $user_filter);
 
         return Inertia::render('Booking/Edit', [
