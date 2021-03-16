@@ -323,11 +323,11 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         //dd($request['employee']['lsk'], $request['lsk_old']);
-        if ($request->employee->lsk != $request->lsk_old) {
-            $request->assign_user_id = Auth::user()->id;
-            $request->status = 0;
+        if ($request['employee']['lsk'] != $request['lsk_old']) {
+            $request['assign_user_id'] = Auth::user()->id;
+            $request['status'] = 0;
 
-            $user = User::where('lsk', $request->employee->lsk)->first();
+            $user = User::where('lsk', $request['employee']['lsk'])->first();
 
             if (!$user) {
                 $role = Role::where('name', 'employee')->first();
@@ -335,19 +335,19 @@ class BookingController extends Controller
                 $user->role_id = $role->id;
             }
 
-            $user->title = $request->employee->title;
-            $user->first_name = $request->employee->first_name;
-            $user->last_name = $request->employee->last_name;
-            $user->email = $request->employee->email;
-            $user->lsk = $request->employee->lsk;
-            $user->uid = $request->employee->uid;
-            $user->position = $request->employee->position;
-            $user->class = $request->employee->class;
-            $user->position_action = $request->employee->position_action;
-            $user->groupname = $request->employee->groupname;
-            $user->level = $request->employee->level;
-            $user->employee_type = $request->employee->employee_type;
-            $user->office_id = $request->employee->office_id;
+            $user->title = $request['employee']['title'];
+            $user->first_name = $request['employee']['first_name'];
+            $user->last_name = $request['employee']['last_name'];
+            $user->email = $request['employee']['email'];
+            $user->lsk = $request['employee']['lsk'];
+            $user->uid = $request['employee']['uid'];
+            $user->position = $request['employee']['position'];
+            $user->class = $request['employee']['class'];
+            $user->position_action = $request['employee']['position_action'];
+            $user->groupname = $request['employee']['groupname'];
+            $user->level = $request['employee']['level'];
+            $user->employee_type = $request['employee']['employee_type'];
+            $user->office_id = $request['employee']['office_id'];
             $user->save();
 
             $request->employee_id = $user->id;
@@ -364,7 +364,7 @@ class BookingController extends Controller
         if ($temp['meeting_old'] != $temp['meeting_online']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
         }
-        if ($temp['employee']['lsk_old'] != $temp['employee']['lsk']) {
+        if ($temp['lsk_old'] != $temp['employee']['lsk']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
             $user()->notify(new NotificationsBooking($booking));
         }
