@@ -368,7 +368,7 @@ class BookingController extends Controller
         }
         if ($temp['lsk_old'] != $temp['employee']['lsk']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
-            $user()->notify(new NotificationsBooking($booking));
+            $user->notify(new NotificationsBooking($booking));
         }
         return redirect()->route('bookings.index');
     }
