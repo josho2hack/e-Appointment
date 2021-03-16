@@ -31254,7 +31254,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {
-          lsk: "",
+          lsk: this.employees.lsk,
           title: "",
           first_name: "",
           last_name: "",
