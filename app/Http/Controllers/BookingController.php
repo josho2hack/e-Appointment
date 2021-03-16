@@ -354,7 +354,7 @@ class BookingController extends Controller
 
             $request['employee_id'] = $user->id;
         }
-        dd($request->all(),$user);
+        //dd($request->all(),$user);
 
         $temp = $request->all();
         unset($request["employee"]);
