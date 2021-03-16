@@ -308,7 +308,7 @@ class BookingController extends Controller
             'subjects' => $booking->subjects,
             'customerOption' => $booking->customerOption,
             'employee' => $booking->employee,
-            'employees' => $user_filter ? $user_filter : null,
+            'employees' => $user_filter != null ? $user_filter : null,
             'booking' => $booking,
             'office' => $booking->appointment->office,
         ]);
