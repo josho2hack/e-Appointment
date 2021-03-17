@@ -84,7 +84,9 @@
                     <dd
                       class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
                     >
-                      $120,000
+                      <ul>
+                          <li v-for="subject in subjects" :key="subject.id">{{ subject.name }}</li>
+                      </ul>
                     </dd>
                   </div>
                   <!-- รายละเอียดคำถาม -->

@@ -25,6 +25,10 @@ export default {
                     center: "title",
                     right: "dayGridMonth,timeGridWeek,listWeek",
                 },
+                events: [
+                    { title: "event 1", date: "2021-03-01" },
+                    { title: "event 2", date: "2021-03-02" },
+                ],
             });
             Tcalendar.render();
         });

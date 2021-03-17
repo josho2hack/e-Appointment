@@ -12,6 +12,7 @@ use App\Models\Round;
 use App\Models\Subject;
 use App\Models\User;
 use App\Notifications\Booking as NotificationsBooking;
+use App\Notifications\Assignment as NotificationsAssignment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -367,7 +368,7 @@ class BookingController extends Controller
         }
         if ($temp['lsk_old'] != $temp['employee']['lsk']) {
             Mail::to($booking->email)->send(new MailBooking($booking));
-            $user->notify(new NotificationsBooking($booking));
+            $user->notify(new NotificationsAssignment($booking));
         }
         return redirect()->route('bookings.index');
     }
