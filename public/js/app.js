@@ -31261,7 +31261,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {
-          lsk: this.employee.lsk,
+          lsk: this.employee ? this.employee.lsk : null,
           title: "",
           first_name: "",
           last_name: "",
@@ -31282,7 +31282,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   methods: {
     submit: function submit() {
-      console.log(this.form);
+      //console.log(this.form);
       this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat: function minuteFormat(value) {
@@ -31313,8 +31313,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
         }
-      });
-      console.log(this.form);
+      }); //console.log(this.form);
     }
   },
   computed: {},

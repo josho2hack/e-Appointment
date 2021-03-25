@@ -528,7 +528,7 @@ export default {
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
         employee: {
-          lsk: this.employee.lsk,
+          lsk: this.employee ? this.employee.lsk : null,
           title: "",
           first_name: "",
           last_name: "",
@@ -550,7 +550,7 @@ export default {
 
   methods: {
     submit() {
-      console.log(this.form);
+      //console.log(this.form);
       this.form.put(this.route("bookings.update", this.booking.id));
     },
     minuteFormat(value) {
@@ -576,7 +576,7 @@ export default {
           this.form.employee["employee_type"] = value.EMPTYPE;
         }
       });
-      console.log(this.form);
+      //console.log(this.form);
     },
   },
 
