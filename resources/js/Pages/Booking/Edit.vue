@@ -374,11 +374,10 @@
                       <!-- มอบหมายงาน -->
                       <div
                         v-if="
-                          booking.status !== 1 &&
-                          (($page.props.auth.user.level <= 3 &&
+                          ($page.props.auth.user.level <= 3 &&
                             office.code.substr(5, 3) == '000') ||
                             ($page.props.auth.user.level <= 2 &&
-                              office.code.substr(5, 3) != '000'))
+                              office.code.substr(5, 3) != '000')
                         "
                         class="px-4 pb-4 bg-white space-y-6 sm:p-6"
                       >
@@ -396,6 +395,7 @@
                               id="employee"
                               name="employee"
                               v-model="form.employee.lsk"
+                              :disabled="booking.status === 1"
                               @change="selectWorker"
                               autofocus
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
