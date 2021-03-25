@@ -593,7 +593,7 @@ export default {
         const objectArray = Object.entries(this.employees);
         objectArray.forEach((e) => {
           var bookingInEmployee = this.bookingAllDay.filter((b) => {
-            b.employee ? b.employee.lsk == e.ID : null;
+            b.employee != null ? b.employee.lsk == e.ID : null;
           });
           if (bookingInEmployee.length !== 0) {
             e.isFull = true;
