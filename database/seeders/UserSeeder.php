@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         $user->email = 'appointment@rd.go.th';
         $user->password = Hash::make('p@ssw0rd');
         $user->role_id = $role->id;
-        $user->office_id = 1;
+        $user->office_id = 14;
         $user->level = "0";
         $user->save();
     }
