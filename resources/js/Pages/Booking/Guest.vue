@@ -847,40 +847,30 @@ export default {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
       } else if (date.getDay() === 1) {
-        if (this.appointment.mon) {
+        if (!this.appointment.mon) {
           this.dateInfo.isHoliday = true;
           this.dateInfo.info = "หยุดให้บริการ";
         }
-        console.log(date.getDay());
-        console.log("mon: ",this.appointment.mon);
       } else if (date.getDay() === 2) {
-        if (this.appointment.tue) {
+        if (!this.appointment.tue) {
           this.dateInfo.isHoliday = true;
           this.dateInfo.info = "หยุดให้บริการ";
         }
-        console.log(date.getDay());
-        console.log("tue: ",this.appointment.tue);
       } else if (date.getDay() === 3) {
-        if (this.appointment.wed) {
+        if (!this.appointment.wed) {
           this.dateInfo.isHoliday = true;
           this.dateInfo.info = "หยุดให้บริการ";
         }
-        console.log(date.getDay());
-        console.log("wed: ",this.appointment.wed);
       } else if (date.getDay() === 4) {
-        if (this.appointment.thu) {
+        if (!this.appointment.thu) {
           this.dateInfo.isHoliday = true;
           this.dateInfo.info = "หยุดให้บริการ";
         }
-        console.log(date.getDay());
-        console.log("thu: ",this.appointment.thu);
       } else if (date.getDay() === 5) {
-        if (this.appointment.fri) {
+        if (!this.appointment.fri) {
           this.dateInfo.isHoliday = true;
           this.dateInfo.info = "หยุดให้บริการ";
         }
-        console.log(date.getDay());
-        console.log("fri: ",this.appointment.fri);
       }
 
       axios
