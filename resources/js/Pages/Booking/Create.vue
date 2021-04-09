@@ -620,7 +620,7 @@ export default {
   computed: {},
 
   mounted() {
-    //console.log(this.subjects);
+    console.log(this.appointment);
     this.getDateInfo();
   },
 };
