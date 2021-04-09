@@ -549,7 +549,10 @@ export default {
       this.dateInfo.isHoliday = false;
       this.dateInfo.info = "";
       var date = new Date(this.form.date);
-      if (date.getDay() === 0 || date.getDay() === 6) {
+      if (date < new Date()) {
+        this.dateInfo.isHoliday = true;
+        this.dateInfo.info = "เลือกวันนัดหมายไม่ถูกต้อง";
+      } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
       } else if (date.getDay() === 1) {
