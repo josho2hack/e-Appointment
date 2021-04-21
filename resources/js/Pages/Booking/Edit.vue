@@ -466,6 +466,26 @@
                           </div>
                         </fieldset>
                       </div>
+                      <!-- หมายเหตุ -->
+                      <div v-if="employee !== null && booking.status === 0" class="px-4 pb-4 bg-white space-y-6 sm:p-6">
+                        <div class="mt-4 space-y-4">
+                          <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-12 sm:col-span-6">
+                              <label
+                                for="detail"
+                                class="block text-md font-medium text-gray-700"
+                                >{{ __("หมายเหตุ") }}</label
+                              >
+                              <textarea
+                                name="remark"
+                                id="detail"
+                                :value="form.remark"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md resize"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                       <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                         <inertia-link
@@ -527,6 +547,7 @@ export default {
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
+        remark: this.booking.remark,
         employee: {
           lsk: this.employee ? this.employee.lsk : null,
           title: "",
