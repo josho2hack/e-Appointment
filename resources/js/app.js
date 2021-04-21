@@ -4,6 +4,7 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 const el = document.getElementById('app');
 
@@ -18,7 +19,7 @@ createApp({
         }),
 })
     .mixin(require('./base'))
-    .use(InertiaPlugin)
+    .use(InertiaPlugin,VueHtmlToPaper)
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });

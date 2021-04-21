@@ -763,7 +763,7 @@ export default {
         line_id: "",
         // meeting_online: "",
         detail: "",
-        date: this.formatDate(new Date()),
+        date: null,
         appointment_id: this.appointment.id,
         customer_option_id: null,
         round_id: null,
@@ -845,7 +845,7 @@ export default {
       var date = new Date(this.form.date);
       if (date < new Date()) {
         this.dateInfo.isHoliday = true;
-        this.dateInfo.info = "เลือกวันนัดหมายไม่ถูกต้อง";
+        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้า";
       } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
@@ -939,6 +939,9 @@ export default {
   },
   mounted() {
     //console.log(this.subjects);
+    let now = new Date();
+    now.setDate(now.getDate() + 1);
+    this.form.date = this.formatDate(now);
     this.getDateInfo();
   },
 };

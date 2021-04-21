@@ -13,8 +13,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
+                        <button @click="print"></button>
                         <!-- Start Content -->
                         <div
+                            id="printMe"
                             class="bg-white shadow overflow-hidden sm:rounded-lg"
                         >
                             <div class="px-4 sm:px-6">
@@ -220,7 +222,7 @@
                                         <dt
                                             class="text-sm font-medium text-gray-500"
                                         >
-                                            หมายเหตุ
+                                            สถานะ
                                         </dt>
                                         <dd
                                             class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
@@ -321,6 +323,7 @@ export default {
                 this.employee == null
                     ? ""
                     : this.employee.first_name + " " + this.employee.last_name,
+            output: null,
         };
     },
 
@@ -328,6 +331,10 @@ export default {
         minuteFormat(value) {
             let time = value.split(":");
             return time[0] + ":" + time[1];
+        },
+        print() {
+            // Pass the element id here
+            this.$htmlToPaper("printMe");
         },
     },
 
