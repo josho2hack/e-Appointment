@@ -26,7 +26,7 @@ class CreateBookingsTable extends Migration
             $table->string('detail')->comment('รายละเอียดคำถาม');
             $table->date('date')->comment('วันที่นัดหมาย');
             $table->boolean('status')->nullable()->comment('0 = กำลังดำเนินการ 1 = เสร็จสิ้น');
-            $table->string('remark')->comment('หมายเหตุ');
+            $table->string('remark')->nullable()->comment('หมายเหตุ');
             $table->unsignedBigInteger('employee_id')->nullable()->comment('เจ้าหน้าที่');
             $table->unsignedBigInteger('assign_user_id')->nullable()->comment('ผู้มอบหมาย');
             $table->timestamps();
