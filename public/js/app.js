@@ -39669,8 +39669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
-/* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-html-to-paper */ "./node_modules/vue-html-to-paper/dist/index.js");
-/* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _plugins_VueHtmlToPaper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plugins/VueHtmlToPaper */ "./resources/js/plugins/VueHtmlToPaper.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Import modules...
 
 
@@ -39693,7 +39692,7 @@ var el = document.getElementById('app');
       }
     });
   }
-}).mixin(__webpack_require__(/*! ./base */ "./resources/js/base.js")).use(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.plugin, (vue_html_to_paper__WEBPACK_IMPORTED_MODULE_3___default())).mount(el);
+}).mixin(__webpack_require__(/*! ./base */ "./resources/js/base.js")).use(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.plugin, _plugins_VueHtmlToPaper__WEBPACK_IMPORTED_MODULE_3__.default).mount(el);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
@@ -39773,6 +39772,83 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+/***/ }),
+
+/***/ "./resources/js/plugins/VueHtmlToPaper.js":
+/*!************************************************!*\
+  !*** ./resources/js/plugins/VueHtmlToPaper.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function addStyles(win, styles) {
+  styles.forEach(function (style) {
+    var link = win.document.createElement("link");
+    link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", style);
+    win.document.getElementsByTagName("head")[0].appendChild(link);
+  });
+}
+
+var VueHtmlToPaper = {
+  install: function install(app) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    app.config.globalProperties.$htmlToPaper = function (el, localOptions) {
+      var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {
+        return true;
+      };
+      var defaultName = "_blank",
+          defaultSpecs = ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],
+          defaultReplace = true,
+          defaultStyles = [];
+      var _options$name = options.name,
+          name = _options$name === void 0 ? defaultName : _options$name,
+          _options$specs = options.specs,
+          specs = _options$specs === void 0 ? defaultSpecs : _options$specs,
+          _options$replace = options.replace,
+          replace = _options$replace === void 0 ? defaultReplace : _options$replace,
+          _options$styles = options.styles,
+          styles = _options$styles === void 0 ? defaultStyles : _options$styles; // If has localOptions
+      // TODO: improve logic
+
+      if (!!localOptions) {
+        if (localOptions.name) name = localOptions.name;
+        if (localOptions.specs) specs = localOptions.specs;
+        if (localOptions.replace) replace = localOptions.replace;
+        if (localOptions.styles) styles = localOptions.styles;
+      }
+
+      specs = !!specs.length ? specs.join(",") : "";
+      var element = window.document.getElementById(el);
+
+      if (!element) {
+        alert("Element to print #".concat(el, " not found!"));
+        return;
+      }
+
+      var url = "";
+      var win = window.open(url, name, specs, replace);
+      win.document.write("\n          <html>\n            <head>\n              <title>".concat(window.document.title, "</title>\n            </head>\n            <body>\n              ").concat(element.innerHTML, "\n            </body>\n          </html>\n        "));
+      addStyles(win, styles);
+      setTimeout(function () {
+        win.document.close();
+        win.focus();
+        win.print();
+        win.close();
+        cb();
+      }, 1000);
+      return true;
+    };
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VueHtmlToPaper);
 
 /***/ }),
 
@@ -77344,16 +77420,6 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
     return value;
 }
 
-
-/***/ }),
-
-/***/ "./node_modules/vue-html-to-paper/dist/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/vue-html-to-paper/dist/index.js ***!
-  \******************************************************/
-/***/ ((module) => {
-
-module.exports=function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,n){"use strict";function r(e,t){t.forEach(function(t){var n=e.document.createElement("link");n.setAttribute("rel","stylesheet"),n.setAttribute("type","text/css"),n.setAttribute("href",t),e.document.getElementsByTagName("head")[0].appendChild(n)})}Object.defineProperty(t,"__esModule",{value:!0}),t.default={install:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};e.prototype.$htmlToPaper=function(e,n){var o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:function(){return!0},l=["fullscreen=yes","titlebar=yes","scrollbars=yes"],u=[],i=t.name,s=void 0===i?"_blank":i,c=t.specs,a=void 0===c?l:c,d=t.replace,p=void 0===d||d,f=t.styles,m=void 0===f?u:f;n&&(n.name&&(s=n.name),n.specs&&(a=n.specs),n.replace&&(p=n.replace),n.styles&&(m=n.styles)),console.warn(m),a=a.length?a.join(","):"";var y=document.getElementById(e);if(!y)return void alert("Element to print #"+e+" not found!");var v=window.open("",s,a,p);return v.document.write("\n        <html>\n          <head>\n            <title>"+document.title+"</title>\n          </head>\n          <body>\n            "+y.innerHTML+"\n          </body>\n        </html>\n      "),r(v,m),setTimeout(function(){v.document.close(),v.focus(),v.print(),v.close(),o()},1e3),!0}}}}]);
 
 /***/ }),
 
