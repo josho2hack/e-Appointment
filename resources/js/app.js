@@ -19,8 +19,7 @@ createApp({
         }),
 })
     .mixin(require('./base'))
-    .use(InertiaPlugin)
-    .use(VueHtmlToPaper)
+    .use(InertiaPlugin,VueHtmlToPaper)
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });
