@@ -275,7 +275,7 @@ class BookingController extends Controller
                     if (isset($obj['EMPTYPE'])) {
                         if (Auth::user()->level == 3) {
                             if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00014000') {
+                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00013000') {
                             if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level) return true;
                         } else return false;
                     }
@@ -294,7 +294,7 @@ class BookingController extends Controller
                     if (isset($obj['EMPTYPE'])) {
                         if (Auth::user()->level == 3) {
                             if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
-                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00014000') {
+                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00013000') {
                             if ($obj['LEVEL'] > Auth::user()->level) return true;
                         } else return false;
                     }

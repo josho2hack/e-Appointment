@@ -11,9 +11,10 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <button @click="print">print</button>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <button @click="print"></button>
+
                         <!-- Start Content -->
                         <div
                             id="printMe"
@@ -225,23 +226,23 @@
                                             สถานะ
                                         </dt>
                                         <dd
-                                            class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                                            class="mt-1 text-sm sm:mt-0 sm:col-span-2"
                                         >
                                             <span
                                                 v-if="booking.status == null"
-                                                class="text-red-400 px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="text-red-400"
                                             >
                                                 ใหม่
                                             </span>
                                             <span
                                                 v-if="booking.status == 0"
-                                                class="text-yellow-400 px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="text-yellow-400"
                                             >
                                                 กำลังดำเนินการ
                                             </span>
                                             <span
                                                 v-if="booking.status == 1"
-                                                class="text-green-400 px-6 py-4 flex items-center focus:text-indigo-500"
+                                                class="text-green-400"
                                             >
                                                 แล้วเสร็จ
                                             </span>
