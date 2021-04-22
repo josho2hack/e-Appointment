@@ -39692,7 +39692,7 @@ var el = document.getElementById('app');
       }
     });
   }
-}).mixin(__webpack_require__(/*! ./base */ "./resources/js/base.js")).use(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.plugin, _plugins_VueHtmlToPaper__WEBPACK_IMPORTED_MODULE_3__.default).mount(el);
+}).mixin(__webpack_require__(/*! ./base */ "./resources/js/base.js")).use(_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.plugin).use(_plugins_VueHtmlToPaper__WEBPACK_IMPORTED_MODULE_3__.default).mount(el);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
