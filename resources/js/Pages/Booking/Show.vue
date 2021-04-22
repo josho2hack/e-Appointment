@@ -13,7 +13,6 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <button @click="print">print</button>
                         <!-- Start Content -->
                         <div
                             id="printMe"
@@ -217,7 +216,7 @@
                                     </div>
                                     <!-- สถานะ -->
                                     <div
-                                        class="px-4 py-2 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                                        class="px-4 py-2 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
                                     >
                                         <dt
                                             class="text-sm font-medium text-gray-500"
@@ -279,8 +278,10 @@
                                     </div>
                                 </dl>
                             </div>
-                            <div
-                                class="px-4 py-3 bg-gray-50 text-right sm:px-6"
+                        </div>
+                        <!-- End Content -->
+                        <div
+                                class="px-4 py-3 text-right sm:px-6"
                             >
                                 <inertia-link
                                     :href="route('bookings.index')"
@@ -288,9 +289,8 @@
                                 >
                                     {{ __("กลับรายการจอง") }}
                                 </inertia-link>
+                                <button class="btn btn-second px-4 py-3" @click="print">พิมพ์</button>
                             </div>
-                        </div>
-                        <!-- End Content -->
                     </div>
                 </div>
             </div>

@@ -18,7 +18,13 @@ function addStyles(win, styles) {
         let defaultName = "_blank",
           defaultSpecs = ["fullscreen=yes", "titlebar=yes", "scrollbars=yes"],
           defaultReplace = true,
-          defaultStyles = [];
+          defaultStyles = [
+            'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap',
+            '/e-appointment/public/css/app.css',
+            '/e-appointment/public/assets/fonts/fonts.css',
+            '/e-appointment/public/assets/vendor/bootstrap/css/bootstrap.min.css',
+            '/e-appointment/public/assets/css/style.css'
+          ];
         let {
           name = defaultName,
           specs = defaultSpecs,
