@@ -58,13 +58,13 @@
 
     <!-- Scripts -->
     @routes
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="js/app.js" defer></script>
 
     <!--- CSS --->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <!--- Custom CSS --->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="font-sans antialiased">
