@@ -22,6 +22,8 @@
                     {{ __("Login") }}
                 </inertia-link>
 
+                <Link :href="route('login')">login</Link>
+
                 <inertia-link
                     v-if="canRegister"
                     :href="route('register')"
@@ -372,6 +374,7 @@ import throttle from "lodash/throttle";
 import Pagination from "@/Components/Pagination";
 import SearchFilter from "@/Components/SearchFilter";
 import FlashMessages from "@/Components/FlashMessages";
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     components: {
@@ -380,6 +383,7 @@ export default {
         Pagination,
         SearchFilter,
         FlashMessages,
+        Link
     },
     props: {
         canLogin: Boolean,
