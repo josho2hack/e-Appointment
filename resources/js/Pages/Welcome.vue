@@ -22,7 +22,7 @@
                     {{ __("Login") }}
                 </inertia-link>
 
-                <Link :href="route('login')">login</Link>
+                <Link href="login">login</Link>
 
                 <inertia-link
                     v-if="canRegister"
