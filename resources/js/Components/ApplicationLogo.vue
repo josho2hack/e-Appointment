@@ -1,3 +1,3 @@
 <template>
-    <img class="rd-logo" src="/assets/images/e-appointment.png">
+    <img class="rd-logo" src="/e-appointment/public/assets/images/e-appointment.png">
 </template>
