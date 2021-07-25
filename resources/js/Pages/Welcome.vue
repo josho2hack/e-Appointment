@@ -8,7 +8,7 @@
         >
             <inertia-link
                 v-if="$page.props.auth.user"
-                :href="dashboard"
+                :href="route('dashboard')"
                 class="text-sm text-gray-700 underline"
             >
                 {{ __("Dashboard") }}
@@ -16,15 +16,17 @@
 
             <template v-else>
                 <inertia-link
-                    href="login"
+                    :href="route('login')"
                     class="text-sm text-gray-700 underline"
                 >
                     {{ __("Login") }}
                 </inertia-link>
 
+                <Link :href="route('login')">login</Link>
+
                 <inertia-link
                     v-if="canRegister"
-                    href="register"
+                    :href="route('register')"
                     class="ml-2 text-sm text-gray-700 underline"
                 >
                     {{ __("Register") }}
@@ -32,7 +34,7 @@
 
                 <inertia-link
                     v-if="canLoginEmployee"
-                    href="login.employee"
+                    :href="route('login.employee')"
                     class="ml-2 text-sm text-gray-700 underline"
                 >
                     {{ __("Employee") }}
@@ -53,7 +55,7 @@
             >
                 <inertia-link
                     v-if="$page.props.auth.user"
-                    href="dashboard"
+                    :href="route('dashboard')"
                     class="text-sm text-gray-700 underline"
                 >
                     {{ __("Dashboard") }}
@@ -61,7 +63,7 @@
 
                 <template v-else>
                     <inertia-link
-                        href="login"
+                        :href="route('login')"
                         class="text-sm text-gray-700 underline"
                     >
                         {{ __("Login") }}
@@ -69,7 +71,7 @@
 
                     <inertia-link
                         v-if="canRegister"
-                        href="register"
+                        :href="route('register')"
                         class="ml-2 text-sm text-gray-700 underline"
                     >
                         {{ __("Register") }}
@@ -77,7 +79,7 @@
 
                     <inertia-link
                         v-if="canLoginEmployee"
-                        href="login.employee"
+                        :href="route('login.employee')"
                         class="ml-2 text-sm text-gray-700 underline"
                     >
                         {{ __("Employee") }}
@@ -372,6 +374,7 @@ import throttle from "lodash/throttle";
 import Pagination from "@/Components/Pagination";
 import SearchFilter from "@/Components/SearchFilter";
 import FlashMessages from "@/Components/FlashMessages";
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     components: {
@@ -379,7 +382,8 @@ export default {
         Icon,
         Pagination,
         SearchFilter,
-        FlashMessages
+        FlashMessages,
+        Link
     },
     props: {
         canLogin: Boolean,
