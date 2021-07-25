@@ -22,8 +22,6 @@
                     {{ __("Login") }}
                 </inertia-link>
 
-                <Link :href="route('login')">login</Link>
-
                 <inertia-link
                     v-if="canRegister"
                     :href="route('register')"
