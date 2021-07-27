@@ -30881,7 +30881,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return _objectSpread(_objectSpread({}, data), {}, {
           remember: _this.form.remember ? "on" : ""
         });
-      }).post(this.route("login"), {
+      }).post(this.route("login.employee"), {
         onFinish: function onFinish() {
           return _this.form.reset("password");
         }
