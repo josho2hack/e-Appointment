@@ -88,6 +88,8 @@ class AuthenticatedSessionController extends Controller
     //e-Office Redirect
     public function handleEOfficeCallback(LoginRequest $request)
     {
+        dd(env('EOFFICE_AUTH'),env('EOFFICE_CHKUSER'),env('EOFFICE_CHKPASS'));
+
         $response = Http::post(env('EOFFICE_AUTH'), [
             'checkUser' => env('EOFFICE_CHKUSER'),
             'checkPass' => env('EOFFICE_CHKPASS'),
@@ -97,7 +99,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = $response->json();
 
-        dd($user);
+        //dd($user);
 
         if (!$user['Authen']) {
             return Redirect::back()->with('errors', ['Authentication failed.']);
