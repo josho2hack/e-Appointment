@@ -97,6 +97,8 @@ class AuthenticatedSessionController extends Controller
 
         $user = $response->json();
 
+        dd($user);
+
         if (!$user['Authen']) {
             return Redirect::back()->with('errors', ['Authentication failed.']);
         }
