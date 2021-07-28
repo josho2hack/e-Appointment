@@ -31358,11 +31358,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       axios.get("../../booking/" + this.booking.id + "/" + this.form.office).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
           _this2.employees.push = response.data[i];
+          console.log(response.data[i]);
         }
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log(this.employees);
     }
   },
   computed: {},

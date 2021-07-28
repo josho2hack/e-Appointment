@@ -636,14 +636,13 @@ export default {
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
             this.employees.push = response.data[i];
+            console.log(response.data[i]);
         }
       })
 
       .catch(function (error) {
         console.log(error);
       });
-
-      console.log(this.employees);
     },
   },
 
