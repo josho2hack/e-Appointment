@@ -627,6 +627,10 @@ export default {
       //console.log(this.form);
     },
     selectOffice() {
+
+      console.log(this.booking.id);
+      console.log(this.office.id);
+
       axios
       .get("../../booking/" + this.booking.id + "/" + this.office.id)
       .then((response) => {
@@ -636,6 +640,8 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+
+      console.log(this.employees);
     },
   },
 

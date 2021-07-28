@@ -31352,11 +31352,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     selectOffice: function selectOffice() {
       var _this2 = this;
 
+      console.log(this.booking.id);
+      console.log(this.office.id);
       axios.get("../../booking/" + this.booking.id + "/" + this.office.id).then(function (response) {
         _this2.employees = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
+      console.log(this.employees);
     }
   },
   computed: {},
