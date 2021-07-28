@@ -630,15 +630,15 @@ export default {
     },
     selectOffice() {
 
-      console.log(this.booking.id);
-      console.log(this.form.office);
+      //console.log(this.booking.id);
+      //console.log(this.form.office);
       this.emps = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.form.office)
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
             this.emps.push(response.data[i]);
-            console.log(response.data[i]);
+            //console.log(response.data[i]);
         }
       })
 

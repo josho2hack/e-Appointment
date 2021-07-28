@@ -31354,14 +31354,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     selectOffice: function selectOffice() {
       var _this2 = this;
 
-      console.log(this.booking.id);
-      console.log(this.form.office);
+      //console.log(this.booking.id);
+      //console.log(this.form.office);
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.form.office).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
-          _this2.emps.push(response.data[i]);
+          _this2.emps.push(response.data[i]); //console.log(response.data[i]);
 
-          console.log(response.data[i]);
         }
       })["catch"](function (error) {
         console.log(error);
