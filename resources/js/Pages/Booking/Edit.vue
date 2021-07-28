@@ -629,12 +629,14 @@ export default {
     selectOffice() {
 
       console.log(this.booking.id);
-      console.log(this.office.id);
-
+      console.log(this.form.office);
+      this.employees = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.form.office)
       .then((response) => {
-        this.employees = response.data;
+        for (let i = 0; i < response.data.length; i++) {
+            this.employees.push = response.data[i];
+        }
       })
 
       .catch(function (error) {

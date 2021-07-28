@@ -31353,9 +31353,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var _this2 = this;
 
       console.log(this.booking.id);
-      console.log(this.office.id);
+      console.log(this.form.office);
+      this.employees = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.form.office).then(function (response) {
-        _this2.employees = response.data;
+        for (var i = 0; i < response.data.length; i++) {
+          _this2.employees.push = response.data[i];
+        }
       })["catch"](function (error) {
         console.log(error);
       });
