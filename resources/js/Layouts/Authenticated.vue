@@ -44,7 +44,7 @@
 
                                 <breeze-nav-link
                                     v-if="$page.props.auth.user.role_id < 3"
-                                    href="#"
+                                    href="/e-app-graph"
                                     :active="route().current('report')"
                                 >
                                     {{ __("Report") }}
@@ -191,7 +191,7 @@
                         </breeze-responsive-nav-link>
                         <breeze-responsive-nav-link
                             v-if="$page.props.auth.user.role_id < 3"
-                            href="#"
+                            href="/e-app-graph"
                             :active="route().current('report')"
                         >
                             {{ __("Report") }}
