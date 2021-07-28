@@ -632,7 +632,7 @@ export default {
       console.log(this.office.id);
 
       axios
-      .get("../../booking/" + this.booking.id + "/" + this.office.id)
+      .get("../../booking/" + this.booking.id + "/" + this.form.office)
       .then((response) => {
         this.employees = response.data;
       })
