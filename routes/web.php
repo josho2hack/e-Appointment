@@ -8,6 +8,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\NidController;
+use App\Http\Controllers\OfficeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -63,7 +64,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('subjects', SubjectController::class);
     Route::resource('customerOptions', CustomerOptionController::class);
     Route::resource('bookings', BookingController::class);
+    Route::resource('offices', OfficeController::class);
     Route::get('/booking-create/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
+    Route::get('/booking/{booking}/{office}', [BookingController::class, 'editOffice'])->name('booking.editOffice');
 
     Route::get('/assignment', function () {
         return view('assignment');

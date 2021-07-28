@@ -389,6 +389,31 @@
                             <label
                               for="employee"
                               class="block text-sm font-medium text-gray-700"
+                              >{{ __("หน่วยงาน") }}</label
+                            >
+                            <select
+                              id="office"
+                              name="office"
+                              v-model="form.office"
+                              :disabled="booking.status === 1"
+                              @change="selectOffice"
+                              autofocus
+                              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            >
+                              <option
+                                v-for="off in offices"
+                                :key="off.id"
+                                :value="off.id"
+                              >
+                                {{ off.name}}
+                              </option>
+                            </select>
+                          </div>
+
+                          <div class="mt-4 space-y-4">
+                            <label
+                              for="employee"
+                              class="block text-sm font-medium text-gray-700"
                               >{{ __("มอบหมายให้") }}</label
                             >
                             <select
@@ -540,6 +565,7 @@ export default {
     employees: Object,
     booking: Object,
     office: Object,
+    offices: Object,
   },
 
   data() {
@@ -565,6 +591,7 @@ export default {
         },
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online,
+        office:this.office.id,
       }),
     };
   },
@@ -598,6 +625,17 @@ export default {
         }
       });
       //console.log(this.form);
+    },
+    selectOffice() {
+      axios
+      .get("../../booking/" + this.booking.id + "/" + this.office.id)
+      .then((response) => {
+        this.employees = response.data;
+      })
+
+      .catch(function (error) {
+        console.log(error);
+      });
     },
   },
 

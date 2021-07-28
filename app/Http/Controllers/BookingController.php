@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Appointment;
 use App\Models\Booking;
 use App\Models\CustomerOption;
+use App\Models\Office;
 use App\Models\Role;
 use App\Models\Round;
 use App\Models\Subject;
@@ -303,6 +304,8 @@ class BookingController extends Controller
         }
         //dd($user, $user_filter);
 
+        $offices = Office::where('code', 'like', '%000')->get();
+
         return Inertia::render('Booking/Edit', [
             'appointment' => $booking->appointment,
             'round' => $booking->round,
@@ -312,7 +315,55 @@ class BookingController extends Controller
             'employees' => isset($user_filter) ? $user_filter : "",
             'booking' => $booking,
             'office' => $booking->appointment->office,
+            'offices' => $offices,
         ]);
+    }
+
+    public function editOffice(Booking $booking,Office $office)
+    {
+        if ((substr(Auth::user()->office->code, 5, 3) == '000' && Auth::user()->level == 3) || Auth::user()->level <= 2) {
+            $response = Http::post(env('EOFFICE_EMP'), [
+                'checkUser' => env('EOFFICE_CHKUSER'),
+                'checkPass' => env('EOFFICE_CHKPASS'),
+                'officeId' => $office->code,
+            ]);
+            $user = $response->json("DataUser");
+
+            if ($booking->appointment->official && !$booking->appointment->employee) {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if (Auth::user()->level == 3) {
+                            if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
+                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00013000') {
+                            if ($obj['EMPTYPE'] == '1' && $obj['LEVEL'] > Auth::user()->level) return true;
+                        } else return false;
+                    }
+                });
+            } else if (!$booking->appointment->official && $booking->appointment->employee) {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if ($obj['EMPTYPE'] != '1') return true;
+                        else return false;
+                    }
+                });
+            } else {
+                $user_filter = array_filter($user, function ($obj) {
+                    //dd($obj,$obj['EMPTYPE']);
+                    if (isset($obj['EMPTYPE'])) {
+                        if (Auth::user()->level == 3) {
+                            if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
+                        } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00013000') {
+                            if ($obj['LEVEL'] > Auth::user()->level) return true;
+                        } else return false;
+                    }
+                });
+            }
+        }
+
+        $employees = isset($user_filter) ? $user_filter : "";
+        return response()->json($employees, 200, []);
     }
 
     /**
