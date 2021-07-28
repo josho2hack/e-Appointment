@@ -31289,6 +31289,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   data: function data() {
     return {
+      //offs: this.offices,
+      emps: this.employees,
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
@@ -31354,10 +31356,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
       console.log(this.booking.id);
       console.log(this.form.office);
-      this.employees = [];
+      this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.form.office).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
-          _this2.employees.push = response.data[i];
+          _this2.emps.push(response.data[i]);
+
           console.log(response.data[i]);
         }
       })["catch"](function (error) {
@@ -37835,7 +37838,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         autofocus: "",
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.employees, function (emp) {
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.emps, function (emp) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: emp.ID,
           value: emp.ID,

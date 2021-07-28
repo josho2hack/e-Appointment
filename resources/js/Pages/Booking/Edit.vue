@@ -426,7 +426,7 @@
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                               <option
-                                v-for="emp in employees"
+                                v-for="emp in emps"
                                 :key="emp.ID"
                                 :value="emp.ID"
                                 :disabled="emp.isFull"
@@ -570,6 +570,8 @@ export default {
 
   data() {
     return {
+      //offs: this.offices,
+      emps : this.employees,
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
         status: this.booking.status,
@@ -630,12 +632,12 @@ export default {
 
       console.log(this.booking.id);
       console.log(this.form.office);
-      this.employees = [];
+      this.emps = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.form.office)
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-            this.employees.push = response.data[i];
+            this.emps.push(response.data[i]);
             console.log(response.data[i]);
         }
       })
