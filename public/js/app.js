@@ -34160,6 +34160,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"]), _ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_nav_link, {
     key: 0,
+    as: "button",
+    type: "button",
     href: "/e-app-graph",
     active: _ctx.route().current('report')
   }, {
@@ -34286,6 +34288,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"]), _ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_responsive_nav_link, {
     key: 0,
+    as: "button",
+    type: "button",
     href: "/e-app-graph",
     active: _ctx.route().current('report')
   }, {
