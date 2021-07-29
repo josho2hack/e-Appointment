@@ -332,9 +332,10 @@ class BookingController extends Controller
             $user = $response->json("DataUser");
 
             //dd($user);
-            dd($booking);
+            //dd($booking);
+            $appointment = Appointment::where('id',$booking->appointment_id)->first();
 
-            if ($booking->appointment->official && !$booking->appointment->employee) {
+            if ($appointment->official && !$appointment->employee) {
                 $user_filter = array_filter($user, function ($obj) {
                     //dd($obj,$obj['EMPTYPE']);
                     if (isset($obj['EMPTYPE'])) {
@@ -345,7 +346,7 @@ class BookingController extends Controller
                         } else return false;
                     }
                 });
-            } else if (!$booking->appointment->official && $booking->appointment->employee) {
+            } else if (!$appointment->official && $appointment->employee) {
                 $user_filter = array_filter($user, function ($obj) {
                     //dd($obj,$obj['EMPTYPE']);
                     if (isset($obj['EMPTYPE'])) {
