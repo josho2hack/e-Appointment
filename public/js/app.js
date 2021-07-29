@@ -31360,8 +31360,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
-          _this2.emps.push(response.data[i]); //console.log(response.data[i]);
+          _this2.emps.push(response.data[i]);
 
+          console.log(response.data[i]);
         }
       })["catch"](function (error) {
         console.log(error);
