@@ -608,7 +608,7 @@ export default {
       return time[0] + ":" + time[1];
     },
     selectWorker() {
-      const objectArray = Object.entries(this.employees);
+      const objectArray = Object.entries(this.emps);
       objectArray.forEach(([key, value]) => {
         //console.log(key);
         //console.log(value);
