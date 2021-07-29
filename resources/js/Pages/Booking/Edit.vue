@@ -631,8 +631,8 @@ export default {
     },
     selectOffice() {
 
-      //console.log(this.booking.id);
-      //console.log(this.off);
+      console.log(this.booking.id);
+      console.log(this.off);
       this.emps = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.off)
@@ -679,7 +679,7 @@ export default {
       });
 
     //console.log(this.employees);
-    console.log(this.emps);
+    //console.log(this.emps);
   },
 };
 </script>

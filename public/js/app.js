@@ -31355,8 +31355,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     selectOffice: function selectOffice() {
       var _this2 = this;
 
-      //console.log(this.booking.id);
-      //console.log(this.off);
+      console.log(this.booking.id);
+      console.log(this.off);
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
@@ -31394,8 +31394,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     })["catch"](function (error) {
       console.log(error);
     }); //console.log(this.employees);
-
-    console.log(this.emps);
+    //console.log(this.emps);
   }
 });
 
