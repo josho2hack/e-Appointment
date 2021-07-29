@@ -392,9 +392,9 @@
                               >{{ __("หน่วยงาน") }}</label
                             >
                             <select
-                              id="office"
-                              name="office"
-                              v-model="form.office"
+                              id="off"
+                              name="off"
+                              v-model="off"
                               :disabled="booking.status === 1"
                               @change="selectOffice"
                               autofocus
@@ -570,7 +570,7 @@ export default {
 
   data() {
     return {
-      //offs: this.offices,
+      off :this.office.id,
       emps : this.employees,
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
@@ -593,7 +593,6 @@ export default {
         },
         lsk_old: this.employee ? this.employee.lsk : null,
         meeting_old: this.booking.meeting_online,
-        office:this.office.id,
       }),
     };
   },
@@ -636,7 +635,7 @@ export default {
       //console.log(this.form.office);
       this.emps = [];
       axios
-      .get("../../booking/" + this.booking.id + "/" + this.form.office)
+      .get("../../booking/" + this.booking.id + "/" + this.off)
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
             this.emps.push(response.data[i]);

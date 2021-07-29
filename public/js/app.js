@@ -31289,7 +31289,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   data: function data() {
     return {
-      //offs: this.offices,
+      off: this.office.id,
       emps: this.employees,
       form: this.$inertia.form({
         meeting_online: this.booking.meeting_online,
@@ -31311,8 +31311,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           office_id: this.office.id
         },
         lsk_old: this.employee ? this.employee.lsk : null,
-        meeting_old: this.booking.meeting_online,
-        office: this.office.id
+        meeting_old: this.booking.meeting_online
       })
     };
   },
@@ -31359,7 +31358,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       //console.log(this.booking.id);
       //console.log(this.form.office);
       this.emps = [];
-      axios.get("../../booking/" + this.booking.id + "/" + this.form.office).then(function (response) {
+      axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
           _this2.emps.push(response.data[i]); //console.log(response.data[i]);
 
@@ -37807,10 +37806,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("หน่วยงาน")), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-        id: "office",
-        name: "office",
+        id: "off",
+        name: "off",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-          return $data.form.office = $event;
+          return $data.off = $event;
         }),
         disabled: $props.booking.status === 1,
         onChange: _cache[2] || (_cache[2] = function () {
@@ -37829,7 +37828,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* KEYED_FRAGMENT */
       ))], 40
       /* PROPS, HYDRATE_EVENTS */
-      , ["disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.office]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายให้")), 1
+      , ["disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.off]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("มอบหมายให้")), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
         id: "employee",
