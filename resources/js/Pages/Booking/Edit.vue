@@ -401,11 +401,11 @@
                               class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                               <option
-                                v-for="off in offices"
-                                :key="off.id"
-                                :value="off.id"
+                                v-for="offs in offices"
+                                :key="offs.id"
+                                :value="offs.id"
                               >
-                                {{ off.name}}
+                                {{ offs.name}}
                               </option>
                             </select>
                           </div>
@@ -632,7 +632,7 @@ export default {
     selectOffice() {
 
       //console.log(this.booking.id);
-      //console.log(this.form.office);
+      console.log(this.off);
       this.emps = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.off)

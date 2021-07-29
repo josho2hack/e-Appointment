@@ -31356,7 +31356,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var _this2 = this;
 
       //console.log(this.booking.id);
-      //console.log(this.form.office);
+      console.log(this.off);
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
         for (var i = 0; i < response.data.length; i++) {
@@ -37817,11 +37817,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         autofocus: "",
         "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.offices, function (off) {
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.offices, function (offs) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
-          key: off.id,
-          value: off.id
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(off.name), 9
+          key: offs.id,
+          value: offs.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(offs.name), 9
         /* TEXT, PROPS */
         , ["value"]);
       }), 128
