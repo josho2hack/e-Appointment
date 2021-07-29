@@ -304,7 +304,7 @@ class BookingController extends Controller
             }
         }
 
-        dd($user, $user_filter);
+        //dd($user, $user_filter);
 
         $offices = Office::where('code', 'like', '%000')->get();
 
