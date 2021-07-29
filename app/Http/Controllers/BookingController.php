@@ -332,6 +332,7 @@ class BookingController extends Controller
             $user = $response->json("DataUser");
 
             dd($user);
+            dd($booking);
 
             if ($booking->appointment->official && !$booking->appointment->employee) {
                 $user_filter = array_filter($user, function ($obj) {
