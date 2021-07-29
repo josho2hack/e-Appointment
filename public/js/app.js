@@ -31349,7 +31349,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
         }
-      }); //console.log(this.form);
+      });
+      console.log(this.form.employee);
     },
     selectOffice: function selectOffice() {
       var _this2 = this;

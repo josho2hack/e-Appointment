@@ -626,7 +626,7 @@ export default {
           this.form.employee["employee_type"] = value.EMPTYPE;
         }
       });
-      //console.log(this.form);
+      console.log(this.form.employee);
     },
     selectOffice() {
 
