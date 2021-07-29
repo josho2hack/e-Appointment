@@ -646,6 +646,8 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+
+      console.log(this.emps);
     },
   },
 
@@ -676,7 +678,7 @@ export default {
         console.log(error);
       });
 
-    console.log(this.employees);
+    //console.log(this.employees);
     console.log(this.emps);
   },
 };
