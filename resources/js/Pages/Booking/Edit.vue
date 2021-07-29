@@ -676,6 +676,7 @@ export default {
         console.log(error);
       });
 
+    console.log(this.employees);
     console.log(this.emps);
   },
 };

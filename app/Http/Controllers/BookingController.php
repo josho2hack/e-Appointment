@@ -268,6 +268,7 @@ class BookingController extends Controller
                 'checkPass' => env('EOFFICE_CHKPASS'),
                 'officeId' => Auth::user()->office->code,
             ]);
+
             $user = $response->json("DataUser");
 
             if ($booking->appointment->official && !$booking->appointment->employee) {
@@ -294,7 +295,7 @@ class BookingController extends Controller
                     //dd($obj,$obj['EMPTYPE']);
                     if (isset($obj['EMPTYPE'])) {
                         if (Auth::user()->level == 3) {
-                            if ($obj['LEVEL'] > Auth::user()->level && $obj['GROUPNAME'] == Auth::user()->groupname) return true;
+                            if ($obj['LEVEL'] > Auth::user()->level) return true;
                         } else if (Auth::user()->level <= 2 || Auth::user()->office->code == '00013000') {
                             if ($obj['LEVEL'] > Auth::user()->level) return true;
                         } else return false;
@@ -302,7 +303,8 @@ class BookingController extends Controller
                 });
             }
         }
-        //dd($user, $user_filter);
+
+        dd($user, $user_filter);
 
         $offices = Office::where('code', 'like', '%000')->get();
 
