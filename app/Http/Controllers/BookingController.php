@@ -364,9 +364,8 @@ class BookingController extends Controller
                     }
                 });
             }
+            dd($user_filter);
         }
-
-        //dd($user_filter);
 
         $employees = isset($user_filter) ? $user_filter : "";
         return response()->json($employees, 200, []);
