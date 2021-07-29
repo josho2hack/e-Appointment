@@ -608,8 +608,8 @@ export default {
       return time[0] + ":" + time[1];
     },
     selectWorker() {
-    console.log(this.employees);
-    console.log(this.emps);
+    //console.log(this.employees);
+    //console.log(this.emps);
       const objectArray = Object.entries(this.emps);
       objectArray.forEach(([key, value]) => {
         //console.log(key);
@@ -628,7 +628,7 @@ export default {
           this.form.employee["employee_type"] = value.EMPTYPE;
         }
       });
-      console.log(this.form.employee);
+      //console.log(this.form.employee);
     },
     selectOffice() {
 

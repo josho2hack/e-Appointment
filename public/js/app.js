@@ -31328,8 +31328,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     selectWorker: function selectWorker() {
       var _this = this;
 
-      console.log(this.employees);
-      console.log(this.emps);
+      //console.log(this.employees);
+      //console.log(this.emps);
       var objectArray = Object.entries(this.emps);
       objectArray.forEach(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
@@ -31351,8 +31351,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
         }
-      });
-      console.log(this.form.employee);
+      }); //console.log(this.form.employee);
     },
     selectOffice: function selectOffice() {
       var _this2 = this;
