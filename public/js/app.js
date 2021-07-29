@@ -31366,8 +31366,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       })["catch"](function (error) {
         console.log(error);
-      });
-      console.log(this.emps);
+      }); //console.log(this.emps);
     }
   },
   computed: {},
