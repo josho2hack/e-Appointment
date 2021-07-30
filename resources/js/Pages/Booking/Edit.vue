@@ -641,7 +641,7 @@ export default {
             this.emps.push(response.data[i]);
             //console.log(response.data[i]);
         }
-        console.log(this.emps);
+        console.log(response.data);
       })
 
       .catch(function (error) {

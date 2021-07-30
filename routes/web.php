@@ -48,6 +48,7 @@ Route::post('/guest', [BookingController::class, 'guestStore'])->name('guest.sto
 
 Route::get('/nid/{nid}', [NidController::class, 'getInfo'])->name('nid');
 Route::get('/holiday/{date}', [HolidayController::class, 'getInfo'])->name('holiday.getInfo');
+Route::get('/booking/{booking}/{office}', [BookingController::class, 'editOffice'])->name('booking.editOffice');
 
 require __DIR__ . '/auth.php';
 
@@ -66,7 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('bookings', BookingController::class);
     Route::resource('offices', OfficeController::class);
     Route::get('/booking-create/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
-    Route::get('/booking/{booking}/{office}', [BookingController::class, 'editOffice'])->name('booking.editOffice');
 
     Route::get('/assignment', function () {
         return view('assignment');

@@ -31364,7 +31364,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         }
 
-        console.log(_this2.emps);
+        console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
