@@ -639,15 +639,14 @@ export default {
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
             this.emps.push(response.data[i]);
-            console.log(response.data[i]);
+            //console.log(response.data[i]);
         }
+        console.log(this.emps);
       })
 
       .catch(function (error) {
         console.log(error);
       });
-
-      //console.log(this.emps);
     },
   },
 
