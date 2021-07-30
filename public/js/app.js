@@ -31359,12 +31359,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       console.log(this.off);
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
-        for (var i = 0; i < response.data.length; i++) {
-          _this2.emps.push(response.data[i]); //console.log(response.data[i]);
-
-        }
-
-        console.log(response.data);
+        //for (let i = 0; i < response.data.length; i++) {
+        //this.emps.push(response.data[i]);
+        //console.log(response.data[i]);
+        //}
+        _this2.emps = response.data;
       })["catch"](function (error) {
         console.log(error);
       });

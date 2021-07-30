@@ -637,11 +637,11 @@ export default {
       axios
       .get("../../booking/" + this.booking.id + "/" + this.off)
       .then((response) => {
-        for (let i = 0; i < response.data.length; i++) {
-            this.emps.push(response.data[i]);
+        //for (let i = 0; i < response.data.length; i++) {
+            //this.emps.push(response.data[i]);
             //console.log(response.data[i]);
-        }
-        console.log(response.data);
+        //}
+        this.emps = response.data;
       })
 
       .catch(function (error) {
