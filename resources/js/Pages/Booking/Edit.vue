@@ -625,14 +625,15 @@ export default {
           this.form.employee["groupname"] = value.GROUPNAME;
           this.form.employee["level"] = value.LEVEL;
           this.form.employee["employee_type"] = value.EMPTYPE;
+          this.form.employee["office_id"] = value.OFFICEID;
         }
       });
       //console.log(this.form.employee);
     },
     selectOffice() {
 
-      console.log(this.booking.id);
-      console.log(this.off);
+      //console.log(this.booking.id);
+      //console.log(this.off);
       this.emps = [];
       axios
       .get("../../booking/" + this.booking.id + "/" + this.off)

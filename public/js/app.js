@@ -31349,14 +31349,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["groupname"] = value.GROUPNAME;
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
+          _this.form.employee["office_id"] = value.OFFICEID;
         }
       }); //console.log(this.form.employee);
     },
     selectOffice: function selectOffice() {
       var _this2 = this;
 
-      console.log(this.booking.id);
-      console.log(this.off);
+      //console.log(this.booking.id);
+      //console.log(this.off);
       this.emps = [];
       axios.get("../../booking/" + this.booking.id + "/" + this.off).then(function (response) {
         //for (let i = 0; i < response.data.length; i++) {
