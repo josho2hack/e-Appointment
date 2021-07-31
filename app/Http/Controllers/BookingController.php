@@ -266,7 +266,7 @@ class BookingController extends Controller
             $response = Http::post(env('EOFFICE_EMP'), [
                 'checkUser' => env('EOFFICE_CHKUSER'),
                 'checkPass' => env('EOFFICE_CHKPASS'),
-                'officeId' => $booking->employee ? $booking->employee->office->code : $booking->appointment->office->code,
+                'officeId' => $booking->employee != null ? $booking->employee->office->code : $booking->appointment->office->code,
             ]);
 
             $user = $response->json("DataUser");
