@@ -269,7 +269,7 @@ class BookingController extends Controller
                 'officeId' => $booking->employee != null ? $booking->employee->office->code : $booking->appointment->office->code,
             ]);
 
-            dd($booking->employee,$booking->employee->office->code,$booking->appointment->office->code);
+            //dd($booking->employee,$booking->employee->office->code,$booking->appointment->office->code);
 
             $user = $response->json("DataUser");
 
