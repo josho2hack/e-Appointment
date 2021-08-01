@@ -37184,12 +37184,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
         }, null, 8
         /* PROPS */
-        , ["id", "name", "value", "disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.form.round_id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+        , ["id", "name", "value", "disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.form.round_id]]), $data.dateInfo.isHoliday || round.isFull ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("label", {
+          key: 0,
+          "for": 'r' + round.id,
+          "class": "ml-3 block text-sm font-medium text-red-600"
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.start)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.end)) + " (เต็มแล้ว) ", 9
+        /* TEXT, PROPS */
+        , ["for"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("label", {
+          key: 1,
           "for": 'r' + round.id,
           "class": "ml-3 block text-sm font-medium text-gray-700"
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.start)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.end)), 9
         /* TEXT, PROPS */
-        , ["for"])]);
+        , ["for"]))]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
@@ -38712,12 +38719,19 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
       "class": "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
     }, null, 8
     /* PROPS */
-    , ["id", "name", "value", "disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.form.round_id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+    , ["id", "name", "value", "disabled"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.form.round_id]]), $data.dateInfo.isHoliday || round.isFull ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("label", {
+      key: 0,
+      "for": 'r' + round.id,
+      "class": "ml-3 block text-sm font-medium text-red-600"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.start)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.end)) + " (เต็มแล้ว) ", 9
+    /* TEXT, PROPS */
+    , ["for"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("label", {
+      key: 1,
       "for": 'r' + round.id,
       "class": "ml-3 block text-sm font-medium text-gray-700"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.start)) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.minuteFormat(round.end)), 9
     /* TEXT, PROPS */
-    , ["for"])]);
+    , ["for"]))]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {

@@ -395,7 +395,15 @@
                                 :disabled="dateInfo.isHoliday || round.isFull"
                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                               />
-                              <label
+                              <label v-if="dateInfo.isHoliday || round.isFull"
+                                :for="'r' + round.id"
+                                class="ml-3 block text-sm font-medium text-red-600"
+                              >
+                                {{ minuteFormat(round.start) }}
+                                -
+                                {{ minuteFormat(round.end) }} (เต็มแล้ว)
+                              </label>
+                              <label v-else
                                 :for="'r' + round.id"
                                 class="ml-3 block text-sm font-medium text-gray-700"
                               >
