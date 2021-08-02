@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('bookings', BookingController::class);
     Route::resource('offices', OfficeController::class);
     Route::get('/booking-create/{appointment}', [BookingController::class, 'createBooking'])->name('booking.create');
+    Route::get('/booking/assign', [BookingController::class, 'assign'])->name('booking.assignment');
 
     Route::get('/assignment', function () {
         return view('assignment');

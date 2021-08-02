@@ -42,6 +42,13 @@
                                     {{ __("Booking List") }}
                                 </breeze-nav-link>
 
+                                <breeze-nav-link v-if="$page.props.auth.user.level < 4"
+                                    :href="route('booking.assignment')"
+                                    :active="route().current('booking.assignment')"
+                                >
+                                    {{ __("งานที่ได้รับมอบหมาย") }}
+                                </breeze-nav-link>
+
                                 <breeze-nav-link
                                     v-if="$page.props.auth.user.role_id < 3"
                                     :href="route('report')"
@@ -188,6 +195,12 @@
                             :active="route().current('bookings.index')"
                         >
                             {{ __("Booking List") }}
+                        </breeze-responsive-nav-link>
+                        <breeze-responsive-nav-link v-if="$page.props.auth.user.level < 4"
+                            :href="route('booking.assignment')"
+                            :active="route().current('booking.assignment')"
+                        >
+                            {{ __("งานที่ได้รับมอบหมาย") }}
                         </breeze-responsive-nav-link>
                         <breeze-responsive-nav-link
                             v-if="$page.props.auth.user.role_id < 3"

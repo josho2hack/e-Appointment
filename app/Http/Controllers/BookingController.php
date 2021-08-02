@@ -82,6 +82,27 @@ class BookingController extends Controller
         ]);
     }
 
+    public function assign()
+    {
+        $bookings = Booking::with(
+            'appointment',
+            'user',
+            'employee',
+            'round',
+            'customerOption',
+            'subjects'
+        )->filter(\Illuminate\Support\Facades\Request::only('search'))->whereHas('employee', function ($query) {
+            return $query->where('id', '=', Auth::user()->id);
+        })->latest()->paginate();
+
+        //dd($appointments);
+
+        return Inertia::render('Booking/Assign', [
+            'filters' => \Illuminate\Support\Facades\Request::all('search'),
+            'bookings' => $bookings
+        ]);
+    }
+
     public function getAllDay($date)
     {
         $data = Booking::with('employee')->where('date', $date)->get();
