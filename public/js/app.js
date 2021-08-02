@@ -31349,7 +31349,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           _this.form.employee["groupname"] = value.GROUPNAME;
           _this.form.employee["level"] = value.LEVEL;
           _this.form.employee["employee_type"] = value.EMPTYPE;
-          _this.form.employee["office_id"] = value.OFFICEID;
+          _this.form.employee["office_id"] = _this.off;
         }
       }); //console.log(this.form.employee);
     },

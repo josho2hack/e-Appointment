@@ -625,7 +625,7 @@ export default {
           this.form.employee["groupname"] = value.GROUPNAME;
           this.form.employee["level"] = value.LEVEL;
           this.form.employee["employee_type"] = value.EMPTYPE;
-          this.form.employee["office_id"] = value.OFFICEID;
+          this.form.employee["office_id"] = this.off;
         }
       });
       //console.log(this.form.employee);
