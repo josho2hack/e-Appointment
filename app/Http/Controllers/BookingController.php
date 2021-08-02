@@ -95,7 +95,7 @@ class BookingController extends Controller
             return $query->where('id', '=', Auth::user()->id);
         })->latest()->paginate();
 
-        //dd($appointments);
+        dd($bookings);
 
         return Inertia::render('Booking/Assign', [
             'filters' => \Illuminate\Support\Facades\Request::all('search'),
