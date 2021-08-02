@@ -23,8 +23,12 @@ Line: <span style="color: blue">{{ $booking->line_id }}</span><br>
         href="{{ $booking->employee->email }}">{{ $booking->employee->email }}</a>)</span><br>
 @endif
 
+@component('mail::button', ['url' => 'https://interapp2.rd.go.th/e-appointment/public/login-employee'])
+1. เข้าสู่ระบบสำหรับเจ้าหน้าที่
+@endcomponent
+
 @component('mail::button', ['url' => 'https://interapp2.rd.go.th/e-appointment/public/bookings/{{ $booking->id }}/edit'])
-เข้าสู่ระบบปรับปรุงสถานะ เมื่อแล้วเสร็จ
+2. ปรับปรุงสถานะ เมื่อแล้วเสร็จ
 @endcomponent
 
 ด้วยความนับถือ<br>

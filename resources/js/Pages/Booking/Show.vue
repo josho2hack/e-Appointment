@@ -52,7 +52,7 @@
                                             ประเภทผู้นัดหมาย
                                         </dt>
                                         <dd
-                                            v-if="type == 0"
+                                            v-if="booking.type == 0"
                                             class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
                                         >
                                             บุคคลธรรมดา
