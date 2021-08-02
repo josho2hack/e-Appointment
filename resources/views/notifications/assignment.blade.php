@@ -28,6 +28,6 @@ Line: <span style="color: blue">{{ $booking->line_id }}</span><br>
 @endcomponent
 
 ด้วยความนับถือ<br>
-<a href="https://interapp2.rd.go.th/e-appointment">{{ config('app.name') }}</a>
+<a href="https://interapp2.rd.go.th/e-appointment/public/">{{ config('app.name') }}</a>
 @endcomponent
 
