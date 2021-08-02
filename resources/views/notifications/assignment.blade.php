@@ -27,7 +27,7 @@ Line: <span style="color: blue">{{ $booking->line_id }}</span><br>
 1. เข้าสู่ระบบสำหรับเจ้าหน้าที่
 @endcomponent
 
-@component('mail::button', ['url' => 'https://interapp2.rd.go.th/e-appointment/public/bookings/'.{{ $booking->id }}.'/edit'])
+@component('mail::button', ['url' => 'https://interapp2.rd.go.th/e-appointment/public/bookings/'. $booking->id .'/edit'])
 2. ปรับปรุงสถานะ เมื่อแล้วเสร็จ
 @endcomponent
 
