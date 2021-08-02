@@ -492,7 +492,7 @@
                         </fieldset>
                       </div>
                       <!-- หมายเหตุ -->
-                      <div v-if="employee !== null && booking.status === 0" class="px-4 pb-4 bg-white space-y-6 sm:p-6">
+                      <div class="px-4 pb-4 bg-white space-y-6 sm:p-6">
                         <div class="mt-4 space-y-4">
                           <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-12 sm:col-span-6">
