@@ -73,7 +73,9 @@ Route::middleware('auth')->group(function () {
     })->name('assignment');
 
     Route::get('/report', function () {
-        return view('report');
+        //return view('report');
+        $url = 'https://interapp2.rd.go.th/e-app-graph';
+        return Inertia::location($url);
     })->name('report');
 
 });
