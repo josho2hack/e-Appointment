@@ -61,7 +61,7 @@
                                             v-if="type == 1"
                                             class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
                                         >
-                                            นิติบุลคล
+                                            นิติบุคคล
                                         </dd>
                                         <dd
                                             v-else

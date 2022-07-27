@@ -117,10 +117,10 @@
                                 <label
                                   for="cit"
                                   class="font-medium text-gray-700"
-                                  >{{ __("นิติบุลคล") }}</label
+                                  >{{ __("นิติบุคคล") }}</label
                                 >
                                 <p class="text-gray-500">
-                                  ผู้เสียภาษี ประเภทนิติบุลคล
+                                  ผู้เสียภาษี ประเภทนิติบุคคล
                                 </p>
                               </div>
                             </div>
@@ -342,23 +342,18 @@
                           </legend>
                           <div class="mt-4 space-y-4">
                             <div class="grid grid-cols-6 gap-6">
-                              <div class="col-span-6 sm:col-span-3">
-                                <label
-                                  for="date"
-                                  class="block text-sm font-medium text-gray-700"
-                                  >{{ __("วันนัด") }}</label
-                                >
-                                <input
-                                  type="date"
-                                  name="date"
-                                  id="date"
-                                  v-model="form.date"
-                                  required
-                                  @change="getDateInfo"
-                                  autocomplete="current-date"
-                                  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                />
-                              </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="date"
+                                           class="block text-sm font-medium text-gray-700">{{ __("วันนัด") }}</label>
+                                    <input type="date"
+                                           name="date"
+                                           id="date"
+                                           v-model="form.date"
+                                           required
+                                           @change="getDateInfo"
+                                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                    <!--autocomplete="current-date" -->
+                                </div>
                             </div>
                           </div>
                         </fieldset>
@@ -557,9 +552,9 @@ export default {
       this.dateInfo.isHoliday = false;
       this.dateInfo.info = "";
       var date = new Date(this.form.date);
-      if (date < new Date()) {
+      if (date < new Date().setDate(new Date().getDate() + 3)) {
         this.dateInfo.isHoliday = true;
-        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้า";
+        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้าอย่างน้อย 3 วัน";
       } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
@@ -633,7 +628,7 @@ export default {
   mounted() {
     //console.log(this.appointment);
     let now = new Date();
-    now.setDate(now.getDate() + 1);
+    now.setDate(now.getDate() + 4);
     this.form.date = this.formatDate(now);
     this.getDateInfo();
   },

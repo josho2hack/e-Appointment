@@ -224,10 +224,10 @@
                                     <label
                                       for="cit"
                                       class="font-medium text-gray-700"
-                                      >{{ __("นิติบุลคล") }}</label
+                                      >{{ __("นิติบุคคล") }}</label
                                     >
                                     <p class="text-gray-500">
-                                      ผู้เสียภาษี ประเภทนิติบุลคล
+                                      ผู้เสียภาษี ประเภทนิติบุคคล
                                     </p>
                                   </div>
                                 </div>
@@ -453,23 +453,18 @@
                               </legend>
                               <div class="mt-4 space-y-4">
                                 <div class="grid grid-cols-6 gap-6">
-                                  <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                      for="date"
-                                      class="block text-sm font-medium text-gray-700"
-                                      >{{ __("วันนัด") }}</label
-                                    >
-                                    <input
-                                      type="date"
-                                      name="date"
-                                      id="date"
-                                      v-model="form.date"
-                                      required
-                                      @change="getDateInfo"
-                                      autocomplete="current-date"
-                                      class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                    />
-                                  </div>
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="date"
+                                               class="block text-sm font-medium text-gray-700">{{ __("วันนัด") }}</label>
+                                        <input type="date"
+                                               name="date"
+                                               id="date"
+                                               v-model="form.date"
+                                               required
+                                               @change="getDateInfo"
+                                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        <!--autocomplete="current-date"-->
+                                    </div>
                                 </div>
                               </div>
                             </fieldset>
@@ -581,47 +576,49 @@
 
       <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
         <div class="text-center text-sm text-gray-500 sm:text-left">
-          <div class="flex items-center">
-            <svg
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              class="-mt-px w-5 h-5 text-gray-400"
-            >
-              <path
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              ></path>
-            </svg>
+            <div class="flex items-center">
+                <!--
+    <svg
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      class="-mt-px w-5 h-5 text-gray-400"
+    >
+      <path
+        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+      ></path>
+    </svg>
 
-            <a href="#" class="ml-1 underline">
-              {{ __("Document") }}
-            </a>
+    <a href="#" class="ml-1 underline">
+      {{ __("Document") }}
+    </a>
 
-            <svg
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              class="ml-4 -mt-px w-5 h-5 text-gray-400"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-              />
-            </svg>
+    <svg
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      class="ml-4 -mt-px w-5 h-5 text-gray-400"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+      />
+    </svg>
 
-            <a href="#" class="ml-1 underline">
-              {{ __("Chat") }}
-            </a>
-          </div>
-        </div>
+    <a href="#" class="ml-1 underline">
+      {{ __("Chat") }}
+    </a>-->
+            </div>
+    
+            </div>
 
         <div
           class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0"
@@ -641,15 +638,16 @@
                   <div class="col-lg-12 text-center">
                     <h5>สอบถามรายละเอียดเพิ่มเติม</h5>
                     <p>
-                      <a
-                        title="คลิกเพื่อโทรหา Call Center: 1161"
-                        href="tel:1161"
-                      >
-                        RD Intelligent Center 1161</a
-                      ><br />
-                      ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400,
-                      02-2729168, 02-2729819<br />ด้านระบบงาน : โทร.
-                      02-272-8804, 02-272-8743
+                        <a title="คลิกเพื่อโทรหา Call Center: 1161"
+                           href="tel:1161">
+                            RD Intelligent Center 1161
+                        </a>
+                        <!--
+                            <br />
+                          ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400,
+                          02-2729168, 02-2729819<br />ด้านระบบงาน : โทร.
+                          02-272-8901
+                        -->
                     </p>
                   </div>
                   <!-- Footer Address -->
@@ -851,9 +849,9 @@ export default {
       this.dateInfo.isHoliday = false;
       this.dateInfo.info = "";
       var date = new Date(this.form.date);
-      if (date < new Date()) {
+      if (date < new Date().setDate(new Date().getDate() + 3)) {
         this.dateInfo.isHoliday = true;
-        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้า";
+        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้าอย่างน้อย 3 วัน";
       } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
@@ -948,7 +946,7 @@ export default {
   mounted() {
     //console.log(this.subjects);
     let now = new Date();
-    now.setDate(now.getDate() + 1);
+    now.setDate(now.getDate() + 4);
     this.form.date = this.formatDate(now);
     this.getDateInfo();
   },

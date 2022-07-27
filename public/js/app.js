@@ -31245,9 +31245,9 @@ __webpack_require__.r(__webpack_exports__);
       this.dateInfo.info = "";
       var date = new Date(this.form.date);
 
-      if (date < new Date()) {
+      if (date < new Date().setDate(new Date().getDate() + 3)) {
         this.dateInfo.isHoliday = true;
-        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้า";
+        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้าอย่างน้อย 3 วัน";
       } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
@@ -31313,7 +31313,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     //console.log(this.appointment);
     var now = new Date();
-    now.setDate(now.getDate() + 1);
+    now.setDate(now.getDate() + 4);
     this.form.date = this.formatDate(now);
     this.getDateInfo();
   }
@@ -31599,9 +31599,9 @@ __webpack_require__.r(__webpack_exports__);
       this.dateInfo.info = "";
       var date = new Date(this.form.date);
 
-      if (date < new Date()) {
+      if (date < new Date().setDate(new Date().getDate() + 3)) {
         this.dateInfo.isHoliday = true;
-        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้า";
+        this.dateInfo.info = "โปรดเลือกวันนัดหมายล่วงหน้าอย่างน้อย 3 วัน";
       } else if (date.getDay() === 0 || date.getDay() === 6) {
         this.dateInfo.isHoliday = true;
         this.dateInfo.info = "วันหยุดราชการ";
@@ -31694,7 +31694,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     //console.log(this.subjects);
     var now = new Date();
-    now.setDate(now.getDate() + 1);
+    now.setDate(now.getDate() + 4);
     this.form.date = this.formatDate(now);
     this.getDateInfo();
   }
@@ -32214,7 +32214,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("ประเภทผู้นัดหมาย")), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [$props.type === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_20, "บุคคลธรรมดา")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.type === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_21, "นิติบุลคล")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.customerInfo !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.customer), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [$props.type === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_20, "บุคคลธรรมดา")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.type === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_21, "นิติบุคคล")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.customerInfo !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.customer), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("ชื่อผู้นัดหมาย")), 1
   /* TEXT */
@@ -33698,7 +33698,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   style: {
     "fill": "#0052b4"
   },
-  d: "M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784\n\t\tz"
+  d: "M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784\r\n\t\tz"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#0052b4"
@@ -33732,27 +33732,27 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
   style: {
     "fill": "#d80027"
   },
-  d: "M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0\n\t\tc-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391\n\t\th220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442\n\t\tC511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z"
+  d: "M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0\r\n\t\tc-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391\r\n\t\th220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442\r\n\t\tC511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#d80027"
   },
-  d: "M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435\n\t\tl-97.802-97.802h-31.482V322.784z"
+  d: "M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435\r\n\t\tl-97.802-97.802h-31.482V322.784z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#d80027"
   },
-  d: "M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804\n\t\tV322.784z"
+  d: "M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804\r\n\t\tV322.784z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#d80027"
   },
-  d: "M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803\n\t\tH189.217z"
+  d: "M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803\r\n\t\tH189.217z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#d80027"
   },
-  d: "M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047\n\t\tl-97.802,97.803V189.219z"
+  d: "M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047\r\n\t\tl-97.802,97.803V189.219z"
 })], -1
 /* HOISTED */
 );
@@ -33848,7 +33848,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
   style: {
     "fill": "#0052b4"
   },
-  d: "M496.077,166.957H15.923C5.632,194.69,0,224.686,0,256s5.632,61.31,15.923,89.043h480.155\n\tC506.368,317.31,512,287.314,512,256S506.368,194.69,496.077,166.957z"
+  d: "M496.077,166.957H15.923C5.632,194.69,0,224.686,0,256s5.632,61.31,15.923,89.043h480.155\r\n\tC506.368,317.31,512,287.314,512,256S506.368,194.69,496.077,166.957z"
 }, null, -1
 /* HOISTED */
 );
@@ -34110,70 +34110,8 @@ var _hoisted_27 = {
 var _hoisted_28 = {
   "class": "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
 };
-var _hoisted_29 = {
-  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
-};
-var _hoisted_30 = {
-  "class": "text-center text-sm text-gray-500"
-};
-var _hoisted_31 = {
-  "class": "flex justify-between sm:items-center"
-};
-var _hoisted_32 = {
-  "class": "text-center text-sm text-gray-500 sm:text-left"
-};
-var _hoisted_33 = {
-  "class": "flex items-center"
-};
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  stroke: "currentColor",
-  "class": "-mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_35 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  stroke: "currentColor",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  "class": "ml-4 -mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  d: "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_37 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0"
-}, " e-Appointment v 1.0.0 ", -1
-/* HOISTED */
-);
-
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer class=\"py-5\"><div class=\"container\"><div class=\"row\"><!-- Owner System --><div class=\"col-lg-12 text-center\"><h5>สอบถามรายละเอียดเพิ่มเติม</h5><p><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\"> RD Intelligent Center 1161</a><br> ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400, 02-2729168, 02-2729819<br>ด้านระบบงาน : โทร. 02-272-8804, 02-272-8743 </p></div><!-- Footer Address --><hr><div class=\"col-lg-12 text-center\"><h5>กรมสรรพากร</h5><p> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer>", 1);
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"max-w-7xl mx-auto sm:px-6 lg:px-8\"><div class=\"text-center text-sm text-gray-500\"><div class=\"flex justify-between sm:items-center\"><div class=\"text-center text-sm text-gray-500 sm:text-left\"><div class=\"flex items-center\"><!--\r\n                                    &lt;svg\r\n                                        fill=&quot;none&quot;\r\n                                        stroke-linecap=&quot;round&quot;\r\n                                        stroke-linejoin=&quot;round&quot;\r\n                                        stroke-width=&quot;2&quot;\r\n                                        viewBox=&quot;0 0 24 24&quot;\r\n                                        stroke=&quot;currentColor&quot;\r\n                                        class=&quot;-mt-px w-5 h-5 text-gray-400&quot;\r\n                                    &gt;\r\n                                        &lt;path\r\n                                            d=&quot;M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253&quot;\r\n                                        &gt;&lt;/path&gt;\r\n                                    &lt;/svg&gt;\r\n\r\n                                    &lt;a href=&quot;#&quot; class=&quot;ml-1 underline&quot;&gt;\r\n                                        {{ __(&quot;Document&quot;) }}\r\n                                    &lt;/a&gt;\r\n\r\n                                    &lt;svg\r\n                                        fill=&quot;none&quot;\r\n                                        stroke=&quot;currentColor&quot;\r\n                                        stroke-linecap=&quot;round&quot;\r\n                                        stroke-linejoin=&quot;round&quot;\r\n                                        stroke-width=&quot;2&quot;\r\n                                        viewBox=&quot;0 0 24 24&quot;\r\n                                        class=&quot;ml-4 -mt-px w-5 h-5 text-gray-400&quot;\r\n                                    &gt;\r\n                                        &lt;path\r\n                                            stroke-linecap=&quot;round&quot;\r\n                                            stroke-linejoin=&quot;round&quot;\r\n                                            stroke-width=&quot;2&quot;\r\n                                            d=&quot;M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z&quot;\r\n                                        /&gt;\r\n                                    &lt;/svg&gt;\r\n\r\n                                    &lt;a href=&quot;#&quot; class=&quot;ml-1 underline&quot;&gt;\r\n                                        {{ __(&quot;Chat&quot;) }}\r\n                                    &lt;/a&gt;\r\n    --></div></div><div class=\"ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0\"> e-Appointment v 1.0.0 </div></div><footer class=\"py-5\"><div class=\"container\"><div class=\"row\"><!-- Owner System --><div class=\"col-lg-12 text-center\"><h5>สอบถามรายละเอียดเพิ่มเติม</h5><p><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\"> RD Intelligent Center 1161 </a><!--&lt;br /&gt;\r\n                                            ด้านสิทธิประโยชน์ทางภาษี : โทร.\r\n                                            02-2728289, 02-2728400, 02-2729168,\r\n                                            02-2729819&lt;br /&gt;ด้านระบบงาน : โทร.\r\n                                            02-272-8804, 02-272-8743\r\n    --></p></div><!-- Footer Address --><hr><div class=\"col-lg-12 text-center\"><h5>กรมสรรพากร</h5><p> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_application_logo = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-application-logo");
@@ -34277,7 +34215,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     "class": "w-8 h-8 mr-2 rounded-full border border-gray-400",
     src: _ctx.$page.props.auth.user.avatar,
-    alt: "{{ $page.props.auth.user.first_name }}\n                                    {{ $page.props.auth.user.last_name }}"
+    alt: "{{ $page.props.auth.user.first_name }}\r\n                                    {{ $page.props.auth.user.last_name }}"
   }, null, 8
   /* PROPS */
   , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_9, [_hoisted_10])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Settings Dropdown "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_dropdown, {
@@ -34418,7 +34356,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     "class": "w-10 h-10 rounded-full border border-gray-400",
     src: _ctx.$page.props.auth.user.avatar,
-    alt: "{{ $page.props.auth.user.first_name }}\n                                    {{ $page.props.auth.user.last_name }}"
+    alt: "{{ $page.props.auth.user.first_name }}\r\n                                    {{ $page.props.auth.user.last_name }}"
   }, null, 8
   /* PROPS */
   , ["src"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_21, [_hoisted_22]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.first_name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.last_name), 1
@@ -34442,11 +34380,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href"])])])], 2
   /* CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _ctx.$slots.header ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("header", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Document")), 1
-  /* TEXT */
-  ), _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Chat")), 1
-  /* TEXT */
-  )])]), _hoisted_38]), _hoisted_39])])])]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _ctx.$slots.header ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("header", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), _hoisted_29])]);
 }
 
 /***/ }),
@@ -34604,7 +34538,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500"
-}, " ผู้เสียภาษี ประเภทนิติบุลคล ", -1
+}, " ผู้เสียภาษี ประเภทนิติบุคคล ", -1
 /* HOISTED */
 );
 
@@ -34855,7 +34789,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["checked"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุลคล")), 1
+      , ["checked"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุคคล")), 1
       /* TEXT */
       ), _hoisted_31])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("เจ้าหน้าที่")), 1
       /* TEXT */
@@ -35092,7 +35026,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500"
-}, " ผู้เสียภาษี ประเภทนิติบุลคล ", -1
+}, " ผู้เสียภาษี ประเภทนิติบุคคล ", -1
 /* HOISTED */
 );
 
@@ -35386,7 +35320,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.cit]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุลคล")), 1
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.cit]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุคคล")), 1
       /* TEXT */
       ), _hoisted_31])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("เจ้าหน้าที่")), 1
       /* TEXT */
@@ -35857,7 +35791,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, [_hoisted_17], 8
         /* PROPS */
-        , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class=\"border-t w-px\">\n                                            <inertia-link\n                                                v-if=\"\n                                                    $page.props.auth.user\n                                                        .role_id < 3\n                                                \"\n                                                class=\"px-2 py-2 flex items-center focus:text-indigo-500\"\n                                                :href=\"\n                                                    route(\n                                                        'appointments.show',\n                                                        appointment.id\n                                                    )\n                                                \"\n                                            >\n                                                <svg\n                                                    fill=\"none\"\n                                                    stroke=\"currentColor\"\n                                                    stroke-linecap=\"round\"\n                                                    stroke-linejoin=\"round\"\n                                                    stroke-width=\"2\"\n                                                    viewBox=\"0 0 24 24\"\n                                                    class=\"-mt-px w-6 h-6 text-green-300\"\n                                                >\n                                                    <path\n                                                        stroke-linecap=\"round\"\n                                                        stroke-linejoin=\"round\"\n                                                        stroke-width=\"1\"\n                                                        d=\"M19.8005808,10 C17.9798698,6.43832409 14.2746855,4 10,4 C5.72531453,4 2.02013017,6.43832409 0.199419187,10 C2.02013017,13.5616759 5.72531453,16 10,16 C14.2746855,16 17.9798698,13.5616759 19.8005808,10 Z M10,14 C12.209139,14 14,12.209139 14,10 C14,7.790861 12.209139,6 10,6 C7.790861,6 6,7.790861 6,10 C6,12.209139 7.790861,14 10,14 Z M10,12 C11.1045695,12 12,11.1045695 12,10 C12,8.8954305 11.1045695,8 10,8 C8.8954305,8 8,8.8954305 8,10 C8,11.1045695 8.8954305,12 10,12 Z\"\n                                                    />\n                                                </svg>\n                                            </inertia-link>\n                                        </td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_18, [_ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+        , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td class=\"border-t w-px\">\r\n                                            <inertia-link\r\n                                                v-if=\"\r\n                                                    $page.props.auth.user\r\n                                                        .role_id < 3\r\n                                                \"\r\n                                                class=\"px-2 py-2 flex items-center focus:text-indigo-500\"\r\n                                                :href=\"\r\n                                                    route(\r\n                                                        'appointments.show',\r\n                                                        appointment.id\r\n                                                    )\r\n                                                \"\r\n                                            >\r\n                                                <svg\r\n                                                    fill=\"none\"\r\n                                                    stroke=\"currentColor\"\r\n                                                    stroke-linecap=\"round\"\r\n                                                    stroke-linejoin=\"round\"\r\n                                                    stroke-width=\"2\"\r\n                                                    viewBox=\"0 0 24 24\"\r\n                                                    class=\"-mt-px w-6 h-6 text-green-300\"\r\n                                                >\r\n                                                    <path\r\n                                                        stroke-linecap=\"round\"\r\n                                                        stroke-linejoin=\"round\"\r\n                                                        stroke-width=\"1\"\r\n                                                        d=\"M19.8005808,10 C17.9798698,6.43832409 14.2746855,4 10,4 C5.72531453,4 2.02013017,6.43832409 0.199419187,10 C2.02013017,13.5616759 5.72531453,16 10,16 C14.2746855,16 17.9798698,13.5616759 19.8005808,10 Z M10,14 C12.209139,14 14,12.209139 14,10 C14,7.790861 12.209139,6 10,6 C7.790861,6 6,7.790861 6,10 C6,12.209139 7.790861,14 10,14 Z M10,12 C11.1045695,12 12,11.1045695 12,10 C12,8.8954305 11.1045695,8 10,8 C8.8954305,8 8,8.8954305 8,10 C8,11.1045695 8.8954305,12 10,12 Z\"\r\n                                                    />\r\n                                                </svg>\r\n                                            </inertia-link>\r\n                                        </td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_18, [_ctx.$page.props.auth.user.role_id < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
           key: 0,
           "class": "px-2 py-2 flex items-center focus:text-indigo-500",
           href: _ctx.route('appointments.edit', appointment.id)
@@ -37050,7 +36984,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500"
-}, " ผู้เสียภาษี ประเภทนิติบุลคล ", -1
+}, " ผู้เสียภาษี ประเภทนิติบุคคล ", -1
 /* HOISTED */
 );
 
@@ -37312,7 +37246,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: ""
       }, null, 8
       /* PROPS */
-      , ["checked"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.type]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุลคล")), 1
+      , ["checked"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.type]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุคคล")), 1
       /* TEXT */
       ), _hoisted_31])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Customer Option "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.customerOptions, function (customer) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
@@ -37460,11 +37394,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[14] || (_cache[14] = function () {
           return $options.getDateInfo && $options.getDateInfo.apply($options, arguments);
         }),
-        autocomplete: "current-date",
         "class": "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.date]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dateInfo.info), 1
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.date]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("autocomplete=\"current-date\" ")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dateInfo.info), 1
       /* TEXT */
       )]), _hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" เลือกรอบนัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("เลือกรอบนัดหมาย")), 1
       /* TEXT */
@@ -37669,7 +37602,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500"
-}, " ผู้เสียภาษี ประเภทนิติบุลคล ", -1
+}, " ผู้เสียภาษี ประเภทนิติบุคคล ", -1
 /* HOISTED */
 );
 
@@ -37984,7 +37917,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" cit "), $props.booking.type == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("บุคคลธรรมดา")), 1
       /* TEXT */
-      ), _hoisted_26])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" pit "), $props.booking.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุลคล")), 1
+      ), _hoisted_26])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" pit "), $props.booking.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุคคล")), 1
       /* TEXT */
       ), _hoisted_31])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Customer Option "), $props.customerOption ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         name: 'c' + $props.customerOption.id,
@@ -38402,7 +38335,7 @@ var _hoisted_38 = {
 
 var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
   "class": "text-gray-500"
-}, " ผู้เสียภาษี ประเภทนิติบุลคล ", -1
+}, " ผู้เสียภาษี ประเภทนิติบุคคล ", -1
 /* HOISTED */
 );
 
@@ -38580,64 +38513,20 @@ var _hoisted_87 = {
 var _hoisted_88 = {
   "class": "px-4 py-3 bg-gray-50 text-right sm:px-6"
 };
-var _hoisted_89 = {
+
+var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex justify-center mt-4 sm:items-center sm:justify-between"
-};
-var _hoisted_90 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "text-center text-sm text-gray-500 sm:text-left"
-};
-var _hoisted_91 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex items-center"
-};
-
-var _hoisted_92 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  stroke: "currentColor",
-  "class": "-mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_93 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_94 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  stroke: "currentColor",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  "class": "ml-4 -mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  d: "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_95 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_96 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\r\n    <svg\r\n      fill=\"none\"\r\n      stroke-linecap=\"round\"\r\n      stroke-linejoin=\"round\"\r\n      stroke-width=\"2\"\r\n      viewBox=\"0 0 24 24\"\r\n      stroke=\"currentColor\"\r\n      class=\"-mt-px w-5 h-5 text-gray-400\"\r\n    >\r\n      <path\r\n        d=\"M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253\"\r\n      ></path>\r\n    </svg>\r\n\r\n    <a href=\"#\" class=\"ml-1 underline\">\r\n      {{ __(\"Document\") }}\r\n    </a>\r\n\r\n    <svg\r\n      fill=\"none\"\r\n      stroke=\"currentColor\"\r\n      stroke-linecap=\"round\"\r\n      stroke-linejoin=\"round\"\r\n      stroke-width=\"2\"\r\n      viewBox=\"0 0 24 24\"\r\n      class=\"ml-4 -mt-px w-5 h-5 text-gray-400\"\r\n    >\r\n      <path\r\n        stroke-linecap=\"round\"\r\n        stroke-linejoin=\"round\"\r\n        stroke-width=\"2\"\r\n        d=\"M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z\"\r\n      />\r\n    </svg>\r\n\r\n    <a href=\"#\" class=\"ml-1 underline\">\r\n      {{ __(\"Chat\") }}\r\n    </a>")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0"
-}, " e-Appointment v 1.0.0 ", -1
+}, " e-Appointment v 1.0.0 ")], -1
 /* HOISTED */
 );
 
-var _hoisted_97 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center mt-4 sm:items-center\" data-v-30c514a9><div class=\"text-center text-sm text-gray-500\" data-v-30c514a9><div class=\"flex items-center\" data-v-30c514a9><footer class=\"bg-light py-5\" data-v-30c514a9><div class=\"container\" data-v-30c514a9><div class=\"row\" data-v-30c514a9><!-- Owner System --><div class=\"col-lg-12 text-center\" data-v-30c514a9><h5 data-v-30c514a9>สอบถามรายละเอียดเพิ่มเติม</h5><p data-v-30c514a9><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\" data-v-30c514a9> RD Intelligent Center 1161</a><br data-v-30c514a9> ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400, 02-2729168, 02-2729819<br data-v-30c514a9>ด้านระบบงาน : โทร. 02-272-8804, 02-272-8743 </p></div><!-- Footer Address --><hr data-v-30c514a9><div class=\"col-lg-12 text-center\" data-v-30c514a9><h5 data-v-30c514a9>กรมสรรพากร</h5><p data-v-30c514a9> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer></div></div></div>", 1);
+var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center mt-4 sm:items-center\" data-v-30c514a9><div class=\"text-center text-sm text-gray-500\" data-v-30c514a9><div class=\"flex items-center\" data-v-30c514a9><footer class=\"bg-light py-5\" data-v-30c514a9><div class=\"container\" data-v-30c514a9><div class=\"row\" data-v-30c514a9><!-- Owner System --><div class=\"col-lg-12 text-center\" data-v-30c514a9><h5 data-v-30c514a9>สอบถามรายละเอียดเพิ่มเติม</h5><p data-v-30c514a9><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\" data-v-30c514a9> RD Intelligent Center 1161 </a><!--\n                            &lt;br /&gt;\r\n                          ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400,\r\n                          02-2729168, 02-2729819&lt;br /&gt;ด้านระบบงาน : โทร.\r\n                          02-272-8901\r\n                        --></p></div><!-- Footer Address --><hr data-v-30c514a9><div class=\"col-lg-12 text-center\" data-v-30c514a9><h5 data-v-30c514a9>กรมสรรพากร</h5><p data-v-30c514a9> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer></div></div></div>", 1);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -38848,7 +38737,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     disabled: ""
   }, null, 8
   /* PROPS */
-  , ["checked"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.type]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุลคล")), 1
+  , ["checked"]), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.type]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("นิติบุคคล")), 1
   /* TEXT */
   ), _hoisted_39])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Customer Option "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.customerOptions, function (customer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
@@ -38996,11 +38885,10 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     onChange: _cache[14] || (_cache[14] = function () {
       return $options.getDateInfo && $options.getDateInfo.apply($options, arguments);
     }),
-    autocomplete: "current-date",
     "class": "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.date]])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dateInfo.info), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.date]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("autocomplete=\"current-date\"")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dateInfo.info), 1
   /* TEXT */
   )]), _hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" เลือกรอบนัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("fieldset", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("legend", _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("เลือกรอบนัดหมาย")), 1
   /* TEXT */
@@ -39083,11 +38971,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     onSubmit: $options.submit
   }, null, 8
   /* PROPS */
-  , ["nid", "name", "type", "phone", "email", "facebook", "line_id", "detail", "date", "appointment", "round", "subject", "customer", "onSubmit"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Content ")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_89, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_91, [_hoisted_92, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_93, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Document")), 1
-  /* TEXT */
-  ), _hoisted_94, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_95, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Chat")), 1
-  /* TEXT */
-  )])]), _hoisted_96]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), _hoisted_97])]);
+  , ["nid", "name", "type", "phone", "email", "facebook", "line_id", "detail", "date", "appointment", "round", "subject", "customer", "onSubmit"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Content ")])])])])]), _hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), _hoisted_90])]);
 });
 
 /***/ }),
@@ -39561,7 +39445,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dl", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" หมายเลขผู้เสียภาษี "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.booking.nid), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ประเภทผู้นัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, $props.booking.type == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_15, " บุคคลธรรมดา ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_16, " นิติบุลคล ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.customer), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ประเภทผู้นัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [_hoisted_14, $props.booking.type == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_15, " บุคคลธรรมดา ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.type == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_16, " นิติบุคคล ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("dd", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.customer), 1
       /* TEXT */
       ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ชื่อผู้นัดหมาย "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.booking.name), 1
       /* TEXT */
@@ -39788,64 +39672,20 @@ var _hoisted_22 = {
   "class": "border-t px-6 py-4",
   colspan: "6"
 };
-var _hoisted_23 = {
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex justify-center mt-4 sm:items-center sm:justify-between"
-};
-var _hoisted_24 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "text-center text-sm text-gray-500 sm:text-left"
-};
-var _hoisted_25 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "flex items-center"
-};
-
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  stroke: "currentColor",
-  "class": "-mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_27 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  fill: "none",
-  stroke: "currentColor",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  viewBox: "0 0 24 24",
-  "class": "ml-4 -mt-px w-5 h-5 text-gray-400"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  d: "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_29 = {
-  href: "#",
-  "class": "ml-1 underline"
-};
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\r\n                        <svg fill=\"none\"\r\n                             stroke-linecap=\"round\"\r\n                             stroke-linejoin=\"round\"\r\n                             stroke-width=\"2\"\r\n                             viewBox=\"0 0 24 24\"\r\n                             stroke=\"currentColor\"\r\n                             class=\"-mt-px w-5 h-5 text-gray-400\">\r\n                            <path d=\"M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253\"></path>\r\n                        </svg>\r\n                            <a href=\"#\" class=\"ml-1 underline\">\r\n                                {{ __(\"Document\") }}\r\n                            </a>\r\n                        <svg fill=\"none\"\r\n                             stroke=\"currentColor\"\r\n                             stroke-linecap=\"round\"\r\n                             stroke-linejoin=\"round\"\r\n                             stroke-width=\"2\"\r\n                             viewBox=\"0 0 24 24\"\r\n                             class=\"ml-4 -mt-px w-5 h-5 text-gray-400\">\r\n                            <path stroke-linecap=\"round\"\r\n                                  stroke-linejoin=\"round\"\r\n                                  stroke-width=\"2\"\r\n                                  d=\"M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z\" />\r\n                        </svg>\r\n    <a href=\"#\" class=\"ml-1 underline\">\r\n        {{ __(\"Chat\") }}\r\n    </a>\r\n    ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0"
-}, " e-Appointment v 1.0.0 ", -1
+}, " e-Appointment v 1.0.0 ")], -1
 /* HOISTED */
 );
 
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center mt-4 sm:items-center\" data-v-317d1a6e><div class=\"text-center text-sm text-gray-500\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><footer class=\"bg-light py-5\" data-v-317d1a6e><div class=\"container\" data-v-317d1a6e><div class=\"row\" data-v-317d1a6e><!-- Owner System --><div class=\"col-lg-12 text-center\" data-v-317d1a6e><h5 data-v-317d1a6e>สอบถามรายละเอียดเพิ่มเติม</h5><p data-v-317d1a6e><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\" data-v-317d1a6e> RD Intelligent Center 1161</a><br data-v-317d1a6e> ด้านสิทธิประโยชน์ทางภาษี : โทร. 02-2728289, 02-2728400, 02-2729168, 02-2729819<br data-v-317d1a6e>ด้านระบบงาน : โทร. 02-272-8804, 02-272-8743 </p></div><!-- Footer Address --><hr data-v-317d1a6e><div class=\"col-lg-12 text-center\" data-v-317d1a6e><h5 data-v-317d1a6e>กรมสรรพากร</h5><p data-v-317d1a6e> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer></div></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center mt-4 sm:items-center\" data-v-317d1a6e><div class=\"text-center text-sm text-gray-500\" data-v-317d1a6e><div class=\"flex items-center\" data-v-317d1a6e><footer class=\"bg-light py-5\" data-v-317d1a6e><div class=\"container\" data-v-317d1a6e><div class=\"row\" data-v-317d1a6e><!-- Owner System --><div class=\"col-lg-12 text-center\" data-v-317d1a6e><h5 data-v-317d1a6e>สอบถามรายละเอียดเพิ่มเติม</h5><p data-v-317d1a6e><a title=\"คลิกเพื่อโทรหา Call Center: 1161\" href=\"tel:1161\" data-v-317d1a6e> RD Intelligent Center 1161 </a><!--&lt;br /&gt;\r\n                                                ด้านสิทธิประโยชน์ทางภาษี : โทร.\r\n                                                02-2728289, 02-2728400, 02-2729168,\r\n                                                02-2729819&lt;br /&gt;ด้านระบบงาน : โทร.\r\n                                                02-272-8804, 02-272-8743\r\n    --></p></div><!-- Footer Address --><hr data-v-317d1a6e><div class=\"col-lg-12 text-center\" data-v-317d1a6e><h5 data-v-317d1a6e>กรมสรรพากร</h5><p data-v-317d1a6e> 90 ซอยพหลโยธิน 7 ถนนพหลโยธิน แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 </p></div></div></div></footer></div></div></div>", 1);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -40027,11 +39867,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     links: $props.appointments.links
   }, null, 8
   /* PROPS */
-  , ["links"])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Document")), 1
-  /* TEXT */
-  ), _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.__("Chat")), 1
-  /* TEXT */
-  )])]), _hoisted_30]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), _hoisted_31])]);
+  , ["links"])])])])])]), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Content "), _hoisted_24])]);
 });
 
 /***/ }),
@@ -40343,7 +40179,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-gray-100[data-v-30c514a9] {\n  background-color: #f7fafc;\n  background-color: rgba(247, 250, 252, var(--tw-bg-opacity));\n}\n.border-gray-200[data-v-30c514a9] {\n  border-color: #edf2f7;\n  border-color: rgba(237, 242, 247, var(--tw-border-opacity));\n}\n.text-gray-400[data-v-30c514a9] {\n  color: #cbd5e0;\n  color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n.text-gray-500[data-v-30c514a9] {\n  color: #a0aec0;\n  color: rgba(160, 174, 192, var(--tw-text-opacity));\n}\n.text-gray-600[data-v-30c514a9] {\n  color: #718096;\n  color: rgba(113, 128, 150, var(--tw-text-opacity));\n}\n.text-gray-700[data-v-30c514a9] {\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--tw-text-opacity));\n}\n.text-gray-900[data-v-30c514a9] {\n  color: #1a202c;\n  color: rgba(26, 32, 44, var(--tw-text-opacity));\n}\n@media (prefers-color-scheme: dark) {\n.dark\\:bg-gray-800[data-v-30c514a9] {\n    background-color: #2d3748;\n    background-color: rgba(45, 55, 72, var(--tw-bg-opacity));\n}\n.dark\\:bg-gray-900[data-v-30c514a9] {\n    background-color: #1a202c;\n    background-color: rgba(26, 32, 44, var(--tw-bg-opacity));\n}\n.dark\\:border-gray-700[data-v-30c514a9] {\n    border-color: #4a5568;\n    border-color: rgba(74, 85, 104, var(--tw-border-opacity));\n}\n.dark\\:text-white[data-v-30c514a9] {\n    color: #fff;\n    color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n.dark\\:text-gray-400[data-v-30c514a9] {\n    color: #cbd5e0;\n    color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-gray-100[data-v-30c514a9] {\r\n  background-color: #f7fafc;\r\n  background-color: rgba(247, 250, 252, var(--tw-bg-opacity));\n}\n.border-gray-200[data-v-30c514a9] {\r\n  border-color: #edf2f7;\r\n  border-color: rgba(237, 242, 247, var(--tw-border-opacity));\n}\n.text-gray-400[data-v-30c514a9] {\r\n  color: #cbd5e0;\r\n  color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n.text-gray-500[data-v-30c514a9] {\r\n  color: #a0aec0;\r\n  color: rgba(160, 174, 192, var(--tw-text-opacity));\n}\n.text-gray-600[data-v-30c514a9] {\r\n  color: #718096;\r\n  color: rgba(113, 128, 150, var(--tw-text-opacity));\n}\n.text-gray-700[data-v-30c514a9] {\r\n  color: #4a5568;\r\n  color: rgba(74, 85, 104, var(--tw-text-opacity));\n}\n.text-gray-900[data-v-30c514a9] {\r\n  color: #1a202c;\r\n  color: rgba(26, 32, 44, var(--tw-text-opacity));\n}\n@media (prefers-color-scheme: dark) {\n.dark\\:bg-gray-800[data-v-30c514a9] {\r\n    background-color: #2d3748;\r\n    background-color: rgba(45, 55, 72, var(--tw-bg-opacity));\n}\n.dark\\:bg-gray-900[data-v-30c514a9] {\r\n    background-color: #1a202c;\r\n    background-color: rgba(26, 32, 44, var(--tw-bg-opacity));\n}\n.dark\\:border-gray-700[data-v-30c514a9] {\r\n    border-color: #4a5568;\r\n    border-color: rgba(74, 85, 104, var(--tw-border-opacity));\n}\n.dark\\:text-white[data-v-30c514a9] {\r\n    color: #fff;\r\n    color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n.dark\\:text-gray-400[data-v-30c514a9] {\r\n    color: #cbd5e0;\r\n    color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40367,7 +40203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-gray-100[data-v-317d1a6e] {\n    background-color: #f7fafc;\n    background-color: rgba(247, 250, 252, var(--tw-bg-opacity));\n}\n.border-gray-200[data-v-317d1a6e] {\n    border-color: #edf2f7;\n    border-color: rgba(237, 242, 247, var(--tw-border-opacity));\n}\n.text-gray-400[data-v-317d1a6e] {\n    color: #cbd5e0;\n    color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n.text-gray-500[data-v-317d1a6e] {\n    color: #a0aec0;\n    color: rgba(160, 174, 192, var(--tw-text-opacity));\n}\n.text-gray-600[data-v-317d1a6e] {\n    color: #718096;\n    color: rgba(113, 128, 150, var(--tw-text-opacity));\n}\n.text-gray-700[data-v-317d1a6e] {\n    color: #4a5568;\n    color: rgba(74, 85, 104, var(--tw-text-opacity));\n}\n.text-gray-900[data-v-317d1a6e] {\n    color: #1a202c;\n    color: rgba(26, 32, 44, var(--tw-text-opacity));\n}\n@media (prefers-color-scheme: dark) {\n.dark\\:bg-gray-800[data-v-317d1a6e] {\n        background-color: #2d3748;\n        background-color: rgba(45, 55, 72, var(--tw-bg-opacity));\n}\n.dark\\:bg-gray-900[data-v-317d1a6e] {\n        background-color: #1a202c;\n        background-color: rgba(26, 32, 44, var(--tw-bg-opacity));\n}\n.dark\\:border-gray-700[data-v-317d1a6e] {\n        border-color: #4a5568;\n        border-color: rgba(74, 85, 104, var(--tw-border-opacity));\n}\n.dark\\:text-white[data-v-317d1a6e] {\n        color: #fff;\n        color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n.dark\\:text-gray-400[data-v-317d1a6e] {\n        color: #cbd5e0;\n        color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-gray-100[data-v-317d1a6e] {\r\n    background-color: #f7fafc;\r\n    background-color: rgba(247, 250, 252, var(--tw-bg-opacity));\n}\n.border-gray-200[data-v-317d1a6e] {\r\n    border-color: #edf2f7;\r\n    border-color: rgba(237, 242, 247, var(--tw-border-opacity));\n}\n.text-gray-400[data-v-317d1a6e] {\r\n    color: #cbd5e0;\r\n    color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n.text-gray-500[data-v-317d1a6e] {\r\n    color: #a0aec0;\r\n    color: rgba(160, 174, 192, var(--tw-text-opacity));\n}\n.text-gray-600[data-v-317d1a6e] {\r\n    color: #718096;\r\n    color: rgba(113, 128, 150, var(--tw-text-opacity));\n}\n.text-gray-700[data-v-317d1a6e] {\r\n    color: #4a5568;\r\n    color: rgba(74, 85, 104, var(--tw-text-opacity));\n}\n.text-gray-900[data-v-317d1a6e] {\r\n    color: #1a202c;\r\n    color: rgba(26, 32, 44, var(--tw-text-opacity));\n}\n@media (prefers-color-scheme: dark) {\n.dark\\:bg-gray-800[data-v-317d1a6e] {\r\n        background-color: #2d3748;\r\n        background-color: rgba(45, 55, 72, var(--tw-bg-opacity));\n}\n.dark\\:bg-gray-900[data-v-317d1a6e] {\r\n        background-color: #1a202c;\r\n        background-color: rgba(26, 32, 44, var(--tw-bg-opacity));\n}\n.dark\\:border-gray-700[data-v-317d1a6e] {\r\n        border-color: #4a5568;\r\n        border-color: rgba(74, 85, 104, var(--tw-border-opacity));\n}\n.dark\\:text-white[data-v-317d1a6e] {\r\n        color: #fff;\r\n        color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n.dark\\:text-gray-400[data-v-317d1a6e] {\r\n        color: #cbd5e0;\r\n        color: rgba(203, 213, 224, var(--tw-text-opacity));\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

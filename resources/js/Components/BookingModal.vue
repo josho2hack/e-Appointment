@@ -73,7 +73,7 @@
                         >
                         <span v-if="type === 1"
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
-                            >นิติบุลคล</span
+                            >นิติบุคคล</span
                         >
                         <span  v-if="customerInfo !== ''"
                             class="text-blue-700 block mb-1 font-bold text-sm tracking-wide"
