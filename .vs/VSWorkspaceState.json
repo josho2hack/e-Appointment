@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\app",
     "\\app\\Http",
-    "\\database",
+    "\\app\\Http\\Controllers",
+    "\\config",
     "\\public",
     "\\resources",
-    "\\resources\\js",
-    "\\resources\\js\\Pages",
     "\\resources\\views",
-    "\\routes"
+    "\\routes",
+    "\\storage"
   ],
-  "SelectedNode": "\\routes\\web.php",
+  "SelectedNode": "\\app\\Http\\Controllers\\NidController.php",
   "PreviewInSolutionExplorer": false
 }

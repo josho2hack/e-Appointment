@@ -43,6 +43,13 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
+            'stream' => [
+                'ssl' => [
+                    'allow_self_signed' => true,
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ],
         ],
 
         'ses' => [
@@ -84,7 +91,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'appointment@rd.go.th'),
+        'address' => env('MAIL_FROM_ADDRESS', 'e-appointment@rd.go.th'),
         'name' => env('MAIL_FROM_NAME', 'e-Appointment'),
     ],
 
